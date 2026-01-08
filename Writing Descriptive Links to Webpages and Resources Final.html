@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Writing Clear Descriptive Links to Webpages and Resources</title>
+  <meta name="description" content="UB-branded, WCAG 2.1 AA accessible guide for writing clear, descriptive link text in Brightspace.">
+
+  <style>
+    :root{
+      /* UB brand palette */
+      --ub-blue: #005BBB;           /* links, primary buttons */
+      --ub-heading: #006570;        /* Niagara Whirlpool for headings */
+      --ub-text: #666666;           /* Townsend Gray for body text */
+      --ub-white: #FFFFFF;
+      --ub-rule: #E4E4E4;           /* Baird Point for borders */
+      --badge-yellow: #FFC72C;      /* Solar Strand */
+      --badge-coral: #E56A54;       /* Letchworth Autumn */
+      --badge-teal: #00A69C;        /* Lake LaSalle */
+      --focus: #000000;             /* visible focus */
+    }
+
+    html:focus-within{scroll-behavior:smooth;}
+    body{margin:0;font-family:Arial, Helvetica, sans-serif;line-height:1.6;color:var(--ub-text);background:var(--ub-white);}
+    a{color:var(--ub-blue);}
+    a:focus, button:focus, summary:focus{outline:3px solid var(--focus);outline-offset:2px;}
+
+    .skip-link{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
+    .skip-link:focus{position:static;width:auto;height:auto;padding:.5rem;background:#FFFF00;color:#000;}
+
+    header{background:var(--ub-blue);color:var(--ub-white);}
+    header .container{max-width:1000px;margin:0 auto;padding:1rem;}
+    header h1{margin:.2rem 0 0 0;font-size:1.8rem;}
+    header p{margin:.25rem 0 0 0;}
+
+    .container{max-width:1000px;margin:0 auto;padding:1rem;}
+
+    h1,h2,h3{line-height:1.25;color:var(--ub-heading);}
+    h2{margin-top:1.2rem;}
+    h3{margin-top:1rem;}
+    p{margin:.5rem 0;}
+
+    .banner{background:var(--ub-blue);color:var(--ub-white);border-radius:12px;padding:1rem;margin:1rem 0;}
+    .card{background:#fff;border:1px solid var(--ub-rule);border-radius:12px;padding:1rem;margin:1rem 0;}
+
+    details{border:1px solid var(--ub-rule);border-radius:12px;background:#fff;padding:.6rem .8rem;margin:.6rem 0;}
+    details summary{list-style:none;color:var(--ub-heading);cursor:pointer;}
+    details summary::-webkit-details-marker{display:none;}
+
+    pre{background:#fff;border:1px solid var(--ub-rule);border-radius:10px;padding:.75rem;overflow:auto;}
+    code{font-family:Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;font-size:14px;}
+
+    .badge{display:inline-block;padding:.2rem .5rem;border-radius:999px;border:1px solid var(--ub-rule);font-size:.85rem;color:#000;background:#fff;}
+    .badge.time{background:var(--badge-yellow);}
+    .badge.warn{background:var(--badge-coral);}
+    .badge.info{background:var(--badge-teal);}
+
+    .btn-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0;}
+    .btn{display:inline-block;padding:.55rem .85rem;border-radius:10px;text-decoration:none;border:1px solid var(--ub-blue);color:var(--ub-blue);background:#fff;}
+    .btn.primary{background:var(--ub-blue);color:#fff;}
+
+    table{border-collapse:collapse;width:100%;margin:.75rem 0;}
+    th, td{border:1px solid var(--ub-rule);padding:.5rem;text-align:left;vertical-align:top;}
+    thead th{background:var(--ub-heading);color:#fff;}
+    caption{caption-side:top;text-align:left;font-weight:700;margin-bottom:.3rem;color:var(--ub-heading);}
+
+    footer{border-top:1px solid var(--ub-rule);margin-top:1rem;}
+
+    .controls{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0 1rem 0;}
+  </style>
+</head><body><p><a class="skip-link" href="#main">Skip to main content</a></p>
+<header role="banner">
+<div class="container">
+<h1><span style="color: #ffffff;">Writing Clear Descriptive Links to Webpages and Resources</span></h1>
+<p>Write link text that communicates destination and purpose. Validate before posting to Brightspace.</p>
+</div>
+</header><main id="main" class="container" role="main">
+<section class="banner" aria-label="Why descriptive links matter">
+<p>Descriptive link text tells learners where a link goes and what to expect before they activate it. Screen reader users often navigate long pages by reviewing links out of context, so vague or generic link text limits comprehension and slows learning.</p>
+</section>
+<section class="card" aria-labelledby="ai-note">
+<h2 id="ai-note">AI and author responsibility</h2>
+<p>AI can assist with drafting link text, but authors remain responsible for clarity, accuracy, and instructional intent.</p>
+</section>
+<div class="controls" aria-label="Expand or collapse all"><button class="btn primary" type="button" id="expandAll">Expand all</button> <button class="btn" type="button" id="collapseAll">Collapse all</button></div>
+<section class="card" aria-labelledby="decision-title">
+<h2 id="decision-title">Choosing descriptive link text decision guide</h2>
+<p>This applies when linking phrases like “click here,” “this page,” or entire sentences instead of naming the destination clearly.</p>
+<!-- Always visible decision table -->
+<table aria-label="Decision guide for writing descriptive link text"><caption>Descriptive link text: quick decision guide</caption>
+<thead>
+<tr>
+<th scope="col">If the link is</th>
+<th scope="col">Then choose</th>
+<th scope="col">What to do</th>
+<th scope="col">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A URL pasted into the page</td>
+<td>Descriptive title</td>
+<td>Use the destination title or a meaningful label instead of the raw URL.</td>
+<td><span style="font-style: italic;">Accessibility at UB: Creating Accessible Word Documents</span></td>
+</tr>
+<tr>
+<td>Generic text such as “click here” or “this page”</td>
+<td>Purpose plus destination</td>
+<td>Name the destination and what the learner will do or find there.</td>
+<td><span style="font-style: italic;">Submit your reflection in Brightspace Assignments</span></td>
+</tr>
+<tr>
+<td>The title of a webpage or document</td>
+<td>Exact or shortened title</td>
+<td>Match the destination title or a shortened version that preserves meaning. Avoid truncating key words.</td>
+<td><span style="font-style: italic;">Section 508: Descriptive Links and Hypertext</span></td>
+</tr>
+<tr>
+<td>The same resource appears multiple times</td>
+<td>Consistent link text</td>
+<td>When the same resource appears in multiple places, use the same link text each time.</td>
+<td><span style="font-style: italic;">Course Accessibility Checklist</span></td>
+</tr>
+<tr>
+<td>A task with a clear action</td>
+<td>Action plus object</td>
+<td>Make the action explicit so learners know what happens when they activate the link.</td>
+<td><span style="font-style: italic;">Download the lab data template (Excel)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Most learners benefit from clear link text, but this practice is especially critical for students using screen readers or keyboard navigation.</p>
+<details>
+<summary>Quality checks you can do in under one minute</summary>
+<ul>
+<li>Out-of-context check: Read each link by itself and confirm it still makes sense.</li>
+<li>Scan check: Skim only the linked phrases on the page and confirm you can understand the workflow without reading surrounding text.</li>
+<li>Consistency check: Confirm repeated resources use the same link text across modules and weeks.</li>
+</ul>
+</details>
+<details>
+<summary>Manual checklist for descriptive links</summary>
+<ul>
+<li>Use meaningful link text that describes destination and purpose.</li>
+<li>Keep link text concise while preserving key words.</li>
+<li>Avoid using only “click here,” “more,” “this,” or the raw URL as the link text.</li>
+<li>If the link initiates a task, include the action in the link text.</li>
+<li>If the link points to a file, include the file type when helpful (PDF, Word, PowerPoint, Excel).</li>
+</ul>
+</details>
+<details>
+<summary>Prompt bank for drafting link text</summary>
+<p class="badge info">Label: link text drafting support</p>
+<h3>Prompt A. Draft descriptive links from a list</h3>
+<pre><code>You will receive a list of links I plan to include in a course page.
+For each item, ask me for:
+1) The intended learner task (what should the learner do)
+2) The destination type (webpage, PDF, Word, Brightspace tool, video)
+3) Any required wording (course terminology, assignment names)
+
+Then draft descriptive link text for each item.
+Requirements:
+- Use the destination title or a meaningful summary
+- Avoid generic phrases such as "click here" or "this page"
+- Keep link text concise while preserving key words
+- If it is a file, include the file type when helpful
+Return the revised link text as a numbered list only.</code></pre>
+<h3>Prompt B. Improve existing link text without changing meaning</h3>
+<pre><code>You will receive existing link text and the destination description.
+Rewrite each link to be more descriptive and task aligned without changing meaning.
+Also do an out-of-context check: confirm each link makes sense by itself.
+Return a two column list:
+1) Current link text
+2) Revised link text
+Do not add new resources.</code></pre>
+<p class="badge warn">Reminder</p>
+<p>Review all suggested changes before applying them, especially when link wording implies a specific action or task.</p>
+</details>
+<details>
+<summary>Validation in Brightspace</summary>
+<ul>
+<li>Run the Ally Course Report for the page and review any link related feedback.</li>
+<li>Keyboard check: Use Tab to move through links and confirm focus is visible and the link order matches the page structure.</li>
+<li>Screen reader spot check: Navigate by links and confirm the link list is understandable without surrounding context.</li>
+</ul>
+<p class="badge time">Typical time: 2 to 10 minutes per page</p>
+</details>
+<details>
+<summary>Common places faculty get stuck</summary>
+<ul>
+<li>Copying and pasting a full URL because it feels faster than naming the destination.</li>
+<li>Linking an entire sentence instead of a concise destination phrase.</li>
+<li>Using different names for the same resource across weeks, which confuses learners who skim.</li>
+<li>Using link text that implies the wrong action (for example, “Download” when the link opens a webpage).</li>
+</ul>
+</details>
+<div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+</section>
+</main><footer role="contentinfo" class="container"><hr>
+<p>University at Buffalo brand colors and accessible patterns are applied. Do not rely on color alone for meaning.</p>
+<div class="controls" aria-label="Expand or collapse all duplicate"><button class="btn primary" type="button" id="expandAll2">Expand all</button> <button class="btn" type="button" id="collapseAll2">Collapse all</button></div>
+</footer>
+<p><script>
+    // Expand and collapse all details elements
+    const toggles = () => Array.from(document.querySelectorAll('details'));
+    function openAll(){ toggles().forEach(d => d.open = true); }
+    function closeAll(){ toggles().forEach(d => d.open = false); }
+
+    document.getElementById('expandAll')?.addEventListener('click', openAll);
+    document.getElementById('collapseAll')?.addEventListener('click', closeAll);
+    document.getElementById('expandAll2')?.addEventListener('click', openAll);
+    document.getElementById('collapseAll2')?.addEventListener('click', closeAll);
+  </script></p></body></html>

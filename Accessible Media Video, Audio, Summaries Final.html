@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessible Media: Video, Audio, Summaries</title>
+  <meta name="description" content="UB-branded, WCAG 2.1 AA accessible guide for remediating video and audio using AI and manual methods for Brightspace.">
+
+  <!-- UB brand tokens and accessible defaults -->
+  <style>
+    :root{
+      /* UB brand palette */
+      --ub-blue: #005BBB;           /* links, primary buttons */
+      --ub-heading: #006570;        /* Niagara Whirlpool for headings */
+      --ub-text: #666666;           /* Townsend Gray for body text */
+      --ub-white: #FFFFFF;
+      --ub-rule: #E4E4E4;           /* Baird Point for borders */
+      --badge-yellow: #FFC72C;      /* Solar Strand */
+      --badge-coral: #E56A54;       /* Letchworth Autumn */
+      --badge-teal: #00A69C;        /* Lake LaSalle */
+      --focus: #000000;             /* visible focus */
+    }
+
+    html:focus-within{scroll-behavior:smooth;}
+    body{margin:0;font-family:Arial, Helvetica, sans-serif;line-height:1.6;color:var(--ub-text);background:var(--ub-white);}    
+    a{color:var(--ub-blue);} a:focus, button:focus, summary:focus{outline:3px solid var(--focus);outline-offset:2px;}
+
+    .skip-link{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;} 
+    .skip-link:focus{position:static;width:auto;height:auto;padding:.5rem;background:#FFFF00;color:#000;}
+
+    header{background:var(--ub-blue);color:var(--ub-white);}
+    header .container{max-width:1000px;margin:0 auto;padding:1rem;}
+    header h1{margin:.2rem 0 0 0;font-size:1.8rem;}
+    header p{margin:.25rem 0 0 0;}
+
+    .container{max-width:1000px;margin:0 auto;padding:1rem;}
+
+    h1,h2,h3{line-height:1.25;color:var(--ub-heading);} 
+    h2{margin-top:1.2rem;}
+    h3{margin-top:1rem;}
+    p{margin:.5rem 0;}
+
+    .banner{background:var(--ub-blue);color:var(--ub-white);border-radius:12px;padding:1rem;margin:1rem 0;}
+    .card{background:#fff;border:1px solid var(--ub-rule);border-radius:12px;padding:1rem;margin:1rem 0;}
+
+    /* Accessible accordions */
+    details{border:1px solid var(--ub-rule);border-radius:12px;background:#fff;padding:.6rem .8rem;margin:.6rem 0;}
+    details summary{list-style:none;color:var(--ub-heading);cursor:pointer;}
+    details summary::-webkit-details-marker{display:none;}
+
+    /* Prompt wrappers */
+    pre{background:#fff;border:1px solid var(--ub-rule);border-radius:10px;padding:.75rem;overflow:auto;}
+    code{font-family:Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;font-size:14px;}
+
+    /* Badges and small labels use color plus text */
+    .badge{display:inline-block;padding:.2rem .5rem;border-radius:999px;border:1px solid var(--ub-rule);font-size:.85rem;color:#000;background:#fff;}
+    .badge.time{background:var(--badge-yellow);} 
+    .badge.warn{background:var(--badge-coral);} 
+    .badge.info{background:var(--badge-teal);} 
+
+    .btn-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0;}
+    .btn{display:inline-block;padding:.55rem .85rem;border-radius:10px;text-decoration:none;border:1px solid var(--ub-blue);color:var(--ub-blue);background:#fff;}
+    .btn.primary{background:var(--ub-blue);color:#fff;}
+
+    table{border-collapse:collapse;width:100%;margin:.75rem 0;}
+    th, td{border:1px solid var(--ub-rule);padding:.5rem;text-align:left;vertical-align:top;}
+    thead th{background:var(--ub-heading);color:#fff;}
+
+    footer{border-top:1px solid var(--ub-rule);margin-top:1rem;}
+
+    /* Expand/Collapse controls for all accordions */
+    .controls{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0 1rem 0;}
+  </style>
+</head><body><p><a class="skip-link" href="#main">Skip to main content</a></p>
+<header role="banner">
+<div class="container">
+<h1><span style="color: #ffffff;">Accessible Media: Video, Audio, Summaries</span></h1>
+<p>Use AI to accelerate routine text work, then complete manual checks. Validate before posting to Brightspace.</p>
+</div>
+</header><main id="main" class="container" role="main">
+<section class="banner" aria-label="AI and human collaboration reminder">
+<p>AI speeds up captioning and transcript work but does not finish accessibility. Provide captions or a transcript, apply the prompt, then complete the manual checklist and validation steps.</p>
+</section>
+<section class="card" aria-labelledby="decide">
+<h2 id="decide">Fix or rebuild: choosing the most effective path</h2>
+<p>Accessibility remediation for media often starts with a decision. In many cases, rebuilding or replacing a recording is more efficient and produces better outcomes than repairing poor source material. The goal is not to preserve the original recording at all costs but to provide content that is perceivable, understandable, and usable for all learners.</p>
+<ul>
+<li>Fix the media when the audio is clear and captions or a transcript are mostly accurate with correctable errors.</li>
+<li>Rebuild or replace when the audio is difficult to understand, captions are severely inaccurate, or the recording is outdated and no longer instructionally necessary.</li>
+</ul>
+<p>Both actions demonstrate a good-faith effort toward compliance and support an inclusive learning environment.</p>
+<p class="badge warn">Reminder: replacement is an accessibility strategy</p>
+</section>
+<div class="controls" aria-label="Expand or collapse all"><button class="btn primary" type="button" id="expandAll">Expand all</button> <button class="btn" type="button" id="collapseAll">Collapse all</button></div>
+<!-- VIDEO -->
+<section class="card" aria-labelledby="video-title">
+<h2 id="video-title">Video with captions</h2>
+<p>Typical uses include lecture recordings, demonstrations, guest talks, and narrated slide videos.</p>
+<details>
+<summary>How to upload and use the prompts (Video)</summary>
+<ol>
+<li>Use an institutionally approved AI tool. Do not upload sensitive student information.</li>
+<li>Prepare your source text. Captions or a transcript work best. If needed, export captions from your video platform or copy the transcript text.</li>
+<li>Provide the content in one of these ways:
+<ul>
+<li>Upload a caption or transcript file if file upload is available.</li>
+<li>Paste caption or transcript text into the AI tool if file upload is not available.</li>
+</ul>
+</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Retrieve the result and review it while playing the video to confirm timing cues, key terms, and speaker labels.</li>
+<li>Complete the manual remediation checklist and validation steps.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Video)</summary>
+<p class="badge info">Label: captions, transcript, summary</p>
+<h3>Prompt A. Caption cleanup and accuracy review</h3>
+<pre><code>You may be receiving captions, a transcript, or pasted text generated from a video.
+
+If readable caption or transcript text is present, edit it for accuracy, grammar, and clarity.
+Preserve speaker changes and instructional emphasis.
+Do not remove technical terms, names, or course specific vocabulary.
+
+If no readable caption or transcript text is present, briefly state what content is needed to proceed.
+
+Return revised caption or transcript text only.</code></pre>
+<h3>Prompt B. Transcript formatting for accessibility</h3>
+<pre><code>You may be receiving a transcript or unformatted text for a video.
+
+If readable transcript text is present, format it for accessibility and readability.
+Use clear paragraph breaks and consistent spacing.
+Include speaker labels when they are present or instructionally important.
+Do not summarize.
+
+If no readable transcript text is present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+<h3>Prompt C. Student friendly summary for Brightspace</h3>
+<pre><code>You may be receiving a transcript, captions, or pasted text.
+
+If readable transcript or caption text is present, create a concise, student friendly outline suitable for a Brightspace page.
+Preserve instructional sequence and key terms.
+If timestamps are provided, include them for major topic shifts.
+If timestamps are not provided, do not invent them.
+
+If no readable transcript or captions are present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Video</summary>
+<ul>
+<li>Ensure captions are present for required video.</li>
+<li>Confirm caption accuracy for technical terms, names, and key concepts.</li>
+<li>Confirm speaker identification when instructionally relevant.</li>
+<li>Ensure non-speech audio that affects meaning is represented in text when appropriate.</li>
+<li>Provide a transcript when captions are not available or not sufficient.</li>
+<li>Ensure critical instructions are also available in text outside the video.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Video outputs</summary>
+<ul>
+<li>Play the video while reviewing captions to confirm alignment and accuracy.</li>
+<li>If you post a transcript or summary in Brightspace, run the Ally Course Report for the page or document.</li>
+<li>Spot check the posted Brightspace content with a screen reader.</li>
+</ul>
+<p class="badge time">Typical time: 10 to 30 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Video</summary>
+<ul>
+<li>Auto captions that misrepresent technical terms and names.</li>
+<li>Missing speaker labels in multi-speaker instruction.</li>
+<li>Important information delivered only through visuals or audio with no text alternative.</li>
+<li>Outdated recordings that are faster to replace than to repair.</li>
+</ul>
+</details>
+</section>
+<!-- AUDIO -->
+<section class="card" aria-labelledby="audio-title">
+<h2 id="audio-title">Audio with transcripts</h2>
+<p>Typical uses include podcasts, audio lectures, interviews, and recorded feedback.</p>
+<details>
+<summary>How to upload and use the prompts (Audio)</summary>
+<ol>
+<li>Use an institutionally approved AI tool. Remove student identifiers and sensitive information.</li>
+<li>Start with text. If you only have audio, generate a transcript using your recording platform or transcription workflow first.</li>
+<li>Provide the transcript by uploading a file or pasting the transcript text.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Review the output for accuracy, speaker labels, and key terminology.</li>
+<li>Complete the manual remediation checklist and validation steps.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Audio)</summary>
+<p class="badge info">Label: transcript cleanup and summary</p>
+<h3>Prompt A. Transcript cleanup and clarity review</h3>
+<pre><code>You may be receiving a transcript or pasted text generated from audio.
+
+If readable transcript text is present, edit it for accuracy, grammar, and clarity.
+Preserve speaker changes and instructional emphasis.
+Do not remove technical terms, names, or course specific vocabulary.
+
+If no readable transcript text is present, briefly state what content is needed to proceed.
+
+Return revised transcript text only.</code></pre>
+<h3>Prompt B. Student friendly summary for Brightspace</h3>
+<pre><code>You may be receiving a transcript or pasted text.
+
+If readable transcript text is present, summarize it into a concise, student friendly outline suitable for a Brightspace page.
+Preserve instructional sequence and key terms.
+
+If no readable transcript text is present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Audio</summary>
+<ul>
+<li>Provide a transcript for required audio.</li>
+<li>Confirm accuracy of technical terms, names, and key concepts.</li>
+<li>Include speaker identification when instructionally relevant.</li>
+<li>Ensure the transcript is easy to locate in Brightspace and clearly labeled.</li>
+<li>Avoid delivering critical instructions only through audio without a text version.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Audio outputs</summary>
+<ul>
+<li>Review the transcript while listening to the audio for accuracy.</li>
+<li>If the transcript is posted as a Brightspace page or document, run the Ally Course Report.</li>
+<li>Spot check with a screen reader to confirm readability and navigation.</li>
+</ul>
+<p class="badge time">Typical time: 10 to 25 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Audio</summary>
+<ul>
+<li>Transcripts with missing sections due to poor audio quality.</li>
+<li>Unclear attribution in multi-speaker audio.</li>
+<li>Long transcripts posted without headings or spacing for readability.</li>
+<li>Audio that is outdated and better replaced with a short written announcement.</li>
+</ul>
+</details>
+</section>
+<!-- SUMMARIES -->
+<section class="card" aria-labelledby="summaries-title">
+<h2 id="summaries-title">Media summaries for Brightspace</h2>
+<p>Use summaries to help students preview, review, and locate key concepts. Summaries supplement captions and transcripts. They do not replace them.</p>
+<details>
+<summary>How to upload and use the prompts (Summaries)</summary>
+<ol>
+<li>Use an institutionally approved AI tool and remove student identifiers.</li>
+<li>Provide source text by uploading captions or a transcript, or pasting the text.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Review the output for accuracy, terminology, and alignment to course learning objectives.</li>
+<li>Post the summary as a Brightspace page near the media item. Include a clear label such as "Video summary" or "Audio summary."</li>
+<li>Complete validation steps before publishing.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Summaries)</summary>
+<p class="badge info">Label: Brightspace ready text</p>
+<h3>Prompt A. Brightspace outline summary</h3>
+<pre><code>You may be receiving a transcript, captions, or pasted text.
+
+If readable transcript or caption text is present, create a structured outline for students.
+Use short headings and bullet lists.
+Preserve key terms and definitions.
+If timestamps are provided, include them for major topic shifts.
+If timestamps are not provided, do not invent them.
+
+If no readable transcript or captions are present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+<h3>Prompt B. Study guide questions from a transcript</h3>
+<pre><code>You may be receiving a transcript, captions, or pasted text.
+
+If readable transcript or caption text is present, generate 6 to 10 study questions aligned to the content.
+Include a mix of recall, application, and reflection questions.
+Do not add information that is not present in the source text.
+
+If no readable transcript or captions are present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Summaries</summary>
+<ul>
+<li>Confirm summaries are accurate and aligned to the media content.</li>
+<li>Ensure summaries do not introduce new facts that are not present in the recording.</li>
+<li>Use headings and lists for readability.</li>
+<li>Post summaries near the media item and label them clearly.</li>
+<li>Maintain captions and transcripts as the primary accessibility support.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Summary outputs</summary>
+<ul>
+<li>Run the Ally Course Report for the Brightspace page.</li>
+<li>Spot check with a screen reader for headings and list structure.</li>
+<li>Confirm links, if included, have descriptive text.</li>
+</ul>
+<p class="badge time">Typical time: 5 to 15 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Summaries</summary>
+<ul>
+<li>Summaries posted without clear labels or placed far from the media item.</li>
+<li>Overly long paragraphs that should be structured with headings and lists.</li>
+<li>Summaries treated as a substitute for captions or transcripts.</li>
+</ul>
+</details>
+</section>
+<!-- THIRD-PARTY -->
+<section class="card" aria-labelledby="thirdparty-title">
+<h2 id="thirdparty-title">Third party media links</h2>
+<p>Typical uses include YouTube videos, news clips, and podcasts that you do not control. Provide clear labels, confirm caption or transcript status, and add a short student note that explains why the item is assigned.</p>
+<details>
+<summary>How to upload and use the prompts (Third party)</summary>
+<ol>
+<li>Use an institutionally approved AI tool. Do not upload copyrighted files you do not own.</li>
+<li>Start with text. If the platform provides captions or a transcript, copy that text. If not, consider replacing the item or providing an instructor-created summary that does not add new facts.</li>
+<li>Provide the URL and any available transcript by uploading a file or pasting the text.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Review the output for accuracy, creator names, dates, and terminology.</li>
+<li>Complete the manual remediation checklist and validation steps.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Third party)</summary>
+<p class="badge info">Label: link note, citation, summary</p>
+<h3>Prompt A. Accessible use note and citation helper</h3>
+<pre><code>You may be receiving a URL, captions, a transcript, or pasted text.
+
+If a URL and readable text are present, draft a short Brightspace note that includes:
+• Title, creator, publication date, and duration (if available)
+• Caption or transcript status and where to find it on the platform
+• One sentence on instructional purpose for this course
+Then generate a complete citation in APA style using the available metadata.
+
+If no readable text is present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+<h3>Prompt B. Student guide from a transcript</h3>
+<pre><code>You may be receiving a URL plus captions, a transcript, or pasted text.
+
+If readable transcript or caption text is present, create a concise outline for students with short headings and bullet lists.
+Preserve key terms and definitions.
+If timestamps are provided, include them for major topic shifts.
+Do not invent timestamps.
+
+If no readable transcript or captions are present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Third party</summary>
+<ul>
+<li>Verify that captions or a transcript exist on the source platform. If not, consider replacing the item or posting a brief instructor summary near the link.</li>
+<li>Label the link with the title, creator, and format, for example “Video” or “Podcast.”</li>
+<li>Avoid autoplay and embedded players that add ads or trackers. Provide a standard hyperlink when needed.</li>
+<li>Place the link near related course materials and include a one sentence purpose statement.</li>
+<li>Ensure any summary posted in Brightspace does not add facts that are not in the source.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Third party outputs</summary>
+<ul>
+<li>Test the link in Brightspace to confirm it opens and is not region blocked.</li>
+<li>Confirm captions or a transcript are available on the source page.</li>
+<li>If you post a note or summary in Brightspace, run the Ally Course Report and spot check with a screen reader.</li>
+</ul>
+<p class="badge time">Typical time: 5 to 15 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Third party</summary>
+<ul>
+<li>Dead or geo-restricted links with no alternative.</li>
+<li>Auto captions that are inaccurate for technical terms.</li>
+<li>Links that are not labeled with title, creator, and format.</li>
+<li>Summaries that introduce new information not present in the source.</li>
+</ul>
+</details>
+</section>
+<!-- AUDIO DESCRIPTION -->
+<section class="card" aria-labelledby="ad-title">
+<h2 id="ad-title">Audio descriptions for video</h2>
+<p>Use audio description when important information is conveyed visually and not available in dialogue or captions. Description can be built into the original narration, added as a separate track during pause points, or provided as a clearly labeled text description near the video.</p>
+<details>
+<summary>How to upload and use the prompts (Audio description)</summary>
+<ol>
+<li>Use an institutionally approved AI tool. Do not upload copyrighted files you do not own.</li>
+<li>Start with text. Obtain captions or a transcript first. Audio description is built from accurate source text.</li>
+<li>Provide the transcript by uploading a file or pasting the text, and include timestamps if available.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Review the output for accuracy, terminology, and that visual information not spoken in the video is covered.</li>
+<li>Complete the manual remediation checklist and validation steps.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Audio description)</summary>
+<p class="badge info">Label: description script, student note</p>
+<h3>Prompt A. Create an audio description script from a transcript</h3>
+<pre><code>You may be receiving a transcript, captions, or pasted text from a video.
+
+If readable transcript or caption text is present, write an audio description script that narrates key visual information not spoken in the audio. Use neutral, concise language in present tense. Include:
+• Actions, scene changes, on‑screen text, charts, and gestures that affect meaning
+• Speaker identification when not clear from audio
+• Placement notes like [insert during pause] only when necessary
+If timestamps are provided, align description to major time points. Do not invent timestamps.
+
+If there is no readable transcript or captions, briefly state what content is needed to proceed.
+
+Return the audio description script as plain text.</code></pre>
+<h3>Prompt B. Student note for Brightspace and choice of description method</h3>
+<pre><code>You may be receiving a URL plus transcript or captions.
+
+Draft a short student note for Brightspace that explains how audio description is provided for this video. Include:
+• Method used (built‑in narration, separate description track, or text description on the page)
+• Where to find the description (for example, the "AD" audio track in the player or the text below the video)
+• One sentence on instructional purpose
+Do not add new facts beyond the source.
+
+Return plain text only.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Audio description</summary>
+<ul>
+<li>Confirm that meaningful visual information is described when not available in audio.</li>
+<li>Prefer built‑in narration during production when possible. Use a separate track or text description when rebuilding is not practical.</li>
+<li>Ensure technical terms, labels on charts, and on‑screen text are included when they affect learning.</li>
+<li>Keep language concise and objective. Avoid interpreting or teaching new content in the description.</li>
+<li>Clearly label the presence and location of the description in Brightspace or the media player.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Audio description outputs</summary>
+<ul>
+<li>Play the video without looking at the screen and confirm that all critical visuals are understood from audio plus description.</li>
+<li>If using a separate description track, test track selection in the media player.</li>
+<li>If using a text description on the page, run the Ally Course Report and spot check with a screen reader.</li>
+</ul>
+<p class="badge time">Typical time: 10 to 30 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Audio description</summary>
+<ul>
+<li>Descriptions that repeat dialogue instead of covering visual information.</li>
+<li>Missing description for on‑screen text, charts, or title slides.</li>
+<li>Descriptions that are too long to fit in natural pauses.</li>
+<li>Unlabeled or hard‑to‑find description tracks in the player.</li>
+</ul>
+</details>
+</section>
+<section class="card" aria-labelledby="validate-log">
+<h2 id="validate-log">Shared validation and recordkeeping</h2>
+<p>Complete these steps before posting to Brightspace.</p>
+<table><caption>Validation tools</caption>
+<thead>
+<tr>
+<th scope="col">Context</th>
+<th scope="col">Tool</th>
+<th scope="col">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Caption or transcript text</td>
+<td>Manual review with playback</td>
+<td>Confirm accuracy, speaker cues, and completeness</td>
+</tr>
+<tr>
+<td>Brightspace pages for transcripts or summaries</td>
+<td>Ally Course Report</td>
+<td>Review flags and adjust headings, links, and structure</td>
+</tr>
+<tr>
+<td>Screen reader spot check</td>
+<td>NVDA or VoiceOver</td>
+<td>Confirm headings, lists, link text, and reading flow</td>
+</tr>
+</tbody>
+</table>
+<h3>Remediation log fields</h3>
+<ul>
+<li>Date and media item name</li>
+<li>Route chosen and tools used</li>
+<li>Issues found and fixes applied</li>
+<li>Where captions, transcripts, and summaries are posted in Brightspace</li>
+<li>Validation outcome and next action</li>
+</ul>
+<div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+</section>
+</main><footer role="contentinfo" class="container"><hr>
+<p>University at Buffalo brand colors and accessible patterns are applied. Do not rely on color alone for meaning.</p>
+<div class="controls" aria-label="Expand or collapse all duplicate"><button class="btn primary" type="button" id="expandAll2">Expand all</button> <button class="btn" type="button" id="collapseAll2">Collapse all</button></div>
+</footer>
+<p><script>
+    // Expand and collapse all details elements
+    const toggles = () => Array.from(document.querySelectorAll('details'));
+    function openAll(){ toggles().forEach(d => d.open = true); }
+    function closeAll(){ toggles().forEach(d => d.open = false); }
+    document.getElementById('expandAll')?.addEventListener('click', openAll);
+    document.getElementById('collapseAll')?.addEventListener('click', closeAll);
+    document.getElementById('expandAll2')?.addEventListener('click', openAll);
+    document.getElementById('collapseAll2')?.addEventListener('click', closeAll);
+  </script></p></body></html>

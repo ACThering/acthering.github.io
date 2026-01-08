@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Images: Alt Text and Long Descriptions</title>
+  <meta name="description" content="UB-branded, WCAG 2.1 AA accessible guide for remediating images using purpose-based alt text, long descriptions, and manual validation for Brightspace.">
+
+  <!-- UB brand tokens and accessible defaults -->
+  <style>
+    :root{
+      /* UB brand palette */
+      --ub-blue: #005BBB;           /* links, primary buttons */
+      --ub-heading: #006570;        /* Niagara Whirlpool for headings */
+      --ub-text: #666666;           /* Townsend Gray for body text */
+      --ub-white: #FFFFFF;
+      --ub-rule: #E4E4E4;           /* Baird Point for borders */
+      --badge-yellow: #FFC72C;      /* Solar Strand */
+      --badge-coral: #E56A54;       /* Letchworth Autumn */
+      --badge-teal: #00A69C;        /* Lake LaSalle */
+      --focus: #000000;             /* visible focus */
+    }
+
+    html:focus-within{scroll-behavior:smooth;}
+    body{margin:0;font-family:Arial, Helvetica, sans-serif;line-height:1.6;color:var(--ub-text);background:var(--ub-white);}
+    a{color:var(--ub-blue);}
+    a:focus, button:focus, summary:focus{outline:3px solid var(--focus);outline-offset:2px;}
+
+    .skip-link{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
+    .skip-link:focus{position:static;width:auto;height:auto;padding:.5rem;background:#FFFF00;color:#000;}
+
+    header{background:var(--ub-blue);color:var(--ub-white);}
+    header .container{max-width:1000px;margin:0 auto;padding:1rem;}
+    header h1{margin:.2rem 0 0 0;font-size:1.8rem;}
+    header p{margin:.25rem 0 0 0;}
+
+    .container{max-width:1000px;margin:0 auto;padding:1rem;}
+
+    h1,h2,h3{line-height:1.25;color:var(--ub-heading);}
+    h2{margin-top:1.2rem;}
+    h3{margin-top:1rem;}
+    p{margin:.5rem 0;}
+
+    .banner{background:var(--ub-blue);color:var(--ub-white);border-radius:12px;padding:1rem;margin:1rem 0;}
+    .card{background:#fff;border:1px solid var(--ub-rule);border-radius:12px;padding:1rem;margin:1rem 0;}
+
+    /* Accessible accordions */
+    details{border:1px solid var(--ub-rule);border-radius:12px;background:#fff;padding:.6rem .8rem;margin:.6rem 0;}
+    details summary{list-style:none;color:var(--ub-heading);cursor:pointer;}
+    details summary::-webkit-details-marker{display:none;}
+
+    /* Prompt wrappers */
+    pre{background:#fff;border:1px solid var(--ub-rule);border-radius:10px;padding:.75rem;overflow:auto;}
+    code{font-family:Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;font-size:14px;}
+
+    /* Badges and small labels use color plus text */
+    .badge{display:inline-block;padding:.2rem .5rem;border-radius:999px;border:1px solid var(--ub-rule);font-size:.85rem;color:#000;background:#fff;}
+    .badge.time{background:var(--badge-yellow);}
+    .badge.warn{background:var(--badge-coral);}
+    .badge.info{background:var(--badge-teal);}
+
+    .btn-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0;}
+    .btn{display:inline-block;padding:.55rem .85rem;border-radius:10px;text-decoration:none;border:1px solid var(--ub-blue);color:var(--ub-blue);background:#fff;}
+    .btn.primary{background:var(--ub-blue);color:#fff;}
+
+    table{border-collapse:collapse;width:100%;margin:.75rem 0;}
+    th, td{border:1px solid var(--ub-rule);padding:.5rem;text-align:left;vertical-align:top;}
+    thead th{background:var(--ub-heading);color:#fff;}
+
+    footer{border-top:1px solid var(--ub-rule);margin-top:1rem;}
+
+    /* Expand/Collapse controls for all accordions */
+    .controls{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0 1rem 0;}
+  </style>
+</head><body><p><a class="skip-link" href="#main">Skip to main content</a></p>
+<header role="banner">
+<div class="container">
+<h1><span style="color: #ffffff;">Images: Alt Text, Long Descriptions, and Decorative Images</span></h1>
+<p>Use AI to draft text alternatives quickly, then apply human judgment. Validate before posting to Brightspace.</p>
+</div>
+</header><main id="main" class="container" role="main">
+<section class="banner" aria-label="AI and human collaboration reminder">
+<p>AI can draft alt text and long descriptions, but it does not determine what is instructionally essential. Provide purpose and context, review carefully, and validate in Brightspace.</p>
+</section>
+<section class="card" aria-labelledby="decide">
+<h2 id="decide">Fix or rebuild: choosing the most effective path</h2>
+<p>For images, accessibility remediation often starts with a decision. In many cases, replacing an image with accessible text, a simple table, or a redesigned visual is more effective than attempting to describe a complex or low-quality image. The goal is not to preserve the original image at all costs but to ensure learners can access the instructional meaning.</p>
+<ul>
+<li>Fix the image use when it is instructionally meaningful, visually clear, and can be described accurately with alt text or a long description.</li>
+<li>Rebuild or replace when the image contains dense text, low-resolution content, complex charts without underlying data, or decorative styling that obscures meaning.</li>
+</ul>
+<p class="badge warn">Reminder: replacement is an accessibility strategy</p>
+</section>
+<div class="controls" aria-label="Expand or collapse all"><button class="btn primary" type="button" id="expandAll">Expand all</button> <button class="btn" type="button" id="collapseAll">Collapse all</button></div>
+<!-- DECORATIVE VS INFORMATIVE -->
+<section class="card" aria-labelledby="decorative-title">
+<h2 id="decorative-title">Decorative images: choosing the right approach</h2>
+<p>Not every image needs alt text. Images that do not convey instructional meaning should be marked as decorative so they are skipped by screen readers.</p>
+<p><strong>Mark as decorative</strong> when the image does not convey instructional meaning. The image can be removed without affecting what students are expected to learn.</p>
+<p><strong>Write alt text</strong> when the image communicates essential information that can be conveyed accurately in one or two sentences.</p>
+<p><strong>Provide a long description</strong> when the image is complex and cannot be adequately described in one or two sentences, such as charts, diagrams, or multi-part visuals.</p>
+<table aria-label="Decorative, alt text, or long description decision guide"><caption>Decorative, alt text, or long description: quick decision guide</caption>
+<thead>
+<tr>
+<th scope="col">If the image</th>
+<th scope="col">Then choose</th>
+<th scope="col">What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Does not add instructional meaning and is not referenced in instructions</td>
+<td>Mark as decorative</td>
+<td>Check “decorative” so screen readers skip the image. <strong>In most learning platforms, this is preferable to leaving alt text blank</strong>.</td>
+</tr>
+<tr>
+<td>Conveys instructional meaning that can be explained briefly</td>
+<td>Alt text</td>
+<td>Write 1 to 2 concise sentences describing the essential information</td>
+</tr>
+<tr>
+<td>Is complex or multi-part and cannot be explained briefly</td>
+<td>Long description</td>
+<td>Provide alt text plus a longer text description placed near the image</td>
+</tr>
+</tbody>
+</table>
+<p>Choosing the simplest option that fully communicates the instructional meaning is the most accessible approach.</p>
+<details>
+<summary>Common examples</summary>
+<ul>
+<li><strong>Decorative:</strong> Stock photo banner used for visual interest only</li>
+<li><strong>Decorative:</strong> Icon that repeats adjacent text (for example, a calendar icon next to a due date)</li>
+<li><strong>Alt text:</strong> Screenshot that shows where to click to submit an assignment</li>
+<li><strong>Long description:</strong> Multi-part diagram or infographic where relationships and labels matter</li>
+</ul>
+</details>
+<details>
+<summary>Common pitfalls</summary>
+<ul>
+<li>Adding alt text to decorative images, which creates unnecessary repetition and distraction for screen reader users</li>
+<li>Marking an image as decorative when students are expected to interpret it</li>
+<li>Using long descriptions for simple images that can be described in one sentence</li>
+</ul>
+</details>
+</section>
+<!-- ALT TEXT -->
+<section class="card" aria-labelledby="alt-title">
+<h2 id="alt-title">Alt text for images</h2>
+<p>Typical uses include photos, diagrams, screenshots, icons that convey meaning, and instructional images embedded in Brightspace pages or documents.</p>
+<details>
+<summary>How to upload and use the prompts (Alt text)</summary>
+<ol>
+<li>Use an institutionally approved AI tool when working with university or student-related content.</li>
+<li>Prepare the image and remove student identifiers. If the image includes student names, grades, or personal information, do not upload it.</li>
+<li>Provide the image in one of these ways:
+<ul>
+<li>Upload the image file if file upload is available.</li>
+<li>If upload is not available, paste a description of the image and any visible text.</li>
+</ul>
+</li>
+<li>Provide one sentence of context that explains the purpose of including the image in the course and who the audience is.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Review the result and revise as needed to match instructional intent and course terminology.</li>
+<li>Enter the final alt text in the tool where the image is posted. Validate in Brightspace.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Alt text)</summary>
+<p class="badge info">Label: purpose based alt text</p>
+<h3>Prompt A. Purpose based alt text draft</h3>
+<pre><code>You may be receiving an uploaded image, or you may only receive a pasted description of the image.
+
+First, ask me to provide:
+1) The instructional purpose of including this image in the course
+2) What the image is meant to teach or demonstrate
+3) Who the intended audience is
+4) Any text that appears in the image that must be conveyed
+
+If you have enough information, draft concise, purpose based alt text in 1 to 2 sentences.
+Include only essential information needed to achieve the instructional purpose.
+Avoid phrases such as "image of" or "picture of" unless needed for clarity.
+If the image appears decorative, recommend marking it as decorative instead of writing alt text.
+
+Return the alt text only.</code></pre>
+<h3>Prompt B. Decorative or informative decision support</h3>
+<pre><code>You may be receiving an uploaded image, or you may only receive a pasted description of the image.
+
+Based on the image and the course context I provide, determine whether the image is:
+1) Informative and requires alt text
+2) Decorative and should be marked as decorative
+
+If informative, draft 1 to 2 sentences of alt text.
+If decorative, state "Mark as decorative" and provide one short rationale.
+
+Return the recommendation and the alt text if applicable.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Alt text</summary>
+<ul>
+<li>Confirm whether the image is decorative or informative using the decision guide above.</li>
+<li>For informative images, write alt text that communicates the instructional purpose, not just visual appearance.</li>
+<li>Keep alt text concise and focused on essential meaning.</li>
+<li>Include visible text only when it is instructionally necessary.</li>
+<li>Avoid duplicating surrounding page text in the alt text.</li>
+<li>For complex visuals, use a long description in addition to alt text.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Alt text</summary>
+<ul>
+<li>Confirm the image has alt text or is marked as decorative in the authoring tool.</li>
+<li>Run the Ally Course Report for Brightspace pages that include images.</li>
+<li>Spot check with a screen reader to confirm the alt text is read appropriately and in context.</li>
+</ul>
+<p class="badge time">Typical time: 2 to 10 minutes per image</p>
+</details>
+<details>
+<summary>Common pitfalls in Alt text</summary>
+<ul>
+<li>Alt text describes appearance but not instructional meaning.</li>
+<li>Alt text is too long and includes unnecessary detail.</li>
+<li>Decorative images have alt text, creating noise for screen reader users.</li>
+<li>Images contain text that should be replaced with real text on the page when possible.</li>
+</ul>
+</details>
+</section>
+<!-- LONG DESCRIPTIONS -->
+<section class="card" aria-labelledby="long-title">
+<h2 id="long-title">Long descriptions for complex images</h2>
+<p>Use long descriptions for charts, graphs, infographics, process diagrams, maps, and complex visuals where 1 to 2 sentences cannot convey the instructional meaning.</p>
+<details>
+<summary>How to upload and use the prompts (Long descriptions)</summary>
+<ol>
+<li>Use an institutionally approved AI tool and remove student identifiers.</li>
+<li>Provide the image by uploading it or by pasting a detailed description of what it contains, including any labels and visible text.</li>
+<li>Provide context that explains the instructional purpose of the image and what students should learn from it.</li>
+<li>If the image is a chart or graph, provide the underlying data if available. If data is not available, provide the best available description of axes, legend, and key values.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Review the output for accuracy and revise as needed.</li>
+<li>Post the long description near the image in Brightspace, using clear labeling such as "Long description" or "Text alternative."</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Long descriptions)</summary>
+<p class="badge info">Label: text alternatives for complex visuals</p>
+<h3>Prompt A. Long description draft</h3>
+<pre><code>You may be receiving an uploaded complex image, or you may only receive a pasted description of the image.
+
+First, ask me to provide:
+1) The instructional purpose of this image
+2) What it is meant to teach or demonstrate
+3) Who the intended audience is
+4) Any visible text, labels, axes, or legend items that must be conveyed
+5) If it is a chart, any data values available
+
+Then write:
+1) Alt text in 1 to 2 sentences that identifies the image type and main point
+2) A long description that stands alone and communicates the essential information
+
+Long description requirements:
+- Begin with a 1 to 2 sentence overview
+- Follow with an objective description of 4 to 8 sentences
+- Describe structure, relationships, sequence, and key values or trends
+- Include readable versions of any text in the image that is required for meaning
+- Avoid interpreting conclusions that are not directly supported by the image
+
+Return the alt text and long description only.</code></pre>
+<h3>Prompt B. Chart or graph text alternative with data table recommendation</h3>
+<pre><code>You may be receiving an uploaded chart or graph, or you may only receive a pasted description.
+
+If the underlying data is available, recommend whether a simple data table should be posted in Brightspace as a companion text alternative.
+If no data is available, recommend what data would be needed to create a table.
+
+Then draft:
+1) Alt text in 1 to 2 sentences
+2) A long description in 4 to 8 sentences focused on key trends and values
+
+Return the recommendation, alt text, and long description.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Long descriptions</summary>
+<ul>
+<li>Confirm whether a long description is needed. If the image is complex, 1 to 2 sentences are not sufficient.</li>
+<li>Ensure the long description communicates structure and relationships, not decorative styling.</li>
+<li>For charts and graphs, consider providing a data table or a short summary of key values.</li>
+<li>Place the long description near the image and label it clearly.</li>
+<li>Ensure the long description does not repeat surrounding text verbatim unless needed for meaning.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Long descriptions</summary>
+<ul>
+<li>Confirm the image has alt text and that the long description is discoverable near the image.</li>
+<li>Run the Ally Course Report for the page where the image is posted.</li>
+<li>Spot check with a screen reader to confirm that users can reach the long description easily.</li>
+</ul>
+<p class="badge time">Typical time: 10 to 30 minutes per complex image</p>
+</details>
+<details>
+<summary>Common pitfalls in Long descriptions</summary>
+<ul>
+<li>Long descriptions are missing labels, axes, or legend information.</li>
+<li>Descriptions include interpretation not supported by the image.</li>
+<li>Descriptions are posted far from the image or without a clear label.</li>
+<li>Charts are presented without underlying data or a usable text alternative.</li>
+</ul>
+</details>
+</section>
+<!-- BRIGHTSPACE PLACEMENT -->
+<section class="card" aria-labelledby="place-title">
+<h2 id="place-title">Posting images in Brightspace</h2>
+<p>Where you place text alternatives matters. Use consistent labeling and ensure students can find the information without searching across pages.</p>
+<details>
+<summary>Recommended placement patterns</summary>
+<ul>
+<li>Alt text belongs in the image properties field in Brightspace or in the source file where the image is embedded.</li>
+<li>Long descriptions should be placed immediately below the image or linked directly with clear link text such as "Long description of chart."</li>
+<li>If the image is central to an assignment or assessment, include the text alternative in the same content item as the image.</li>
+<li>If the image contains essential text, replace the image with real text on the page when possible.</li>
+</ul>
+</details>
+<details>
+<summary>Quick prompt to rewrite image text as real text</summary>
+<pre><code>You may be receiving an uploaded image that contains text, or you may receive pasted text from the image.
+
+If text content is present, rewrite it as clean, accessible plain text suitable for posting directly on a Brightspace page.
+Preserve headings and list structure.
+Do not add content that is not present.
+
+If no readable text is present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+</details>
+</section>
+<section class="card" aria-labelledby="validate-log">
+<h2 id="validate-log">Shared validation and recordkeeping</h2>
+<p>Complete these steps before posting to Brightspace.</p>
+<table><caption>Validation tools</caption>
+<thead>
+<tr>
+<th scope="col">Context</th>
+<th scope="col">Tool</th>
+<th scope="col">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Images on Brightspace pages</td>
+<td>Ally Course Report</td>
+<td>Review flags, verify alt text, adjust placement of long descriptions</td>
+</tr>
+<tr>
+<td>Complex charts and diagrams</td>
+<td>Manual review</td>
+<td>Confirm accuracy of labels, relationships, and key values</td>
+</tr>
+<tr>
+<td>Screen reader spot check</td>
+<td>NVDA or VoiceOver</td>
+<td>Confirm alt text is concise and long descriptions are discoverable</td>
+</tr>
+</tbody>
+</table>
+<h3>Remediation log fields</h3>
+<ul>
+<li>Date and page location</li>
+<li>Image purpose and whether it is decorative or informative</li>
+<li>Alt text completed or decorative marked</li>
+<li>Long description posted, if applicable, and where it is located</li>
+<li>Validation outcome and next action</li>
+</ul>
+<div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+</section>
+</main><footer role="contentinfo" class="container"><hr>
+<p>University at Buffalo brand colors and accessible patterns are applied. Do not rely on color alone for meaning.</p>
+<div class="controls" aria-label="Expand or collapse all duplicate"><button class="btn primary" type="button" id="expandAll2">Expand all</button> <button class="btn" type="button" id="collapseAll2">Collapse all</button></div>
+</footer>
+<p><script>
+  // Expand and collapse all details elements
+  const toggles = () => Array.from(document.querySelectorAll('details'));
+  function openAll(){ toggles().forEach(d => d.open = true); }
+  function closeAll(){ toggles().forEach(d => d.open = false); }
+  document.getElementById('expandAll')?.addEventListener('click', openAll);
+  document.getElementById('collapseAll')?.addEventListener('click', closeAll);
+  document.getElementById('expandAll2')?.addEventListener('click', openAll);
+  document.getElementById('collapseAll2')?.addEventListener('click', closeAll);
+</script></p></body></html>

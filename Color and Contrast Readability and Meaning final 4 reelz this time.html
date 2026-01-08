@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color and Contrast: Readability and Meaning</title>
+  <meta name="description" content="UB-branded, WCAG 2.1 AA guide for ensuring readable contrast and color-independent meaning across Brightspace and common file formats. Includes checks, adjustments, and validation steps.">
+
+  <!-- UB brand tokens and accessible defaults -->
+  <style>
+    :root{
+      /* UB brand palette */
+      --ub-blue: #005BBB;           /* links, primary buttons */
+      --ub-heading: #006570;        /* Niagara Whirlpool for headings */
+      --ub-text: #666666;           /* Townsend Gray for body text */
+      --ub-white: #FFFFFF;
+      --ub-rule: #E4E4E4;           /* Baird Point for borders */
+      --badge-yellow: #FFC72C;      /* Solar Strand */
+      --badge-coral: #E56A54;       /* Letchworth Autumn */
+      --badge-teal: #00A69C;        /* Lake LaSalle */
+      --focus: #000000;             /* visible focus */
+    }
+
+    html:focus-within{scroll-behavior:smooth;}
+    body{margin:0;font-family:Arial, Helvetica, sans-serif;line-height:1.6;color:var(--ub-text);background:var(--ub-white);}    
+    a{color:var(--ub-blue);} a:focus, button:focus, summary:focus{outline:3px solid var(--focus);outline-offset:2px;}
+
+    .skip-link{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;} 
+    .skip-link:focus{position:static;width:auto;height:auto;padding:.5rem;background:#FFFF00;color:#000;}
+
+    header{background:var(--ub-blue);color:var(--ub-white);}
+    header .container{max-width:1000px;margin:0 auto;padding:1rem;}
+    header h1{margin:.2rem 0 0 0;font-size:1.8rem;}
+    header p{margin:.25rem 0 0 0;}
+
+    .container{max-width:1000px;margin:0 auto;padding:1rem;}
+
+    h1,h2,h3{line-height:1.25;color:var(--ub-heading);} 
+    h2{margin-top:1.2rem;}
+    h3{margin-top:1rem;}
+    p{margin:.5rem 0;}
+
+    .banner{background:var(--ub-blue);color:var(--ub-white);border-radius:12px;padding:1rem;margin:1rem 0;}
+    .card{background:#fff;border:1px solid var(--ub-rule);border-radius:12px;padding:1rem;margin:1rem 0;}
+
+    /* Accessible accordions */
+    details{border:1px solid var(--ub-rule);border-radius:12px;background:#fff;padding:.6rem .8rem;margin:.6rem 0;}
+    details summary{list-style:none;color:var(--ub-heading);cursor:pointer;}
+    details summary::-webkit-details-marker{display:none;}
+
+    /* Pre/code wrappers */
+    pre{background:#fff;border:1px solid var(--ub-rule);border-radius:10px;padding:.75rem;overflow:auto;}
+    code{font-family:Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;font-size:14px;}
+
+    /* Badges */
+    .badge{display:inline-block;padding:.2rem .5rem;border-radius:999px;border:1px solid var(--ub-rule);font-size:.85rem;color:#000;background:#fff;}
+    .badge.time{background:var(--badge-yellow);} 
+    .badge.warn{background:var(--badge-coral);} 
+    .badge.info{background:var(--badge-teal);} 
+
+    .btn-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0;}
+    .btn{display:inline-block;padding:.55rem .85rem;border-radius:10px;text-decoration:none;border:1px solid var(--ub-blue);color:var(--ub-blue);background:#fff;}
+    .btn.primary{background:var(--ub-blue);color:#fff;}
+
+    table{border-collapse:collapse;width:100%;margin:.75rem 0;}
+    th, td{border:1px solid var(--ub-rule);padding:.5rem;text-align:left;vertical-align:top;}
+    thead th{background:var(--ub-heading);color:#fff;}
+
+    footer{border-top:1px solid var(--ub-rule);margin-top:1rem;}
+
+    /* Expand/Collapse controls for all accordions */
+    .controls{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0 1rem 0;}
+  </style>
+</head><body><p><a class="skip-link" href="#main">Skip to main content</a></p>
+<header role="banner">
+<div class="container">
+<h1><span style="color: #ffffff;">Color and Contrast: Readability and Meaning</span></h1>
+<p>Use AI to accelerate routine fixes, then complete manual checks. Validate before posting to Brightspace.</p>
+</div>
+</header><main id="main" class="container" role="main">
+<section class="banner" aria-label="AI and human collaboration reminder">
+<p>Color and contrast affect whether learners can perceive, read, and interpret content. Adequate contrast helps in low-vision and color-blind contexts and improves readability on mobile devices, projectors, and in bright environments. Maintain strong contrast to reduce eye strain and keep critical information visible to everyone.</p>
+<p class="badge info">WCAG references: 1.4.3 Contrast (Minimum), 1.4.11 Non-text Contrast, 1.4.1 Use of Color</p>
+</section>
+<section class="card" aria-labelledby="decide">
+<h2 id="decide">Choose the most effective change</h2>
+<p>Adjusting color values is not the only path. Often the smallest change reaches the target ratio while preserving brand feel. If color conveys meaning, add a second cue.</p>
+<ul>
+<li>Change color values to meet WCAG 2.1 AA.</li>
+<li>Increase size or weight so large text can pass at 3:1.</li>
+<li>Add an overlay when text sits on an image.</li>
+<li>Add a non-color cue when color signals meaning.</li>
+</ul>
+<p class="badge warn">Reminder: do not rely on color alone for meaning</p>
+</section>
+<div class="controls" aria-label="Expand or collapse all"><button class="btn primary" type="button" id="expandAll">Expand all</button> <button class="btn" type="button" id="collapseAll">Collapse all</button></div>
+<!-- SUGGEST ACCESSIBLE COLOR FIXES -->
+<section class="card" aria-labelledby="fixes-title">
+<h2 id="fixes-title">Suggest accessible color fixes</h2>
+<p>Typical uses include Brightspace HTML pages, PowerPoint slides and banners, tables, and PDFs that use UB brand colors or custom color schemes.</p>
+<details>
+<summary>How to apply these checks (Color Fixes)</summary>
+<ol>
+<li>Gather exact hex values for foreground and background for text, links, buttons, banners, and form controls. Sample the actual rendered color including overlays and transparency.</li>
+<li>Determine whether to adjust text, background, or font size and weight. Large text qualifies for a lower ratio.</li>
+<li>Run a contrast check and record the measured ratio. Text must be at least 4.5:1 for normal text. Large text can pass at 3:1.</li>
+<li><strong>Large text definition:</strong> 18 pt (24 px) or larger regular, or 14 pt (18.66 px) and bold.</li>
+<li>Choose the smallest visual change that reaches WCAG 2.1 AA and preserves brand intent. Recheck after theme or background changes.</li>
+</ol>
+</details>
+<details>
+<summary>AI-assisted checks and adjustments (Color Fixes)</summary>
+<pre><code>You may be receiving hex values for text, links, buttons, and backgrounds.
+Suggest the smallest adjustments that reach WCAG AA while preserving brand intent.
+Return revised hex values, the measured ratios, and one sentence of rationale per element.</code></pre>
+<p>Use a reliable checker such as the <a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">WebAIM Contrast Checker</a> to confirm final ratios.</p>
+</details>
+<details>
+<summary>Manual remediation checklist for Color Fixes</summary>
+<ul>
+<li>Normal text meets 4.5:1. Large text meets 3:1.</li>
+<li>UI components and focus indicators meet 3:1.</li>
+<li>Text over images uses a solid or semi-opaque overlay.</li>
+<li>Final colors preserve legibility and brand feel.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Color Fixes outputs</summary>
+<ul>
+<li>Confirm ratios with a contrast checker and record values. If tools disagree, record the measured hex values and use a trusted checker for final decisions.</li>
+<li>Run the Ally Course Report in Brightspace for posted pages.</li>
+<li>Spot check with a screen reader and keyboard navigation to confirm visible focus.</li>
+</ul>
+<p class="badge time">Typical time: 5 to 20 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Color Fixes</summary>
+<ul>
+<li>Light gray text on light backgrounds.</li>
+<li>Headings on photo banners without an overlay.</li>
+<li>Changing default state colors but missing hover or focus states.</li>
+<li>Assuming tools always agree without context.</li>
+</ul>
+</details>
+</section>
+<!-- COLOR-ONLY MEANING -->
+<section class="card" aria-labelledby="cues-title">
+<h2 id="cues-title">Identify color-only meaning and add a second cue</h2>
+<p>Typical uses include charts, graphs, buttons, alerts, required-field indicators, quizzes, and feedback messages that use color to indicate meaning.</p>
+<details>
+<summary>How to apply these checks (Visual Cues)</summary>
+<ol>
+<li>Scan for places where color alone signals meaning or state.</li>
+<li>Note affected elements such as charts, legends, status messages, and required fields.</li>
+<li>Add one extra cue per case such as an icon, label, underline, pattern, or direct data labels.</li>
+<li>Recheck clarity on mobile and when printed in grayscale.</li>
+</ol>
+</details>
+<details>
+<summary>AI-assisted checks and adjustments (Visual Cues)</summary>
+<pre><code>You may be receiving a description of components where color signals meaning.
+Identify each instance of color-only meaning and propose a second cue:
+• Icons or short text for status
+• Patterns or direct labels for charts
+• Underlines or bold for links
+Return concise recommendations that fit the current layout.</code></pre>
+<p>For design ideas that work well for color vision differences, see guidance from Perkins School for the Blind: <a href="https://www.perkins.org/resource/how-design-color-blindness/" target="_blank" rel="noopener">How to design for color blindness</a>.</p>
+</details>
+<details>
+<summary>Manual remediation checklist for Visual Cues</summary>
+<ul>
+<li>Links are not differentiated by color alone. Prefer underlines or a strong non-color cue.</li>
+<li>Status messages include icons or short text.</li>
+<li>Charts use patterns or direct labels, not color alone.</li>
+<li>Required fields include the word “Required.”</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Visual Cues outputs</summary>
+<ul>
+<li>Preview with a color-blindness simulator or design guide and also test in grayscale or print to PDF.</li>
+<li>Confirm icons and labels remain visible at small sizes.</li>
+<li>Run the Ally Course Report for posted pages and spot check with a screen reader.</li>
+</ul>
+<p class="badge time">Typical time: 10 to 25 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Visual Cues</summary>
+<ul>
+<li>Red and green used without labels.</li>
+<li>“Important items in blue” with no supporting cue.</li>
+<li>Heatmaps or scales with indistinguishable steps for some viewers.</li>
+</ul>
+</details>
+</section>
+<!-- LINK COLOR VS SURROUNDING TEXT -->
+<section class="card" aria-labelledby="links-title">
+<h2 id="links-title">Link color vs surrounding text</h2>
+<p>Typical uses include Brightspace pages, Word and PDF documents, and email content with hyperlinks and visited states.</p>
+<details>
+<summary>How to apply these checks (Link Contrast)</summary>
+<ol>
+<li>Evaluate links in context such as body text, sidebars, banners, and dark themes.</li>
+<li>Check link contrast against page background and distinction from body text.</li>
+<li>Confirm hover, focus, and visited states remain accessible.</li>
+</ol>
+</details>
+<details>
+<summary>AI-assisted checks and adjustments (Link Contrast)</summary>
+<pre><code>You may be receiving hex values for body text, link text, and backgrounds.
+Recommend a link color that meets contrast requirements and is clearly distinct from body text.
+Include guidance for underline, hover, focus, and visited states. Return rationale and measured ratios.</code></pre>
+<p>Confirm final ratios using the <a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">WebAIM Contrast Checker</a>. Ensure visited link colors also pass.</p>
+</details>
+<details>
+<summary>Manual remediation checklist for Link Contrast</summary>
+<ul>
+<li>Link color has sufficient contrast with background.</li>
+<li>Links are visually distinct from body text, preferably underlined.</li>
+<li>Hover, focus, and visited states remain accessible and consistent.</li>
+<li>Icon-only links include visible text or an accessible name.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Link Contrast outputs</summary>
+<ul>
+<li>Confirm contrast ratios for default and visited link colors.</li>
+<li>Keyboard test for visible focus and predictable behavior.</li>
+<li>Screen reader spot check to confirm descriptive link text.</li>
+</ul>
+<p class="badge time">Typical time: 5 to 15 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Link Contrast</summary>
+<ul>
+<li>Link color too close to body text color.</li>
+<li>Removing underlines without adding a strong secondary cue.</li>
+<li>Visited link color that fails contrast or becomes indistinguishable.</li>
+</ul>
+</details>
+</section>
+<!-- VALIDATION SECTION FOR STANDALONE TILE -->
+<section class="card" aria-labelledby="overall-validation">
+<h2 id="overall-validation">Validation for color outputs</h2>
+<details>
+<summary>Validation steps</summary>
+<ul>
+<li>Use the <a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">WebAIM Contrast Checker</a> or a similar tool to confirm ratios meet WCAG 2.1 AA.</li>
+<li>Review pages in Brightspace or your LMS with Ally Course Report to identify color contrast flags.</li>
+<li>Confirm that focus indicators for links, buttons, and forms are clearly visible when tabbing.</li>
+<li>Spot-check charts, graphs, and alerts to ensure color-only meaning is avoided and secondary cues are present.</li>
+<li>Record changes and outcomes in your accessibility log.</li>
+</ul>
+<p class="badge time">Typical time: 5 to 20 minutes</p>
+</details>
+</section>
+<!-- ADDITIONAL RESOURCES -->
+<section class="card" aria-labelledby="resources-title">
+<h2 id="resources-title">Additional resources</h2>
+<details>
+<summary>Links and tools</summary>
+<ul>
+<li><a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">WebAIM Contrast Checker</a> — test contrast ratios for text and backgrounds.</li>
+<li><a href="https://colororacle.org/" target="_blank" rel="noopener">Color Oracle</a> — simulate color vision deficiencies on Windows, Mac, and Linux.</li>
+<li><a href="https://www.perkins.org/resource/how-design-color-blindness/" target="_blank" rel="noopener">Perkins: How to design for color blindness</a> — practical guidance for inclusive color use.</li>
+</ul>
+</details>
+</section>
+<!-- SHARED VALIDATION AND RECORDKEEPING -->
+<section class="card" aria-labelledby="validate-log">
+<h2 id="validate-log">Shared validation and recordkeeping</h2>
+<p>Complete these steps before posting to Brightspace.</p>
+<table><caption>Validation tools</caption>
+<thead>
+<tr>
+<th scope="col">Context</th>
+<th scope="col">Tool</th>
+<th scope="col">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Color and contrast values</td>
+<td>WebAIM Contrast Checker</td>
+<td>Measure ratios and confirm against WCAG 2.1 AA</td>
+</tr>
+<tr>
+<td>Brightspace pages</td>
+<td>Ally Course Report</td>
+<td>Review flags and adjust headings, links, and structure</td>
+</tr>
+<tr>
+<td>Screen reader spot check (if applicable)</td>
+<td>NVDA or VoiceOver</td>
+<td>Confirm links and focus states are perceivable without relying on color alone.&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<h3>Remediation log fields</h3>
+<ul>
+<li>Date and item name</li>
+<li>Route chosen and tools used</li>
+<li>Original and revised hex values with measured ratios</li>
+<li>Secondary cues added where color conveyed meaning</li>
+<li>Validation outcome and next action</li>
+</ul>
+<div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+</section>
+</main><footer role="contentinfo" class="container"><hr>
+<p>University at Buffalo brand colors and accessible patterns are applied. Do not rely on color alone for meaning.</p>
+<div class="controls" aria-label="Expand or collapse all duplicate"><button class="btn primary" type="button" id="expandAll2">Expand all</button> <button class="btn" type="button" id="collapseAll2">Collapse all</button></div>
+</footer>
+<p><script>
+  // Expand and collapse all details elements
+  const toggles = () => Array.from(document.querySelectorAll('details'));
+  function openAll(){ toggles().forEach(d => d.open = true); }
+  function closeAll(){ toggles().forEach(d => d.open = false); }
+  document.getElementById('expandAll')?.addEventListener('click', openAll);
+  document.getElementById('collapseAll')?.addEventListener('click', closeAll);
+  document.getElementById('expandAll2')?.addEventListener('click', openAll);
+  document.getElementById('collapseAll2')?.addEventListener('click', closeAll);
+</script></p></body></html>

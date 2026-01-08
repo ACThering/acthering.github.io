@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF Accessibility: Remediation and Conversion Paths</title>
+<meta name="description" content="UB-branded guide for remediating PDFs for accessibility using manual and AI-assisted workflows. Includes decision guidance, prompts, and validation steps for Brightspace.">
+
+<style>
+:root{
+  --ub-blue:#005BBB;
+  --ub-heading:#006570;
+  --ub-text:#222222;
+  --ub-white:#FFFFFF;
+  --ub-rule:#E4E4E4;
+  --badge-warn:#E56A54;
+  --badge-info:#00A69C;
+  --focus:#000000;
+}
+
+html:focus-within{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  line-height:1.6;
+  color:var(--ub-text);
+  background:var(--ub-white);
+}
+a{color:var(--ub-blue);}
+a:focus, summary:focus, button:focus{
+  outline:3px solid var(--focus);
+  outline-offset:2px;
+}
+
+.skip-link{
+  position:absolute;
+  left:-10000px;
+}
+.skip-link:focus{
+  position:static;
+  background:#FFFF00;
+  color:#000;
+  padding:.5rem;
+}
+
+header{
+  background:var(--ub-blue);
+  color:#fff;
+}
+header .container{
+  max-width:1000px;
+  margin:0 auto;
+  padding:1rem;
+}
+header h1{margin:.25rem 0;font-size:1.8rem;}
+
+.container{
+  max-width:1000px;
+  margin:0 auto;
+  padding:1rem;
+}
+
+h1,h2,h3{color:var(--ub-heading);line-height:1.25;}
+h2{margin-top:1.2rem;}
+h3{margin-top:1rem;}
+p{margin:.5rem 0;}
+
+.banner{
+  background:var(--ub-blue);
+  color:#fff;
+  border-radius:12px;
+  padding:1rem;
+  margin:1rem 0;
+}
+
+.card{
+  border:1px solid var(--ub-rule);
+  border-radius:12px;
+  padding:1rem;
+  margin:1rem 0;
+}
+
+table{
+  border-collapse:collapse;
+  width:100%;
+  margin:.75rem 0;
+}
+th,td{
+  border:1px solid var(--ub-rule);
+  padding:.5rem;
+  text-align:left;
+  vertical-align:top;
+}
+thead th{
+  background:#E8F1FF;
+}
+
+details{
+  border:1px solid var(--ub-rule);
+  border-radius:10px;
+  padding:.6rem .8rem;
+  margin:.6rem 0;
+}
+summary{
+  font-weight:600;
+  cursor:pointer;
+  list-style:none;
+}
+summary::-webkit-details-marker{display:none;}
+
+pre{
+  border:1px solid var(--ub-rule);
+  border-radius:8px;
+  padding:.75rem;
+  background:#fff;
+  overflow:auto;
+}
+code{
+  font-family:Consolas, Monaco, monospace;
+  font-size:14px;
+}
+
+.badge{
+  display:inline-block;
+  padding:.2rem .5rem;
+  border-radius:999px;
+  border:1px solid var(--ub-rule);
+  font-size:.85rem;
+  background:#fff;
+}
+.badge.warn{background:var(--badge-warn);}
+.badge.info{background:var(--badge-info);}
+
+footer{
+  border-top:1px solid var(--ub-rule);
+  margin-top:1rem;
+}
+</style>
+</head><body><p><a class="skip-link" href="#main">Skip to main content</a></p>
+<header role="banner">
+<div class="container">
+<h1><span style="color: #ffffff;">PDF Accessibility: Remediation and Conversion Paths</span></h1>
+<p>Guidance for remediating PDFs for accessibility and converting them to more usable formats for Brightspace.</p>
+</div>
+</header><main id="main" class="container" role="main">
+<section class="banner">
+<p>AI can assist with drafting structure, text alternatives, and conversions, but authors remain responsible for accuracy, instructional intent, and validation before publishing.</p>
+</section>
+<section class="card">
+<h2>Copyright and accessibility</h2>
+<p>Remediating course materials for accessibility does not change their copyright status. Instructors may adapt, convert, or provide alternative formats of copyrighted materials for instructional use within a course when the purpose is to ensure equal access for enrolled students, consistent with accessibility obligations under Title II and related laws.</p>
+<p>For questions about specific resources or edge cases, consult your library or institutional accessibility support team.</p>
+</section>
+<section class="card">
+<h2>Decision guide: choose the most effective path</h2>
+<table><caption>PDF remediation decision guide</caption>
+<thead>
+<tr>
+<th scope="col">PDF type</th>
+<th scope="col">Primary action</th>
+<th scope="col">Recommended delivery in Brightspace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text-based</td>
+<td>Convert and validate structure</td>
+<td>HTML primary; tagged PDF optional</td>
+</tr>
+<tr>
+<td>Image-based scan</td>
+<td>OCR and rebuild</td>
+<td>HTML primary</td>
+</tr>
+<tr>
+<td>Hybrid text and figures</td>
+<td>Convert and supplement with descriptions</td>
+<td>HTML primary</td>
+</tr>
+<tr>
+<td>Interactive or form-fillable</td>
+<td>Rebuild as semantic form</td>
+<td>HTML form</td>
+</tr>
+<tr>
+<td>Already accessible</td>
+<td>Verify and optionally convert</td>
+<td>HTML recommended</td>
+</tr>
+<tr>
+<td>Student or instructor created</td>
+<td>Re-author from source</td>
+<td>HTML primary</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- TYPE SECTIONS -->
+<section class="card">
+<h2>1. Text-based PDFs</h2>
+<details>
+<summary>AI-assisted conversion prompt</summary>
+<pre><code>You are assisting with accessibility remediation for a university course.
+Convert this text-based PDF into semantic HTML for Brightspace.
+Use one h1, ordered headings, descriptive link text, and accessible tables with captions and headers.
+Provide alt text for images.
+Return HTML only, followed by a short validation checklist.</code></pre>
+</details>
+<ul>
+<li>Validate heading order and reading sequence</li>
+<li>Confirm links describe destination and purpose</li>
+<li>Run Ally after publishing in Brightspace</li>
+</ul>
+</section>
+<section class="card">
+<h2>2. Image-based PDFs (scans)</h2>
+<details>
+<summary>AI-assisted OCR and rebuild prompt</summary>
+<pre><code>This PDF is a scanned document.
+After OCR, rebuild it as accessible HTML for Brightspace.
+Correct recognition errors.
+Recreate tables with proper headers and captions.
+Add alt text based on context.
+Return HTML only with a validation checklist.</code></pre>
+</details>
+<ul>
+<li>Manually verify OCR accuracy</li>
+<li>Check math, symbols, and technical notation</li>
+<li>Prefer rebuilding to tagging where quality is poor</li>
+</ul>
+</section>
+<section class="card">
+<h2>3. Hybrid PDFs (text and figures)</h2>
+<details>
+<summary>AI-assisted hybrid conversion prompt</summary>
+<pre><code>Convert this hybrid PDF into accessible HTML for Brightspace.
+Preserve text structure.
+For each figure, include concise alt text and a short explanatory summary.
+Add data tables where figures present quantitative information.
+Return HTML only with a validation checklist.</code></pre>
+</details>
+<ul>
+<li>Ensure figures are instructionally explained</li>
+<li>Confirm tables include captions and headers</li>
+<li>Spot-check with a screen reader</li>
+</ul>
+</section>
+<section class="card">
+<h2>4. Interactive or form-fillable PDFs</h2>
+<details>
+<summary>AI-assisted form rebuild prompt</summary>
+<pre><code>Rebuild this PDF form as an accessible HTML form for Brightspace.
+Use native form elements with labels.
+Ensure logical tab order, visible focus, and clear error messages.
+Avoid unnecessary ARIA.
+Return HTML only with a validation checklist.</code></pre>
+</details>
+<ul>
+<li>Keyboard navigation must be complete</li>
+<li>Error messages must be programmatically associated</li>
+<li>HTML forms are preferred over PDF forms</li>
+</ul>
+</section>
+<section class="card">
+<h2>5. Already accessible PDFs</h2>
+<details>
+<summary>AI-assisted verification prompt</summary>
+<pre><code>Review this tagged PDF for accessibility.
+Verify heading order, alt text accuracy, table headers, and link text.
+If appropriate, convert to HTML for Brightspace.
+Return HTML only with a validation checklist.</code></pre>
+</details>
+<ul>
+<li>Do not assume automated checks are sufficient</li>
+<li>Confirm tags align with visible structure</li>
+<li>HTML improves usability for most learners</li>
+</ul>
+</section>
+<section class="card">
+<h2>6. Student or instructor created PDFs</h2>
+<details>
+<summary>AI-assisted re-authoring prompt</summary>
+<pre><code>Rebuild this informal PDF as accessible HTML for Brightspace.
+Add clear headings, summaries, and alt text.
+Avoid layout tables.
+Ensure logical reading order.
+Return HTML only with a validation checklist.</code></pre>
+</details>
+<ul>
+<li>Start from source files whenever possible</li>
+<li>Avoid scanned submissions when alternatives exist</li>
+<li>HTML is the preferred instructional format</li>
+</ul>
+</section>
+<section class="card">
+<h2>Shared validation steps</h2>
+<ul>
+<li>Run Ally Course Report in Brightspace</li>
+<li>Confirm keyboard navigation</li>
+<li>Spot-check with a screen reader</li>
+<li>Document remediation decisions and outcomes</li>
+</ul>
+</section>
+</main><footer role="contentinfo" class="container">
+<p>University at Buffalo brand colors and accessible patterns are applied. Do not rely on color alone for meaning.</p>
+</footer></body></html>

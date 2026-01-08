@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brightspace Page Structure and Headings</title>
+  <meta name="description" content="UB-branded, WCAG 2.1 AA focused guide for building well-structured Brightspace pages with headings, readable layout, and accessible navigation. Includes AI-assisted drafting, manual checks, and validation steps.">
+
+  <!-- UB brand tokens and accessible defaults -->
+  <style>
+    :root{
+      /* UB brand palette */
+      --ub-blue: #005BBB;           /* links, primary buttons */
+      --ub-heading: #006570;        /* Niagara Whirlpool for headings */
+      --ub-text: #666666;           /* Townsend Gray for body text */
+      --ub-white: #FFFFFF;
+      --ub-rule: #E4E4E4;           /* Baird Point for borders */
+      --badge-yellow: #FFC72C;      /* Solar Strand */
+      --badge-coral: #E56A54;       /* Letchworth Autumn */
+      --badge-teal: #00A69C;        /* Lake LaSalle */
+      --focus: #000000;             /* visible focus */
+    }
+
+    html:focus-within{scroll-behavior:smooth;}
+    body{margin:0;font-family:Arial, Helvetica, sans-serif;line-height:1.6;color:var(--ub-text);background:var(--ub-white);}
+    a{color:var(--ub-blue);} a:focus, button:focus, summary:focus{outline:3px solid var(--focus);outline-offset:2px;}
+
+    .skip-link{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
+    .skip-link:focus{position:static;width:auto;height:auto;padding:.5rem;background:#FFFF00;color:#000;}
+
+    header{background:var(--ub-blue);color:var(--ub-white);}
+    header .container{max-width:1000px;margin:0 auto;padding:1rem;}
+    header h1{margin:.2rem 0 0 0;font-size:1.8rem;}
+    header p{margin:.25rem 0 0 0;}
+
+    .container{max-width:1000px;margin:0 auto;padding:1rem;}
+
+    h1,h2,h3{line-height:1.25;color:var(--ub-heading);}
+    h2{margin-top:1.2rem;}
+    h3{margin-top:1rem;}
+    p{margin:.5rem 0;}
+
+    .banner{background:var(--ub-blue);color:var(--ub-white);border-radius:12px;padding:1rem;margin:1rem 0;}
+    .card{background:#fff;border:1px solid var(--ub-rule);border-radius:12px;padding:1rem;margin:1rem 0;}
+
+    /* Accessible accordions */
+    details{border:1px solid var(--ub-rule);border-radius:12px;background:#fff;padding:.6rem .8rem;margin:.6rem 0;}
+    details summary{list-style:none;color:var(--ub-heading);cursor:pointer;}
+    details summary::-webkit-details-marker{display:none;}
+
+    /* Prompt wrappers */
+    pre{background:#fff;border:1px solid var(--ub-rule);border-radius:10px;padding:.75rem;overflow:auto;}
+    code{font-family:Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;font-size:14px;}
+
+    /* Badges and small labels use color plus text */
+    .badge{display:inline-block;padding:.2rem .5rem;border-radius:999px;border:1px solid var(--ub-rule);font-size:.85rem;color:#000;background:#fff;}
+    .badge.time{background:var(--badge-yellow);}
+    .badge.warn{background:var(--badge-coral);}
+    .badge.info{background:var(--badge-teal);}
+
+    .btn-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0;}
+    .btn{display:inline-block;padding:.55rem .85rem;border-radius:10px;text-decoration:none;border:1px solid var(--ub-blue);color:var(--ub-blue);background:#fff;}
+    .btn.primary{background:var(--ub-blue);color:#fff;}
+
+    table{border-collapse:collapse;width:100%;margin:.75rem 0;}
+    th, td{border:1px solid var(--ub-rule);padding:.5rem;text-align:left;vertical-align:top;}
+    thead th{background:var(--ub-heading);color:#fff;}
+
+    footer{border-top:1px solid var(--ub-rule);margin-top:1rem;}
+
+    /* Expand/Collapse controls for all accordions */
+    .controls{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0 1rem 0;}
+  </style>
+</head><body><p><a class="skip-link" href="#main">Skip to main content</a></p>
+<header role="banner">
+<div class="container">
+<h1><span style="color: #ffffff;">Brightspace Page Structure and Headings</span></h1>
+<p>Build pages that are easy to scan, navigate, and read with assistive technology. Use AI to draft clean structure, then validate before publishing.</p>
+</div>
+</header><main id="main" class="container" role="main">
+<section class="banner" aria-label="AI and human collaboration reminder">
+<p>AI can help draft headings, chunk content, and rewrite dense text. You are responsible for correct heading levels, accurate meaning, and validation in Brightspace.</p>
+<p>Why this matters: clear structure helps students quickly find instructions and understand content using screen readers, keyboard navigation, mobile devices, and different reading strategies.</p>
+</section>
+<section class="card" aria-labelledby="decide">
+<h2 id="decide">Fix or rebuild: choosing the most effective path</h2>
+<p>Brightspace content is most usable when it is authored as semantic HTML in the Brightspace editor. If a page is messy, rebuilding is often faster than patching repeated formatting problems.</p>
+<ul>
+<li>Fix the page when the content is accurate and you mainly need to add headings, lists, clearer link text, and short spacing improvements.</li>
+<li>Rebuild the page when it is long, unchunked, uses bold as headings, has pasted formatting from Word or PDFs, or relies on screenshots of text.</li>
+</ul>
+<p>Both actions demonstrate a good-faith effort toward compliance and improve learning for everyone.</p>
+<p class="badge warn">Reminder: structure is an accessibility feature</p>
+</section>
+<div class="controls" aria-label="Expand or collapse all"><button class="btn primary" type="button" id="expandAll">Expand all</button> <button class="btn" type="button" id="collapseAll">Collapse all</button></div>
+<!-- PAGE STRUCTURE -->
+<section class="card" aria-labelledby="structure-title">
+<h2 id="structure-title">Brightspace pages: headings and structure</h2>
+<p>Typical uses include weekly modules, instructions, announcements, and learning activities. Good structure reduces cognitive load and improves navigation for screen reader and keyboard users.</p>
+<details>
+<summary>How to draft or revise with AI (Brightspace HTML)</summary>
+<ol>
+<li>Copy your current Brightspace page text into an approved AI tool. Do not include student identifiers.</li>
+<li>If the content includes tables, images, or links, include the relevant text around them so the AI can preserve meaning.</li>
+<li>Use one of the section prompts below to generate a revised version.</li>
+<li>Paste the revised content back into Brightspace and use the editor formatting tools (headings, lists, links).</li>
+<li>Run the Brightspace accessibility checker (if enabled) and then complete the manual checklist and validation steps.</li>
+</ol>
+<p class="badge info">Tip: after pasting, re-apply headings and lists using the editor controls</p>
+</details>
+<details>
+<summary>HTML beats pasted formatting</summary>
+<p>Pages that look fine after pasting from Word or PDFs can still be poorly structured under the surface. Rebuild or reformat in the Brightspace editor so headings and lists are real structure, not visual styling.</p>
+<p class="badge warn">Common risk: pasted content that is bolded and spaced like headings but is not a heading</p>
+</details>
+<details>
+<summary>Headings and chunking</summary>
+<p>Headings are not visual decoration. They are navigation landmarks. Students using screen readers often jump by headings, and all students benefit from predictable chunks.</p>
+<ul>
+<li>Use one clear page title (Heading 1) and then use Heading 2 for major sections.</li>
+<li>Do not skip heading levels. Use Heading 3 only within a Heading 2 section.</li>
+<li>Keep sections short. Break long pages into smaller pages when the topic shifts.</li>
+<li>Do not use bold text as a substitute for headings.</li>
+</ul>
+<p class="badge warn">Common error: multiple H1 headings on one page</p>
+</details>
+<details>
+<summary>What Ally will not catch</summary>
+<p>Ally can flag missing structure, missing alt text, and some formatting issues. It will not confirm whether your headings make sense instructionally, whether your page is appropriately chunked, or whether students can locate key instructions quickly.</p>
+<p>Use Ally as a signal, then apply the checklist and a quick navigation check.</p>
+</details>
+<details>
+<summary>Before and after: what better structure looks like</summary>
+<p>Before: a long page with a single heading, dense paragraphs, and directions embedded in text. Students must scroll and search to find due dates, steps, and submission details.</p>
+<p>After: a short page title followed by clear sections such as Overview, What to do, What to submit, and How you will be assessed. Steps appear as a numbered list, and key items are easy to scan on mobile.</p>
+</details>
+<details>
+<summary>Common misconception</summary>
+<p>If the text looks like a heading because it is bold and larger, it must be a heading. Visual styling alone does not create structure. Use the Brightspace heading format so assistive technology can navigate it.</p>
+</details>
+<details>
+<summary>Rewrite my page with correct headings and lists</summary>
+<pre><code>You are helping me revise a Brightspace page for accessibility and readability.
+
+Task:
+1) Rewrite the content as a well-structured Brightspace page.
+2) Use one clear page title, then section headings that follow a logical hierarchy.
+3) Convert any fake lists into real bullet or numbered lists.
+4) Break long paragraphs into shorter paragraphs.
+5) Preserve meaning and course specific terminology. Do not add new facts.
+
+Output requirements:
+- Provide the revised content in plain text with heading labels such as:
+  [H1] Title
+  [H2] Section
+  [H3] Subsection
+- Keep it ready to paste into Brightspace.
+</code></pre>
+</details>
+<details>
+<summary>Fix bold-as-heading and heading level issues</summary>
+<pre><code>You are helping me fix common heading problems in a Brightspace page.
+
+Identify:
+- Any lines that are visually styled like headings (for example bold text) but should be true headings
+- Any skipped heading levels (for example going from H1 to H3)
+- Any repeated H1 headings that should be H2 instead
+
+Then:
+- Propose a corrected heading outline (H1, H2, H3)
+- Provide a revised version of the page content using that corrected outline
+- Do not change meaning and do not add new facts
+
+Return plain text only with [H1], [H2], [H3] labels.
+</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Brightspace page structure</summary>
+<ul>
+<li>Use one page title (Heading 1). Use Heading 2 for sections. Use Heading 3 only within a section.</li>
+<li>Make lists real lists (bullets or numbers), not typed hyphens or manual numbering.</li>
+<li>Use descriptive link text that tells students where the link goes.</li>
+<li>Keep paragraphs short and add spacing so the page is scannable.</li>
+<li>Avoid images of text. Convert to real text or rebuild the content.</li>
+<li>If you reference color or position ("in red," "on the right"), add a second cue (label, icon with text, or explicit wording).</li>
+<li>Quick mobile check: confirm headings and key instructions are easy to find on a small screen.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Brightspace page structure outputs</summary>
+<ul>
+<li>Run the Brightspace accessibility checker for HTML-authored content, if it is available in your editor.</li>
+<li>Run Ally Course Report for the page and resolve remaining structure issues.</li>
+<li>Keyboard check: Tab through the page and confirm you can reach all links in a logical order.</li>
+</ul>
+<p class="badge time">Typical time: 5 to 20 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Brightspace page structure</summary>
+<ul>
+<li>Using bold as headings, which does not create real structure.</li>
+<li>Skipping heading levels, which breaks navigation.</li>
+<li>Long pages with no chunking, causing students to miss key instructions.</li>
+<li>Copy-paste formatting from Word or PDFs that looks fine visually but creates inconsistent structure.</li>
+</ul>
+</details>
+</section>
+<!-- LINKS, LISTS, AND READABILITY -->
+<section class="card" aria-labelledby="readability-title">
+<h2 id="readability-title">Readability conventions that reduce barriers</h2>
+<p>Readable pages are more accessible. These conventions reduce confusion for students with disabilities and improve clarity for everyone.</p>
+<details>
+<summary>Short paragraphs, clear lists, and consistent spacing</summary>
+<ul>
+<li>Prefer short paragraphs (2 to 5 lines).</li>
+<li>Use lists for steps, requirements, and criteria.</li>
+<li>Use consistent labels for repeated items (Due date, Time estimate, What to submit).</li>
+<li>Use meaningful headings that match what students are looking for.</li>
+<li>Write link text that is understandable out of context.</li>
+</ul>
+<p class="badge info">Tip: structure helps students scan on mobile and reduces missed instructions</p>
+</details>
+<details>
+<summary>Rewrite for clarity without changing meaning</summary>
+<pre><code>You are helping me revise course instructions for clarity and accessibility.
+
+Revise the text to:
+- Use short paragraphs and plain language
+- Convert steps and requirements into real lists
+- Add clear labels (for example: Due date, What to submit, How to submit)
+- Keep the original meaning and course policies
+- Do not add new requirements
+
+Return plain text only.
+</code></pre>
+</details>
+<details>
+<summary>Common pitfalls in readability</summary>
+<ul>
+<li>Walls of text with no headings or lists.</li>
+<li>Directions embedded in paragraphs instead of steps.</li>
+<li>Inconsistent terminology for the same task across weeks.</li>
+<li>Link text like "click here" or "read more" with no context.</li>
+</ul>
+</details>
+</section>
+<!-- KEYBOARD AND FOCUS -->
+<section class="card" aria-labelledby="keyboard-title">
+<h2 id="keyboard-title">Keyboard access and visible focus</h2>
+<p>Accessibility is not only screen readers. Keyboard-only navigation is a separate requirement and a common student need.</p>
+<details>
+<summary>Quick check: can you tab through it</summary>
+<ul>
+<li>Use Tab to move forward through interactive items (links, buttons, controls).</li>
+<li>Use Shift + Tab to move backward.</li>
+<li>Confirm you can always see where you are on the page.</li>
+<li>Confirm any embedded tools are also usable by keyboard.</li>
+</ul>
+<p class="badge warn">If an embedded item traps your keyboard, provide an alternative or rebuild.</p>
+</details>
+<details>
+<summary>Validation for keyboard and focus</summary>
+<ul>
+<li>Tab through the page and confirm all links are reachable in a logical order.</li>
+<li>Confirm links and focus states are perceivable without relying on color alone.</li>
+</ul>
+<p class="badge time">Typical time: 2 to 8 minutes</p>
+</details>
+</section>
+<!-- TEMPLATES AND OPTIONAL FEATURES -->
+<section class="card" aria-labelledby="templates-title">
+<h2 id="templates-title">Templates and built-in supports*</h2>
+<p class="badge warn">Verify with UB Learns: availability and configuration can vary by institution</p>
+<details>
+<summary>Accessible content guidance in Brightspace</summary>
+<p>This guidance describes how to create accessible content in Brightspace using the editor and built-in practices.</p>
+<p><a href="https://community.d2l.com/brightspace/kb/articles/3345-create-accessible-content-in-brightspace">D2L guidance: Create accessible content in Brightspace</a></p>
+</details>
+<details>
+<summary>Accessible template packages*</summary>
+<p>Some Brightspace environments support adding an accessible template package to course files. If your environment supports this, templates can speed up consistent page structure and reduce formatting errors.</p>
+<ul>
+<li>Use templates to standardize headings, spacing, and content blocks across modules.</li>
+<li>Do not use templates as a substitute for clear instructions and descriptive links.</li>
+</ul>
+<p><a href="https://community.d2l.com/brightspace/kb/articles/3605-adding-an-accessible-template-package-to-your-course-files">D2L guidance: Adding an accessible template package</a></p>
+</details>
+<details>
+<summary>ReadSpeaker docReader integration*</summary>
+<p>Some Brightspace environments include ReadSpeaker docReader, which can provide text-to-speech for certain content types. This can help students access content, but it does not replace well-structured pages and accessible source documents.</p>
+<p><a href="https://community.d2l.com/brightspace/kb/articles/3348-access-course-content-using-the-readspeaker-docreader-integration">D2L guidance: ReadSpeaker docReader integration</a></p>
+</details>
+<details>
+<summary>Inline grading and assistive technology*</summary>
+<p>Some grading workflows have known assistive technology considerations. If students report barriers, provide an alternative workflow and coordinate with UB Learns.</p>
+<p><a href="https://community.d2l.com/brightspace/kb/articles/3614-how-assistive-technology-interacts-with-the-inline-grading-experience">D2L guidance: Assistive technology and inline grading</a></p>
+</details>
+</section>
+<!-- REFERENCES -->
+<section class="card" aria-labelledby="refs-title">
+<h2 id="refs-title">References for this tile</h2>
+<ul>
+<li><a href="https://community.d2l.com/brightspace/kb/articles/3345-create-accessible-content-in-brightspace">D2L: Create accessible content in Brightspace</a></li>
+<li><a href="https://community.d2l.com/brightspace/kb/articles/3334-meeting-web-content-accessibility-standards">D2L: Meeting web content accessibility standards</a></li>
+<li><a href="https://community.d2l.com/brightspace/kb/articles/3659-compliance-to-accessibility-standards-in-html-authored-content">D2L: Compliance to accessibility standards in HTML-authored content</a></li>
+<li><a href="https://community.d2l.com/brightspace/kb/articles/3336-setting-clear-course-expectations">D2L: Setting clear course expectations</a></li>
+</ul>
+</section>
+<!-- SHARED VALIDATION -->
+<section class="card" aria-labelledby="validate-log">
+<h2 id="validate-log">Shared validation and recordkeeping</h2>
+<p>Complete these steps before publishing in Brightspace.</p>
+<table><caption>Validation tools</caption>
+<thead>
+<tr>
+<th scope="col">Context</th>
+<th scope="col">Tool</th>
+<th scope="col">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML-authored Brightspace pages</td>
+<td>Brightspace accessibility checker (if available)</td>
+<td>Run the checker and resolve issues it identifies</td>
+</tr>
+<tr>
+<td>Brightspace pages and linked files</td>
+<td>Ally Course Report</td>
+<td>Review flags and fix headings, links, images, and structure issues</td>
+</tr>
+<tr>
+<td>Keyboard and focus check</td>
+<td>Tab and Shift + Tab</td>
+<td>Confirm links and focus states are perceivable without relying on color alone</td>
+</tr>
+</tbody>
+</table>
+<h3>Remediation log fields</h3>
+<ul>
+<li>Date and page name</li>
+<li>Route chosen and tools used</li>
+<li>Issues found and fixes applied</li>
+<li>Validation outcome and next action</li>
+</ul>
+<div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+</section>
+</main><footer role="contentinfo" class="container"><hr>
+<p>University at Buffalo brand colors and accessible patterns are applied. Do not rely on color alone for meaning.</p>
+<div class="controls" aria-label="Expand or collapse all duplicate"><button class="btn primary" type="button" id="expandAll2">Expand all</button> <button class="btn" type="button" id="collapseAll2">Collapse all</button></div>
+</footer>
+<p><script>
+  // Expand and collapse all details elements
+  const toggles = () => Array.from(document.querySelectorAll('details'));
+  function openAll(){ toggles().forEach(d => d.open = true); }
+  function closeAll(){ toggles().forEach(d => d.open = false); }
+  document.getElementById('expandAll')?.addEventListener('click', openAll);
+  document.getElementById('collapseAll')?.addEventListener('click', closeAll);
+  document.getElementById('expandAll2')?.addEventListener('click', openAll);
+  document.getElementById('collapseAll2')?.addEventListener('click', closeAll);
+</script></p></body></html>

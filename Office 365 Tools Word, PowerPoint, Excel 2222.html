@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Office 365 Tools: Word, PowerPoint, Excel</title>
+  <meta name="description" content="UB-branded, WCAG 2.1 AA accessible guide for remediating Word, PowerPoint, and Excel using AI and manual methods.">
+
+  <!-- UB brand tokens and accessible defaults -->
+  <style>
+    :root{
+      /* UB brand palette */
+      --ub-blue: #005BBB;           /* links, primary buttons */
+      --ub-heading: #006570;        /* Niagara Whirlpool for headings */
+      --ub-text: #666666;           /* Townsend Gray for body text */
+      --ub-white: #FFFFFF;
+      --ub-rule: #E4E4E4;           /* Baird Point for borders */
+      --badge-yellow: #FFC72C;      /* Solar Strand */
+      --badge-coral: #E56A54;       /* Letchworth Autumn */
+      --badge-teal: #00A69C;        /* Lake LaSalle */
+      --focus: #000000;             /* visible focus */
+    }
+
+    html:focus-within{scroll-behavior:smooth;}
+    body{margin:0;font-family:Arial, Helvetica, sans-serif;line-height:1.6;color:var(--ub-text);background:var(--ub-white);}    
+    a{color:var(--ub-blue);} a:focus, button:focus, summary:focus{outline:3px solid var(--focus);outline-offset:2px;}
+
+    .skip-link{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;} 
+    .skip-link:focus{position:static;width:auto;height:auto;padding:.5rem;background:#FFFF00;color:#000;}
+
+    header{background:var(--ub-blue);color:var(--ub-white);}
+    header .container{max-width:1000px;margin:0 auto;padding:1rem;}
+    header h1{margin:.2rem 0 0 0;font-size:1.8rem;}
+    header p{margin:.25rem 0 0 0;}
+
+    .container{max-width:1000px;margin:0 auto;padding:1rem;}
+
+    h1,h2,h3{line-height:1.25;color:var(--ub-heading);} 
+    h2{margin-top:1.2rem;}
+    h3{margin-top:1rem;}
+    p{margin:.5rem 0;}
+
+    .banner{background:var(--ub-blue);color:var(--ub-white);border-radius:12px;padding:1rem;margin:1rem 0;}
+    .card{background:#fff;border:1px solid var(--ub-rule);border-radius:12px;padding:1rem;margin:1rem 0;}
+
+    /* Accessible accordions */
+    details{border:1px solid var(--ub-rule);border-radius:12px;background:#fff;padding:.6rem .8rem;margin:.6rem 0;}
+    details summary{list-style:none;color:var(--ub-heading);cursor:pointer;}
+    details summary::-webkit-details-marker{display:none;}
+
+    /* Prompt wrappers */
+    pre{background:#fff;border:1px solid var(--ub-rule);border-radius:10px;padding:.75rem;overflow:auto;}
+    code{font-family:Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;font-size:14px;}
+
+    /* Badges and small labels use color plus text */
+    .badge{display:inline-block;padding:.2rem .5rem;border-radius:999px;border:1px solid var(--ub-rule);font-size:.85rem;color:#000;background:#fff;}
+    .badge.time{background:var(--badge-yellow);} 
+    .badge.warn{background:var(--badge-coral);} 
+    .badge.info{background:var(--badge-teal);} 
+
+    .btn-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0;}
+    .btn{display:inline-block;padding:.55rem .85rem;border-radius:10px;text-decoration:none;border:1px solid var(--ub-blue);color:var(--ub-blue);background:#fff;}
+    .btn.primary{background:var(--ub-blue);color:#fff;}
+
+    table{border-collapse:collapse;width:100%;margin:.75rem 0;}
+    th, td{border:1px solid var(--ub-rule);padding:.5rem;text-align:left;vertical-align:top;}
+    thead th{background:var(--ub-heading);color:#fff;}
+
+    footer{border-top:1px solid var(--ub-rule);margin-top:1rem;}
+
+    /* Expand/Collapse controls for all accordions */
+    .controls{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0 1rem 0;}
+  </style>
+</head><body><p><a class="skip-link" href="#main">Skip to main content</a></p>
+<header role="banner">
+<div class="container">
+<h1><span style="color: #ffffff;">Office 365 Tools: Word, PowerPoint, Excel</span></h1>
+<p>Use AI to accelerate routine fixes, then complete manual checks. Validate before posting to Brightspace.</p>
+</div>
+</header><main id="main" class="container" role="main">
+<section class="banner" aria-label="AI and human collaboration reminder">
+<p>AI speeds up remediation but does not finish it. Upload your file, apply the prompt, then complete the manual checklist and validation steps.</p>
+</section>
+<section class="card" aria-labelledby="decide">
+<h2 id="decide">Fix or rebuild: choosing the most effective path</h2>
+<p>Accessibility remediation is not always about repair. In many cases, rebuilding a document from an accessible template is the most efficient and sustainable option. The goal is not to preserve the original layout at all costs but to create content that is structurally sound, perceivable, and maintainable.</p>
+<ul>
+<li>Fix the file when it contains a few correctable issues, such as missing alt text, minor color contrast problems, or incomplete heading styles.</li>
+<li>Rebuild when the document lacks semantic structure, includes images of text, or uses complex tables and layouts that cannot be corrected reliably.</li>
+</ul>
+<p>Both actions demonstrate a good-faith effort toward compliance and support an inclusive learning environment.</p>
+</section>
+<div class="controls" aria-label="Expand or collapse all"><button class="btn primary" type="button" id="expandAll">Expand all</button> <button class="btn" type="button" id="collapseAll">Collapse all</button></div>
+<!-- WORD -->
+<section class="card" aria-labelledby="word-title">
+<h2 id="word-title">Microsoft Word</h2>
+<p>Typical uses include syllabi, assignment sheets, lab instructions, and policy documents.</p>
+<details>
+<summary>How to upload and use the prompts (Word)</summary>
+<ol>
+<li>Open Copilot or a licensed ChatGPT account. Do not use the free ChatGPT version.</li>
+<li>Prepare your file. Remove student or personal data. Save a working copy.</li>
+<li>Attach the .docx using the paperclip or upload icon. Wait until the upload finishes.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Retrieve the result. Download the returned .docx or copy any HTML the AI provides.</li>
+<li>Review the PowerPoint and add alt text to all informative images; mark decorative images as decorative.</li>
+<li>Complete the manual remediation checklist and validation steps.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Word)</summary>
+<p class="badge info">Label: conversion and HTML</p>
+<h3>Prompt A. Convert to accessible Word</h3>
+<pre><code>You have my uploaded file. Convert it to an accessible .docx.
+Use true heading styles in logical order, list semantics, descriptive link text,
+table headers with scope where needed, image alt text, and language metadata.
+Return the .docx only. If something cannot be remediated, list it on a final page.</code></pre>
+<h3>Prompt B. Convert to Brightspace HTML</h3>
+<pre><code>You have my uploaded document. Convert it to semantic HTML for Brightspace.
+Use one h1, ordered headings, landmark regions, and descriptive links.
+For tables, include &lt;caption&gt;, &lt;thead&gt;, and th scope attributes.
+Return HTML code only, then a short validation checklist.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Word</summary>
+<ul>
+<li>Apply heading styles for all headings.</li>
+<li>Use real lists, not typed hyphens or manual numbering.</li>
+<li>Ensure table header rows and appropriate scope. Provide a caption and brief summary for data tables.</li>
+<li>Replace images of text with real text or add precise alt text.</li>
+<li>Check color contrast and avoid color-only meaning.</li>
+<li>Set the document language.</li>
+<li>Run Review → Check Accessibility and resolve remaining issues.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Word outputs</summary>
+<ul>
+<li>Microsoft Accessibility Checker for Word files.</li>
+<li>If you posted HTML, run the Ally Course Report in Brightspace.</li>
+<li>Spot check with a screen reader.</li>
+</ul>
+<p class="badge time">Typical time: 5 to 20 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Word</summary>
+<ul>
+<li>Text appears visually like a heading but is not a heading style.</li>
+<li>Decorative images have unnecessary alt text.</li>
+<li>Complex tables that should be simplified or moved to HTML.</li>
+<li>Do not rely on AI-generated alt text. Manually add alt text to informative images and mark decorative images appropriately.</li>
+</ul>
+</details>
+</section>
+<!-- POWERPOINT -->
+<section class="card" aria-labelledby="ppt-title">
+<h2 id="ppt-title">Microsoft PowerPoint</h2>
+<p>Typical uses include lecture slides and narrated presentations.</p>
+<details>
+<summary>How to upload and use the prompts (PowerPoint)</summary>
+<ol>
+<li>Open Copilot or a licensed ChatGPT account with file upload enabled.</li>
+<li>Remove private data or embedded student examples from your slides.</li>
+<li>Upload the .pptx file and wait until the upload finishes.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Download the returned .pptx and review reading order, alt text, and contrast.</li>
+<li>Complete the manual remediation checklist and validation steps.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (PowerPoint)</summary>
+<p class="badge info">Label: conversion and outline</p>
+<h3>Prompt A. Convert to accessible PowerPoint</h3>
+<pre><code>You have my uploaded deck. Convert it to an accessible .pptx.
+Use one clear title per slide, logical reading order, sufficient contrast,
+and alt text for images. Do not add speaker notes unless they exist.
+Return the .pptx only. If something cannot be remediated, list it on a final slide.</code></pre>
+<h3>Prompt B. PowerPoint to Brightspace HTML outline</h3>
+<pre><code>You have my uploaded deck. Convert it into a concise HTML outline for Brightspace.
+Use one h1 for the deck title, then h2 for slide titles, and bullet lists for key points.
+Flag any images that need alt text. Return HTML code only, then a short validation checklist.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for PowerPoint</summary>
+<ul>
+<li>Apply accessible slide layouts through the slide master.</li>
+<li>Ensure each slide has a title placeholder.</li>
+<li>Fix reading order for all content.</li>
+<li>Provide alt text or mark decorative.</li>
+<li>Check color contrast and avoid color-only meaning.</li>
+<li>Avoid text embedded in images unless duplicated in real text.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for PowerPoint outputs</summary>
+<ul>
+<li>Microsoft Accessibility Checker for PowerPoint.</li>
+<li>If exported to HTML, run Ally in Brightspace and spot check with a screen reader.</li>
+</ul>
+<p class="badge time">Typical time: 10 to 30 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in PowerPoint</summary>
+<ul>
+<li>Stacked text boxes causing incorrect reading order.</li>
+<li>Missing slide titles.</li>
+<li>Small low-contrast text.</li>
+<li>Do not rely on AI-generated alt text. Manually add alt text to informative images and mark decorative images appropriately.</li>
+</ul>
+</details>
+</section>
+<!-- EXCEL -->
+<section class="card" aria-labelledby="excel-title">
+<h2 id="excel-title">Microsoft Excel</h2>
+<p>Decide early whether you are displaying data or delivering an interactive spreadsheet. If the goal is readability, convert key tables or charts to accessible HTML or Word.</p>
+<details>
+<summary>How to upload and use the prompts (Excel)</summary>
+<ol>
+<li>Open Copilot or a licensed ChatGPT account.</li>
+<li>Remove student data and unnecessary formulas or hidden sheets.</li>
+<li>Upload the .xlsx file and wait until the upload finishes.</li>
+<li>Paste the Excel prompt below for accessible HTML or Word conversion.</li>
+<li>Review the generated table or document for accuracy and logical structure.</li>
+<li>Run the Accessibility Checker or validate HTML output in Brightspace.</li>
+<li>Document your remediation actions.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Excel)</summary>
+<p class="badge info">Label: table conversions</p>
+<h3>Prompt A. Excel to accessible HTML table for Brightspace</h3>
+<pre><code>You have my uploaded Excel file. Convert the key sheet into an accessible HTML table.
+Include a &lt;caption&gt;, &lt;thead&gt;, and th scope="col". Use concise column headers.
+Return HTML code and a short validation checklist for screen reader use.</code></pre>
+<h3>Prompt B. Excel to accessible Word table</h3>
+<pre><code>You have my uploaded Excel file. Convert the key sheet into an accessible Word table.
+Use a single header row with clear column names, no merged cells, and a brief caption.
+Return the .docx only and list any cells that need manual review.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Excel</summary>
+<ul>
+<li>Avoid merged cells and blank spacer rows.</li>
+<li>Use a defined header row in each table.</li>
+<li>Provide text labels for charts and data points.</li>
+<li>Ensure adequate color contrast.</li>
+<li>If interactivity is required, protect cells that are not intended for input and confirm tab order.</li>
+</ul>
+</details>
+<details>
+<summary>When to rebuild in Excel</summary>
+<ul>
+<li>Multiple tables on one sheet with merged cells.</li>
+<li>Complex charts without labels.</li>
+<li>Spreadsheets copied forward for years with inconsistent formatting.</li>
+</ul>
+<p class="badge warn">Guidance: rebuild or convert to HTML for reading</p>
+</details>
+<details>
+<summary>Validation for Excel outputs</summary>
+<ul>
+<li>If staying in Excel, run the Accessibility Checker.</li>
+<li>If you converted to Word or HTML, validate in that environment and spot check with a screen reader.</li>
+</ul>
+</details>
+</section>
+<!-- NEW: Accessible file names + document properties -->
+<section class="card" aria-labelledby="files-meta">
+<h2 id="files-meta">Accessible file names and document properties <span class="badge info">High payoff</span></h2>
+<p>File names and document properties are often the first information a screen reader announces. Clear names and correct metadata help students identify, organize, and return to course materials efficiently. This connects to Title II expectations without legal wording.</p>
+<h3>1. File names</h3>
+<p>Fastest improvement for access and organization.</p>
+<ul>
+<li>Use descriptive, meaningful names students will recognize later.</li>
+<li>Avoid defaults like <code>Document1</code> or vague labels like <code>Week3</code> or <code>Scan</code>.</li>
+<li>Include the context students need such as course, term, topic, or version.</li>
+</ul>
+<div class="card" style="margin: .6rem 0; border-style: dashed;">
+<h3>Examples</h3>
+<ul>
+<li>Bad: <code>syllabus.pdf</code> → Better: <code>BIO101_Fall2025_Syllabus.pdf</code></li>
+<li>Bad: <code>Week4.pdf</code> → Better: <code>Week4_CellRespiration_Readings.pdf</code></li>
+</ul>
+<p class="badge time">Typical time: under 1 minute per file</p>
+</div>
+<h3>2. Document title metadata (Word, PowerPoint, Excel)</h3>
+<p>The document title is not always the file name, and assistive technologies announce the title first.</p>
+<ul>
+<li>Set a meaningful document title that matches the content students will see.</li>
+<li>Do not leave defaults like <code>Document1</code> or <code>Microsoft Word – Untitled</code>.</li>
+</ul>
+<div class="banner" style="border-radius: 10px;">
+<p>You do not need step-by-step clicks here. Just set a good title in the file properties before you upload.</p>
+</div>
+<h3>3. Language setting</h3>
+<p>Set the document language so screen readers use correct pronunciation. This is especially important for bilingual or multilingual content.</p>
+<ul>
+<li>Choose the primary language for the document.</li>
+<li>If a section uses another language, mark that section’s language where your tool allows.</li>
+</ul>
+<h3>4. Versioning and updates</h3>
+<p>Reduce confusion for you and your students.</p>
+<ul>
+<li>When you revise a document, update the file name or include a version tag such as <code>v2</code> or a date.</li>
+<li>Avoid uploading multiple different files with the exact same name in Brightspace.</li>
+</ul>
+<h3>Validation for file names and properties</h3>
+<ul>
+<li>Open the file and confirm the document title is correct.</li>
+<li>Check the file name before uploading to Brightspace.</li>
+<li>Run the built-in Accessibility Checker where available.</li>
+</ul>
+<p class="badge time">Typical time: 2 to 5 minutes per file</p>
+<h3>Common pitfalls</h3>
+<ul>
+<li>Files named <code>Week1</code>, <code>Final</code>, or <code>Handout</code>.</li>
+<li>Document title left as a default value.</li>
+<li>Mismatch between file name and document title.</li>
+<li>Multiple uploads with identical names in Brightspace.</li>
+</ul>
+</section>
+<!-- SHARED VALIDATION -->
+<section class="card" aria-labelledby="validate-log">
+<h2 id="validate-log">Shared validation and recordkeeping</h2>
+<p>Complete these steps before posting to Brightspace.</p>
+<table><caption>Validation tools</caption>
+<thead>
+<tr>
+<th scope="col">Context</th>
+<th scope="col">Tool</th>
+<th scope="col">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Word or PowerPoint files</td>
+<td>Microsoft Accessibility Checker</td>
+<td>Run the checker and resolve issues</td>
+</tr>
+<tr>
+<td>Brightspace HTML pages</td>
+<td>Ally Course Report</td>
+<td>Review flags, adjust headings, links, images</td>
+</tr>
+<tr>
+<td>Screen reader spot check</td>
+<td>NVDA or VoiceOver</td>
+<td>Confirm reading order, headings, tables, links</td>
+</tr>
+</tbody>
+</table>
+<h3>Remediation log fields</h3>
+<ul>
+<li>Date and file name</li>
+<li>Route chosen and tools used</li>
+<li>Issues found and fixes applied</li>
+<li>Validation outcome and next action</li>
+</ul>
+<div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+</section>
+</main><footer role="contentinfo" class="container"><hr>
+<p>University at Buffalo brand colors and accessible patterns are applied. Do not rely on color alone for meaning.</p>
+<div class="controls" aria-label="Expand or collapse all duplicate"><button class="btn primary" type="button" id="expandAll2">Expand all</button> <button class="btn" type="button" id="collapseAll2">Collapse all</button></div>
+</footer>
+<p><script>
+    // Expand and collapse all details elements
+    const toggles = () => Array.from(document.querySelectorAll('details'));
+    function openAll(){ toggles().forEach(d => d.open = true); }
+    function closeAll(){ toggles().forEach(d => d.open = false); }
+    document.getElementById('expandAll')?.addEventListener('click', openAll);
+    document.getElementById('collapseAll')?.addEventListener('click', closeAll);
+    document.getElementById('expandAll2')?.addEventListener('click', openAll);
+    document.getElementById('collapseAll2')?.addEventListener('click', closeAll);
+  </script></p></body></html>
