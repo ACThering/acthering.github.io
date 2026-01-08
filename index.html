@@ -1,95 +1,607 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Acthering | GitHub Pages</title>
+    <title>Tables and Data: Accessible Structure and Use</title>
+    <meta
+      name="description"
+      content="UB-branded, WCAG 2.1 AA accessible guide for using tables and data in course materials, including decision guidance, prompts, checklists, and validation steps for Brightspace."
+    />
+
     <style>
       :root {
-        color-scheme: light;
-        font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-        line-height: 1.5;
+        --ub-blue: #005bbb;
+        --ub-heading: #006570;
+        --ub-text: #666666;
+        --ub-white: #ffffff;
+        --ub-rule: #e4e4e4;
+        --badge-yellow: #ffc72c;
+        --badge-coral: #e56a54;
+        --badge-teal: #00a69c;
+        --focus: #000000;
       }
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+      html:focus-within {
+        scroll-behavior: smooth;
       }
 
       body {
-        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-        color: #0f172a;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2.5rem;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+        color: var(--ub-text);
+        background: var(--ub-white);
       }
 
-      main {
-        max-width: 720px;
-        background: #ffffff;
-        border-radius: 24px;
-        padding: 3rem;
-        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+      a {
+        color: var(--ub-blue);
       }
 
-      h1 {
-        font-size: clamp(2rem, 3vw, 3rem);
-        margin-bottom: 1rem;
+      a:focus,
+      button:focus,
+      summary:focus {
+        outline: 3px solid var(--focus);
+        outline-offset: 2px;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+
+      .skip-link:focus {
+        position: static;
+        width: auto;
+        height: auto;
+        padding: 0.5rem;
+        background: #ffff00;
+        color: #000000;
+      }
+
+      header {
+        background: var(--ub-blue);
+        color: var(--ub-white);
+      }
+
+      header .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+
+      header h1 {
+        margin: 0.2rem 0 0;
+        font-size: 1.8rem;
+      }
+
+      header p {
+        margin: 0.25rem 0 0;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.25;
+        color: var(--ub-heading);
+      }
+
+      h2 {
+        margin-top: 1.2rem;
+      }
+
+      h3 {
+        margin-top: 1rem;
       }
 
       p {
-        font-size: 1.1rem;
-        margin-bottom: 1.5rem;
-        color: #334155;
+        margin: 0.5rem 0;
       }
 
-      ul {
-        list-style: none;
-        display: grid;
-        gap: 0.75rem;
-      }
-
-      li {
-        display: flex;
-        gap: 0.75rem;
-        align-items: center;
-        padding: 0.75rem 1rem;
-        background: #f1f5f9;
+      .banner {
+        background: var(--ub-blue);
+        color: var(--ub-white);
         border-radius: 12px;
-        font-weight: 600;
+        padding: 1rem;
+        margin: 1rem 0;
       }
 
-      .dot {
-        width: 12px;
-        height: 12px;
+      .card {
+        background: #ffffff;
+        border: 1px solid var(--ub-rule);
+        border-radius: 12px;
+        padding: 1rem;
+        margin: 1rem 0;
+      }
+
+      details {
+        border: 1px solid var(--ub-rule);
+        border-radius: 12px;
+        background: #ffffff;
+        padding: 0.6rem 0.8rem;
+        margin: 0.6rem 0;
+      }
+
+      details summary {
+        list-style: none;
+        color: var(--ub-heading);
+        cursor: pointer;
+      }
+
+      details summary::-webkit-details-marker {
+        display: none;
+      }
+
+      pre {
+        background: #ffffff;
+        border: 1px solid var(--ub-rule);
+        border-radius: 10px;
+        padding: 0.75rem;
+        overflow: auto;
+      }
+
+      code {
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 14px;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 0.2rem 0.5rem;
         border-radius: 999px;
-        background: #38bdf8;
+        border: 1px solid var(--ub-rule);
+        font-size: 0.85rem;
+        color: #000000;
+        background: #ffffff;
+      }
+
+      .badge.time {
+        background: var(--badge-yellow);
+      }
+
+      .badge.warn {
+        background: var(--badge-coral);
+      }
+
+      .badge.info {
+        background: var(--badge-teal);
+      }
+
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0.75rem 0;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.55rem 0.85rem;
+        border-radius: 10px;
+        text-decoration: none;
+        border: 1px solid var(--ub-blue);
+        color: var(--ub-blue);
+        background: #ffffff;
+      }
+
+      .btn.primary {
+        background: var(--ub-blue);
+        color: #ffffff;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 0.75rem 0;
+      }
+
+      th,
+      td {
+        border: 1px solid var(--ub-rule);
+        padding: 0.5rem;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      thead th {
+        background: var(--ub-heading);
+        color: #ffffff;
+      }
+
+      caption {
+        caption-side: top;
+        text-align: left;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+        color: var(--ub-heading);
       }
 
       footer {
-        margin-top: 2rem;
-        font-size: 0.95rem;
-        color: #64748b;
+        border-top: 1px solid var(--ub-rule);
+        margin-top: 1rem;
+      }
+
+      .controls {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin: 0.5rem 0 1rem;
       }
     </style>
   </head>
   <body>
-    <main>
-      <h1>Welcome to Acthering&#39;s GitHub Pages</h1>
-      <p>
-        This is a lightweight landing page you can customize. Update the content
-        below to highlight your projects, articles, or anything else you&#39;d like
-        to share.
-      </p>
-      <ul>
-        <li><span class="dot"></span> Share your latest project updates.</li>
-        <li><span class="dot"></span> Link to your portfolio or resume.</li>
-        <li><span class="dot"></span> Add social links or contact details.</li>
-      </ul>
-      <footer>Last updated: <time datetime="2025-02-14">February 14, 2025</time></footer>
+    <p><a class="skip-link" href="#main">Skip to main content</a></p>
+    <header role="banner">
+      <div class="container">
+        <h1>Tables and Data: Accessible Structure and Use</h1>
+        <p>
+          Use AI to accelerate drafting and cleanup, then apply human review.
+          Validate before posting to Brightspace.
+        </p>
+      </div>
+    </header>
+    <main id="main" class="container" role="main">
+      <section class="banner" aria-label="AI and human collaboration reminder">
+        <p>
+          AI can assist with drafting table structures and summaries, but authors
+          remain responsible for clarity, accuracy, and instructional intent.
+          Always validate headings, table headers, captions, and reading order
+          in the final delivery format.
+        </p>
+      </section>
+      <section class="card" aria-labelledby="decision-title">
+        <h2 id="decision-title">Decision guide: "Should this be a table?"</h2>
+        <p>
+          Tables support accessibility when they help learners compare values,
+          identify relationships, or scan structured data. If you do not need
+          comparisons or relationships, write the content as text instead.
+          Rebuilding a table as clear text is often the most accessible option.
+        </p>
+        <table aria-label="Table decision guide">
+          <caption>
+            Choose the simplest format that supports learning and accessibility
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">If the content</th>
+              <th scope="col">Use</th>
+              <th scope="col">What to do</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Requires comparing values across rows or columns</td>
+              <td>Data table</td>
+              <td>
+                Use a real table with a clear header row (and header column if
+                needed), plus a caption.
+              </td>
+            </tr>
+            <tr>
+              <td>Lists items without comparison (for example, steps, supplies, policies)</td>
+              <td>Text with headings and lists</td>
+              <td>Write it as text using headings and bulleted or numbered lists.</td>
+            </tr>
+            <tr>
+              <td>Is only arranged in columns for layout or visual alignment</td>
+              <td>Text layout (not a table)</td>
+              <td>Rebuild as headings, paragraphs, and lists. Do not use tables for layout.</td>
+            </tr>
+            <tr>
+              <td>Is highly complex with merged cells or nested structures</td>
+              <td>Rebuild</td>
+              <td>
+                Simplify into multiple smaller tables or convert key information
+                into text and lists.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="badge info">Quick check</p>
+        <p>
+          Read each row out loud as if a screen reader is reading it: header,
+          then each cell. If it does not make sense in that order, rebuild the
+          table or switch to text.
+        </p>
+      </section>
+      <div class="controls" aria-label="Expand or collapse all">
+        <button class="btn primary" type="button" id="expandAll">
+          Expand all
+        </button>
+        <button class="btn" type="button" id="collapseAll">Collapse all</button>
+      </div>
+      <section class="card" aria-labelledby="html-title">
+        <h2 id="html-title">Tables in Brightspace HTML</h2>
+        <p>
+          When you publish a table on a Brightspace page, use semantic HTML so
+          assistive technologies can interpret relationships between headers and
+          cells.
+        </p>
+        <details>
+          <summary>How to upload and use the prompts (Brightspace HTML table)</summary>
+          <ol>
+            <li>Use an institutionally approved AI tool when working with university or student-related content.</li>
+            <li>Remove student identifiers and sensitive information before uploading or pasting content.</li>
+            <li>
+              Provide your table content in one of these ways:
+              <ul>
+                <li>Upload a Word, Excel, or PDF file that contains the table, or</li>
+                <li>Paste the table content (including headers) into the prompt.</li>
+              </ul>
+            </li>
+            <li>Paste one prompt from the prompt bank below.</li>
+            <li>Review the output for accuracy, especially header labels, units, and totals.</li>
+            <li>Copy and paste the HTML into Brightspace and validate using Ally.</li>
+          </ol>
+        </details>
+        <details>
+          <summary>Prompt bank (Brightspace HTML table)</summary>
+          <p class="badge info">Label: semantic HTML tables</p>
+          <h3>Prompt A. Convert a table into accessible Brightspace HTML</h3>
+          <pre><code>You may receive an uploaded file or pasted table content.
+
+First, ask me:
+1) What learners must do with this table (compare values, find patterns, answer a question)
+2) The table title (caption) and any notes learners must know (units, abbreviations)
+
+Then create an accessible HTML table for Brightspace:
+- Include a &lt;caption&gt; that names the table and its purpose
+- Use &lt;thead&gt; with &lt;th scope="col"&gt; for column headers
+- Use &lt;th scope="row"&gt; if a row header is needed
+- Do not use merged cells unless essential (and if used, explain what to verify)
+- Keep header labels concise and meaningful
+
+Return HTML code only, then a short validation checklist for headings, caption, and header associations.</code></pre>
+          <h3>Prompt B. Rebuild a table as accessible text when a table is not needed</h3>
+          <pre><code>You may receive an uploaded file or pasted content.
+
+First, ask me what learners need from this content.
+If learners do not need to compare values across rows or columns, rewrite the content as accessible text:
+- Use headings and lists
+- Preserve meaning and any required values
+- Do not add new content
+
+Return plain text suitable for a Brightspace HTML page, then a short validation checklist.</code></pre>
+          <h3>Prompt C. Add a short data summary for a table</h3>
+          <pre><code>You may receive an uploaded file or pasted table content.
+
+Write a brief, student-facing summary that helps learners interpret the table:
+- 2 to 4 sentences
+- State the main pattern, range, or comparison the table supports
+- Avoid conclusions not supported by the data
+
+Return the summary only.</code></pre>
+        </details>
+        <details>
+          <summary>Manual checklist (Brightspace HTML table)</summary>
+          <ul>
+            <li>Include a caption that names the table and what it is for.</li>
+            <li>Confirm headers are real table headers, not bolded text.</li>
+            <li>Avoid merged cells. If merged cells are necessary, simplify the structure or split the table.</li>
+            <li>Keep header text short and specific (include units in header labels when helpful).</li>
+            <li>Use text near the table to define abbreviations or codes.</li>
+            <li>Run Ally Course Report after posting in Brightspace.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Validation (Brightspace HTML table)</summary>
+          <ul>
+            <li>Run Ally Course Report for the Brightspace page containing the table.</li>
+            <li>Spot check with a screen reader: confirm headers are announced with associated cells.</li>
+            <li>Keyboard check: confirm focus moves through the page logically.</li>
+          </ul>
+          <p class="badge time">Typical time: 10 to 30 minutes</p>
+        </details>
+      </section>
+      <section class="card" aria-labelledby="word-title">
+        <h2 id="word-title">Tables in Microsoft Word</h2>
+        <p>
+          Word tables are often used for schedules, rubrics, grading criteria,
+          and policy summaries. Many accessibility issues come from missing
+          header rows, merged cells, and layout tables.
+        </p>
+        <details>
+          <summary>How to upload and use the prompts (Word tables)</summary>
+          <ol>
+            <li>Use an institutionally approved AI tool when working with university or student-related content.</li>
+            <li>Remove student identifiers. Save a working copy of your document.</li>
+            <li>Upload the .docx file (or paste the table content if upload is not available).</li>
+            <li>Paste one prompt below. Each prompt assumes a file is attached or content is pasted.</li>
+            <li>Review the output and apply the manual checklist before publishing.</li>
+          </ol>
+        </details>
+        <details>
+          <summary>Prompt bank (Word tables)</summary>
+          <p class="badge info">Label: Word table cleanup</p>
+          <h3>Prompt A. Fix a Word table for accessibility</h3>
+          <pre><code>You may receive an uploaded Word document or pasted table content.
+
+First, ask me what learners must do with the table.
+Then improve the table for accessibility:
+- Remove layout tables if present by converting to headings and lists
+- Remove merged cells when possible
+- Ensure a clear header row and consistent column labels
+- Add a short table caption placed immediately above the table (plain text)
+
+Return the revised table content and the caption text. If something cannot be fixed reliably, list what needs manual attention.</code></pre>
+          <h3>Prompt B. Convert a table to accessible Brightspace HTML (preferred for complex tables)</h3>
+          <pre><code>You may receive an uploaded Word document or pasted table content.
+
+Convert the table into semantic HTML for Brightspace:
+- Include a &lt;caption&gt;
+- Use &lt;thead&gt; and &lt;th scope="col"&gt; for column headers
+- Use &lt;th scope="row"&gt; if a row header is needed
+- Avoid merged cells unless essential
+
+Return HTML code only, then a short validation checklist.</code></pre>
+        </details>
+        <details>
+          <summary>Manual checklist (Word tables)</summary>
+          <ul>
+            <li>Use a real table only when learners must compare values or interpret relationships.</li>
+            <li>Keep tables simple: one header row, no merged cells when possible.</li>
+            <li>Write a short caption above the table (Word does not provide an HTML-style caption element).</li>
+            <li>Confirm any abbreviations are defined near the table.</li>
+            <li>Run Review, then Check Accessibility.</li>
+            <li>If the table is long, set the header row to repeat so screen readers and learners retain context.</li>
+          </ul>
+          <p>
+            Microsoft support:
+            <a
+              href="https://support.microsoft.com/en-us/office/repeat-table-header-on-subsequent-pages-2ff677e0-3150-464a-a283-fa52794b4b41"
+              target="_blank"
+              rel="noopener"
+            >
+              Repeat table header on subsequent pages
+            </a>
+          </p>
+          <p class="badge info">Simplified guidance</p>
+          <p>
+            Check the option to repeat the header row so the header remains
+            associated with the table content. This supports accessibility and
+            reduces confusion when tables continue.
+          </p>
+        </details>
+        <details>
+          <summary>Validation (Word tables)</summary>
+          <ul>
+            <li>Run Microsoft Accessibility Checker in Word.</li>
+            <li>Confirm the table reads logically from headers to each row.</li>
+            <li>Consider converting complex tables to Brightspace HTML for better usability.</li>
+          </ul>
+          <p class="badge time">Typical time: 10 to 30 minutes</p>
+        </details>
+      </section>
+      <section class="card" aria-labelledby="excel-title">
+        <h2 id="excel-title">Data from Excel: publish for reading, not spreadsheets</h2>
+        <p>
+          Excel is powerful for analysis, but many spreadsheets are difficult to
+          deliver accessibly as course content. For most courses, the highest
+          payoff is to publish the data learners need in an accessible table
+          (HTML or Word) plus a short summary, instead of posting a complex
+          spreadsheet.
+        </p>
+        <details>
+          <summary>How to upload and use the prompts (Excel data)</summary>
+          <ol>
+            <li>Use an institutionally approved AI tool when working with university or student-related content.</li>
+            <li>Remove student identifiers. If the workbook includes grades or student work, do not upload it.</li>
+            <li>Upload the .xlsx file or paste the relevant table range with headers.</li>
+            <li>Paste one prompt below.</li>
+            <li>Review for accuracy, especially labels, units, and totals.</li>
+            <li>Publish the result in Brightspace and validate with Ally.</li>
+          </ol>
+        </details>
+        <details>
+          <summary>Prompt bank (Excel data)</summary>
+          <p class="badge info">Label: publish data accessibly</p>
+          <h3>Prompt A. Convert Excel data to a Brightspace HTML table</h3>
+          <pre><code>You may receive an uploaded Excel file or pasted data.
+
+First, ask me which sheet and which table range is the one to publish.
+Then convert that data into a semantic HTML table for Brightspace:
+- Include a clear &lt;caption&gt;
+- Use &lt;thead&gt; and &lt;th scope="col"&gt; for column headers
+- Avoid merged cells and blank spacer rows
+- Keep header labels concise and meaningful
+
+Return HTML code only, then a short validation checklist.</code></pre>
+          <h3>Prompt B. Draft a student-facing summary of the dataset</h3>
+          <pre><code>You may receive an uploaded dataset or pasted data.
+
+Write a short summary for learners:
+- 2 to 4 sentences
+- State what the data represents, the time frame, and any important units
+- State the main pattern learners should notice (if present)
+- Avoid claims that are not supported by the data
+
+Return the summary only.</code></pre>
+        </details>
+        <details>
+          <summary>Manual checklist (Excel data publishing)</summary>
+          <ul>
+            <li>Decide whether learners need a spreadsheet for interaction or whether they only need to read the data.</li>
+            <li>If the goal is reading, publish as HTML table plus a short summary.</li>
+            <li>Use clear headers and define units (percent, dollars, minutes) in headers or nearby text.</li>
+            <li>Avoid merged cells, hidden columns, and multiple unrelated tables on a single published table.</li>
+            <li>Validate the Brightspace page with Ally.</li>
+          </ul>
+        </details>
+      </section>
+      <section class="card" aria-labelledby="validate-log">
+        <h2 id="validate-log">Shared validation and recordkeeping</h2>
+        <p>Complete these steps before publishing in Brightspace.</p>
+        <table>
+          <caption>
+            Validation tools
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Context</th>
+              <th scope="col">Tool</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Brightspace HTML tables</td>
+              <td>Ally Course Report</td>
+              <td>Review flags and confirm headers, captions, and structure</td>
+            </tr>
+            <tr>
+              <td>Word tables</td>
+              <td>Microsoft Accessibility Checker</td>
+              <td>Resolve table structure issues and missing information</td>
+            </tr>
+            <tr>
+              <td>Screen reader spot check</td>
+              <td>NVDA or VoiceOver</td>
+              <td>Confirm headers are announced with cell content</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Remediation log fields</h3>
+        <ul>
+          <li>Date and location (course, module, page)</li>
+          <li>Format chosen (HTML table, Word table, or text alternative)</li>
+          <li>Key fixes applied (headers, caption, merged cells removed, summary added)</li>
+          <li>Validation outcome and next action</li>
+        </ul>
+        <div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+      </section>
     </main>
+    <footer role="contentinfo" class="container">
+      <hr />
+      <p>
+        University at Buffalo brand colors and accessible patterns are applied.
+        Do not rely on color alone for meaning.
+      </p>
+      <div class="controls" aria-label="Expand or collapse all duplicate">
+        <button class="btn primary" type="button" id="expandAll2">
+          Expand all
+        </button>
+        <button class="btn" type="button" id="collapseAll2">Collapse all</button>
+      </div>
+    </footer>
+    <script>
+      const toggles = () => Array.from(document.querySelectorAll("details"));
+      const openAll = () => toggles().forEach((detail) => (detail.open = true));
+      const closeAll = () => toggles().forEach((detail) => (detail.open = false));
+
+      document.getElementById("expandAll")?.addEventListener("click", openAll);
+      document.getElementById("collapseAll")?.addEventListener("click", closeAll);
+      document.getElementById("expandAll2")?.addEventListener("click", openAll);
+      document.getElementById("collapseAll2")?.addEventListener("click", closeAll);
+    </script>
   </body>
 </html>
