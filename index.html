@@ -1,95 +1,457 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Acthering | GitHub Pages</title>
+    <title>Accessibility Quick Tips Hub</title>
+    <meta
+      name="description"
+      content="A UB-branded hub that helps professors quickly find practical accessibility tips for PDFs, media, images, links, tables, and Office files in Brightspace."
+    />
     <style>
       :root {
-        color-scheme: light;
-        font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-        line-height: 1.5;
+        --ub-blue: #005bbb;
+        --ub-heading: #006570;
+        --ub-text: #222222;
+        --ub-white: #ffffff;
+        --ub-rule: #e4e4e4;
+        --badge-warn: #e56a54;
+        --badge-info: #00a69c;
+        --badge-yellow: #ffc72c;
+        --focus: #000000;
+        --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
       }
 
       * {
         box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+      }
+
+      html:focus-within {
+        scroll-behavior: smooth;
       }
 
       body {
-        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-        color: #0f172a;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2.5rem;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+        color: var(--ub-text);
+        background: var(--ub-white);
       }
 
-      main {
-        max-width: 720px;
-        background: #ffffff;
-        border-radius: 24px;
-        padding: 3rem;
-        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+      a {
+        color: var(--ub-blue);
       }
 
-      h1 {
-        font-size: clamp(2rem, 3vw, 3rem);
-        margin-bottom: 1rem;
+      a:focus,
+      button:focus,
+      summary:focus {
+        outline: 3px solid var(--focus);
+        outline-offset: 2px;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+
+      .skip-link:focus {
+        position: static;
+        width: auto;
+        height: auto;
+        padding: 0.5rem;
+        background: #ffff00;
+        color: #000000;
+      }
+
+      header {
+        background: linear-gradient(120deg, #005bbb 0%, #004aa0 100%);
+        color: var(--ub-white);
+      }
+
+      header .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 2.5rem;
+      }
+
+      header h1 {
+        margin: 0 0 0.5rem;
+        font-size: 2.1rem;
+      }
+
+      header p {
+        margin: 0;
+        font-size: 1.05rem;
+      }
+
+      .tagline {
+        margin-top: 1rem;
+        max-width: 760px;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1.5rem;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.25;
+        color: var(--ub-heading);
+      }
+
+      h2 {
+        margin-top: 1.5rem;
       }
 
       p {
-        font-size: 1.1rem;
-        margin-bottom: 1.5rem;
-        color: #334155;
+        margin: 0.5rem 0;
       }
 
-      ul {
-        list-style: none;
+      .hero-grid {
         display: grid;
-        gap: 0.75rem;
-      }
-
-      li {
-        display: flex;
-        gap: 0.75rem;
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+        gap: 1.5rem;
         align-items: center;
-        padding: 0.75rem 1rem;
-        background: #f1f5f9;
-        border-radius: 12px;
-        font-weight: 600;
+        margin-top: 1.5rem;
       }
 
-      .dot {
-        width: 12px;
-        height: 12px;
+      .hero-card {
+        background: var(--ub-white);
+        color: var(--ub-text);
+        border-radius: 16px;
+        padding: 1.25rem;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-card h2 {
+        margin-top: 0;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.2rem 0.65rem;
         border-radius: 999px;
-        background: #38bdf8;
+        border: 1px solid var(--ub-rule);
+        font-size: 0.85rem;
+        background: #ffffff;
+      }
+
+      .badge.info {
+        background: var(--badge-info);
+        color: #000000;
+      }
+
+      .badge.warn {
+        background: var(--badge-warn);
+        color: #000000;
+      }
+
+      .badge.time {
+        background: var(--badge-yellow);
+        color: #000000;
+      }
+
+      .banner {
+        background: #eef5ff;
+        border-radius: 12px;
+        padding: 1rem;
+        border: 1px solid #d6e6ff;
+      }
+
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 0.9rem;
+        border-radius: 10px;
+        border: 1px solid var(--ub-blue);
+        background: #ffffff;
+        color: var(--ub-blue);
+        text-decoration: none;
+        font-size: 0.95rem;
+      }
+
+      .btn.primary {
+        background: var(--ub-blue);
+        color: #ffffff;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.2rem;
+        margin: 1.5rem 0;
+      }
+
+      .card {
+        background: #ffffff;
+        border: 1px solid var(--ub-rule);
+        border-radius: 14px;
+        padding: 1rem;
+      }
+
+      .card h3 {
+        margin-top: 0;
+      }
+
+      .card ul {
+        padding-left: 1.2rem;
+        margin: 0.5rem 0 0;
+      }
+
+      details {
+        border: 1px solid var(--ub-rule);
+        border-radius: 12px;
+        padding: 0.6rem 0.8rem;
+        margin-top: 0.75rem;
+        background: #ffffff;
+      }
+
+      summary {
+        font-weight: 600;
+        cursor: pointer;
+        list-style: none;
+        color: var(--ub-heading);
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
       }
 
       footer {
+        border-top: 1px solid var(--ub-rule);
         margin-top: 2rem;
-        font-size: 0.95rem;
-        color: #64748b;
+        padding-top: 1rem;
+      }
+
+      @media (max-width: 860px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
   <body>
-    <main>
-      <h1>Welcome to Acthering&#39;s GitHub Pages</h1>
-      <p>
-        This is a lightweight landing page you can customize. Update the content
-        below to highlight your projects, articles, or anything else you&#39;d like
-        to share.
-      </p>
-      <ul>
-        <li><span class="dot"></span> Share your latest project updates.</li>
-        <li><span class="dot"></span> Link to your portfolio or resume.</li>
-        <li><span class="dot"></span> Add social links or contact details.</li>
-      </ul>
-      <footer>Last updated: <time datetime="2025-02-14">February 14, 2025</time></footer>
+    <p><a class="skip-link" href="#main">Skip to main content</a></p>
+    <header role="banner">
+      <div class="container">
+        <h1><span style="color: #ffffff;">Accessibility Quick Tips Hub</span></h1>
+        <p>Fast, practical guidance for professors building accessible Brightspace content.</p>
+        <p class="tagline">
+          Start with your file type, use the quick tips below, and expand sections only when you
+          need more detail. The full guides can be added later as separate pages.
+        </p>
+        <div class="hero-grid">
+          <div class="hero-card">
+            <h2>Start here in under 10 minutes</h2>
+            <ol>
+              <li>Pick the content type you are working with.</li>
+              <li>Apply the quick tips for that type.</li>
+              <li>Run a quick validation check before you publish.</li>
+            </ol>
+            <p class="badge info">Goal: quick wins for accessibility</p>
+          </div>
+          <div class="hero-card">
+            <h2>Common tasks professors ask about</h2>
+            <ul>
+              <li>Convert PDFs to accessible HTML.</li>
+              <li>Add alt text and long descriptions to images.</li>
+              <li>Fix table headers and structure.</li>
+              <li>Improve link text so it makes sense out of context.</li>
+            </ul>
+            <p class="badge time">Most fixes: 5–20 minutes</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="container" role="main">
+      <section class="banner" aria-label="AI and human collaboration">
+        <p>
+          AI can accelerate drafting, but you are responsible for instructional accuracy and final
+          validation. Use prompts to save time, then review in Brightspace.
+        </p>
+      </section>
+
+      <section aria-labelledby="hub-title">
+        <div class="controls" aria-label="Expand or collapse all tip sections">
+          <button class="btn primary" type="button" id="expandAll">Expand all tips</button>
+          <button class="btn" type="button" id="collapseAll">Collapse all tips</button>
+        </div>
+
+        <h2 id="hub-title">Pick a content type</h2>
+        <div class="grid">
+          <article class="card" aria-labelledby="pdf-title">
+            <h3 id="pdf-title">PDFs</h3>
+            <p>Best for legacy documents. HTML is usually more usable in Brightspace.</p>
+            <ul>
+              <li>Prefer converting to HTML for readability.</li>
+              <li>OCR and rebuild scanned PDFs.</li>
+              <li>Validate headings, tables, and links.</li>
+            </ul>
+            <details>
+              <summary>More PDF tips</summary>
+              <ul>
+                <li>Image-based scans should be rebuilt, not just tagged.</li>
+                <li>Hybrid PDFs need alt text and data tables for figures.</li>
+                <li>Run Ally Course Report after posting in Brightspace.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="card" aria-labelledby="headings-title">
+            <h3 id="headings-title">Page structure and headings</h3>
+            <p>Use real headings and short sections so content is easy to scan.</p>
+            <ul>
+              <li>One H1 title, then H2 sections.</li>
+              <li>Do not skip heading levels.</li>
+              <li>Use lists for steps and requirements.</li>
+            </ul>
+            <details>
+              <summary>More heading tips</summary>
+              <ul>
+                <li>Rebuild long pages into smaller chunks when topics shift.</li>
+                <li>Avoid bold text as a heading substitute.</li>
+                <li>Run the Brightspace accessibility checker when available.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="card" aria-labelledby="office-title">
+            <h3 id="office-title">Word, PowerPoint, Excel</h3>
+            <p>Use built-in accessibility checkers and clean structure before upload.</p>
+            <ul>
+              <li>Use real headings and list styles.</li>
+              <li>Fix reading order in PowerPoint.</li>
+              <li>Publish Excel data as HTML when possible.</li>
+            </ul>
+            <details>
+              <summary>More Office tips</summary>
+              <ul>
+                <li>Set document titles and language metadata.</li>
+                <li>Provide alt text or mark decorative images.</li>
+                <li>Use captions and headers for tables.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="card" aria-labelledby="media-title">
+            <h3 id="media-title">Video &amp; audio</h3>
+            <p>Captions and transcripts are the primary accessibility supports.</p>
+            <ul>
+              <li>Review captions for accuracy.</li>
+              <li>Provide a transcript when needed.</li>
+              <li>Summaries help students preview content.</li>
+            </ul>
+            <details>
+              <summary>More media tips</summary>
+              <ul>
+                <li>Include speaker labels for multi-speaker audio.</li>
+                <li>Add audio description for key visuals.</li>
+                <li>Place summaries near the media item.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="card" aria-labelledby="images-title">
+            <h3 id="images-title">Images &amp; alt text</h3>
+            <p>Use purpose-based alt text and long descriptions for complex visuals.</p>
+            <ul>
+              <li>Mark decorative images as decorative.</li>
+              <li>Write 1–2 sentence alt text for key visuals.</li>
+              <li>Use long descriptions for charts and infographics.</li>
+            </ul>
+            <details>
+              <summary>More image tips</summary>
+              <ul>
+                <li>Replace images of text with real text when possible.</li>
+                <li>Place long descriptions right below the image.</li>
+                <li>Verify alt text with a screen reader spot check.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="card" aria-labelledby="links-title">
+            <h3 id="links-title">Links</h3>
+            <p>Link text should make sense without surrounding context.</p>
+            <ul>
+              <li>Avoid “click here” and raw URLs.</li>
+              <li>Use the destination title or action.</li>
+              <li>Include file types for downloads.</li>
+            </ul>
+            <details>
+              <summary>More link tips</summary>
+              <ul>
+                <li>Use the same link text for the same resource.</li>
+                <li>Ensure keyboard focus is visible.</li>
+                <li>Run Ally for link-related feedback.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="card" aria-labelledby="tables-title">
+            <h3 id="tables-title">Tables &amp; data</h3>
+            <p>Tables are for comparisons, not layout. Keep them simple.</p>
+            <ul>
+              <li>Use captions and headers.</li>
+              <li>Avoid merged cells.</li>
+              <li>Summarize key patterns in text.</li>
+            </ul>
+            <details>
+              <summary>More table tips</summary>
+              <ul>
+                <li>Convert layout tables into headings and lists.</li>
+                <li>Define units in header labels.</li>
+                <li>Spot check with a screen reader.</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="validation-title">
+        <h2 id="validation-title">Shared validation steps</h2>
+        <ul>
+          <li>Run Ally Course Report after posting in Brightspace.</li>
+          <li>Use keyboard navigation to confirm logical focus order.</li>
+          <li>Spot check with a screen reader when possible.</li>
+          <li>Document what you fixed and what needs follow-up.</li>
+        </ul>
+        <p class="badge warn">Reminder: AI output still needs human review.</p>
+      </section>
     </main>
+
+    <footer role="contentinfo" class="container">
+      <p>University at Buffalo brand colors and accessible patterns are applied. Do not rely on color alone for meaning.</p>
+    </footer>
+
+    <script>
+      const toggles = () => Array.from(document.querySelectorAll('details'));
+      const openAll = () => toggles().forEach((detail) => {
+        detail.open = true;
+      });
+      const closeAll = () => toggles().forEach((detail) => {
+        detail.open = false;
+      });
+
+      document.getElementById('expandAll')?.addEventListener('click', openAll);
+      document.getElementById('collapseAll')?.addEventListener('click', closeAll);
+    </script>
   </body>
 </html>
