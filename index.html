@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tables and Data: Accessible Structure and Use</title>
+    <title>Accessible Digital Content Guide</title>
     <meta
       name="description"
-      content="UB-branded, WCAG 2.1 AA accessible guide for using tables and data in course materials, including decision guidance, prompts, checklists, and validation steps for Brightspace."
+      content="WCAG 2.1 AA accessible, UB-branded guide for creating accessible digital course content, organized with drop-down sections and actionable checklists."
     />
 
     <style>
@@ -76,7 +76,7 @@
 
       header h1 {
         margin: 0.2rem 0 0;
-        font-size: 1.8rem;
+        font-size: 1.9rem;
       }
 
       header p {
@@ -140,6 +140,28 @@
 
       details summary::-webkit-details-marker {
         display: none;
+      }
+
+      .topic-details {
+        border: 2px solid var(--ub-rule);
+        background: #fdfdfd;
+      }
+
+      .topic-details summary {
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+
+      .topic-details[open] summary {
+        margin-bottom: 0.5rem;
+      }
+
+      .summary-title {
+        display: inline-block;
+      }
+
+      .topic-content {
+        padding: 0.25rem 0.4rem 0.4rem;
       }
 
       pre {
@@ -237,118 +259,1843 @@
         flex-wrap: wrap;
         margin: 0.5rem 0 1rem;
       }
+
+      .topic-nav {
+        border: 1px solid var(--ub-rule);
+        border-radius: 12px;
+        padding: 1rem;
+        background: #ffffff;
+        margin: 1rem 0;
+      }
+
+      .topic-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.5rem;
+      }
+
+      .topic-nav a {
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      @media (min-width: 700px) {
+        .topic-nav ul {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
     </style>
   </head>
   <body>
     <p><a class="skip-link" href="#main">Skip to main content</a></p>
     <header role="banner">
       <div class="container">
-        <h1>Tables and Data: Accessible Structure and Use</h1>
+        <h1>Accessible Digital Content Guide</h1>
         <p>
-          Use AI to accelerate drafting and cleanup, then apply human review.
-          Validate before posting to Brightspace.
+          Combine AI support with human review. Use the drop-down sections below
+          to find guidance for media, documents, tables, PDFs, and Brightspace
+          content.
         </p>
       </div>
     </header>
     <main id="main" class="container" role="main">
       <section class="banner" aria-label="AI and human collaboration reminder">
         <p>
-          AI can assist with drafting table structures and summaries, but authors
-          remain responsible for clarity, accuracy, and instructional intent.
-          Always validate headings, table headers, captions, and reading order
-          in the final delivery format.
+          These guides support WCAG 2.1 Level AA accessibility. Use the prompts
+          to accelerate drafting, then complete manual checks and validation
+          before publishing in Brightspace.
         </p>
       </section>
-      <section class="card" aria-labelledby="decision-title">
-        <h2 id="decision-title">Decision guide: "Should this be a table?"</h2>
-        <p>
-          Tables support accessibility when they help learners compare values,
-          identify relationships, or scan structured data. If you do not need
-          comparisons or relationships, write the content as text instead.
-          Rebuilding a table as clear text is often the most accessible option.
-        </p>
-        <table aria-label="Table decision guide">
-          <caption>
-            Choose the simplest format that supports learning and accessibility
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">If the content</th>
-              <th scope="col">Use</th>
-              <th scope="col">What to do</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Requires comparing values across rows or columns</td>
-              <td>Data table</td>
-              <td>
-                Use a real table with a clear header row (and header column if
-                needed), plus a caption.
-              </td>
-            </tr>
-            <tr>
-              <td>Lists items without comparison (for example, steps, supplies, policies)</td>
-              <td>Text with headings and lists</td>
-              <td>Write it as text using headings and bulleted or numbered lists.</td>
-            </tr>
-            <tr>
-              <td>Is only arranged in columns for layout or visual alignment</td>
-              <td>Text layout (not a table)</td>
-              <td>Rebuild as headings, paragraphs, and lists. Do not use tables for layout.</td>
-            </tr>
-            <tr>
-              <td>Is highly complex with merged cells or nested structures</td>
-              <td>Rebuild</td>
-              <td>
-                Simplify into multiple smaller tables or convert key information
-                into text and lists.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="badge info">Quick check</p>
-        <p>
-          Read each row out loud as if a screen reader is reading it: header,
-          then each cell. If it does not make sense in that order, rebuild the
-          table or switch to text.
-        </p>
-      </section>
+      <nav class="topic-nav" aria-label="Guide topics">
+        <h2>Jump to a topic</h2>
+        <ul>
+          <li><a href="#media-summary">Accessible Media: Video, Audio, Summaries</a></li>
+          <li><a href="#structure-summary">Brightspace Page Structure and Headings</a></li>
+          <li><a href="#contrast-summary">Color and Contrast: Readability and Meaning</a></li>
+          <li><a href="#images-summary">Images: Alt Text, Long Descriptions, and Decorative Images</a></li>
+          <li><a href="#office-summary">Office 365 Tools: Word, PowerPoint, Excel</a></li>
+          <li><a href="#pdf-summary">PDF Accessibility: Remediation and Conversion Paths</a></li>
+          <li><a href="#tables-summary">Tables and Data: Accessible Structure and Use</a></li>
+          <li><a href="#links-summary">Writing Clear Descriptive Links to Webpages and Resources</a></li>
+        </ul>
+      </nav>
       <div class="controls" aria-label="Expand or collapse all">
         <button class="btn primary" type="button" id="expandAll">
           Expand all
         </button>
         <button class="btn" type="button" id="collapseAll">Collapse all</button>
       </div>
-      <section class="card" aria-labelledby="html-title">
-        <h2 id="html-title">Tables in Brightspace HTML</h2>
-        <p>
-          When you publish a table on a Brightspace page, use semantic HTML so
-          assistive technologies can interpret relationships between headers and
-          cells.
-        </p>
-        <details>
-          <summary>How to upload and use the prompts (Brightspace HTML table)</summary>
-          <ol>
-            <li>Use an institutionally approved AI tool when working with university or student-related content.</li>
-            <li>Remove student identifiers and sensitive information before uploading or pasting content.</li>
-            <li>
-              Provide your table content in one of these ways:
-              <ul>
-                <li>Upload a Word, Excel, or PDF file that contains the table, or</li>
-                <li>Paste the table content (including headers) into the prompt.</li>
-              </ul>
-            </li>
-            <li>Paste one prompt from the prompt bank below.</li>
-            <li>Review the output for accuracy, especially header labels, units, and totals.</li>
-            <li>Copy and paste the HTML into Brightspace and validate using Ally.</li>
-          </ol>
+      <section class="topic" aria-labelledby="media-summary">
+        <details class="topic-details">
+          <summary id="media-summary">
+            <span class="summary-title">Accessible Media: Video, Audio, Summaries</span>
+          </summary>
+          <div class="topic-content">
+<section class="banner" aria-label="AI and human collaboration reminder">
+<p>AI speeds up captioning and transcript work but does not finish accessibility. Provide captions or a transcript, apply the prompt, then complete the manual checklist and validation steps.</p>
+</section>
+<section class="card" aria-labelledby="media-decide">
+<h2 id="media-decide">Fix or rebuild: choosing the most effective path</h2>
+<p>Accessibility remediation for media often starts with a decision. In many cases, rebuilding or replacing a recording is more efficient and produces better outcomes than repairing poor source material. The goal is not to preserve the original recording at all costs but to provide content that is perceivable, understandable, and usable for all learners.</p>
+<ul>
+<li>Fix the media when the audio is clear and captions or a transcript are mostly accurate with correctable errors.</li>
+<li>Rebuild or replace when the audio is difficult to understand, captions are severely inaccurate, or the recording is outdated and no longer instructionally necessary.</li>
+</ul>
+<p>Both actions demonstrate a good-faith effort toward compliance and support an inclusive learning environment.</p>
+<p class="badge warn">Reminder: replacement is an accessibility strategy</p>
+</section>
+
+<!-- VIDEO -->
+<section class="card" aria-labelledby="media-video-title">
+<h2 id="media-video-title">Video with captions</h2>
+<p>Typical uses include lecture recordings, demonstrations, guest talks, and narrated slide videos.</p>
+<details>
+<summary>How to upload and use the prompts (Video)</summary>
+<ol>
+<li>Use an institutionally approved AI tool. Do not upload sensitive student information.</li>
+<li>Prepare your source text. Captions or a transcript work best. If needed, export captions from your video platform or copy the transcript text.</li>
+<li>Provide the content in one of these ways:
+<ul>
+<li>Upload a caption or transcript file if file upload is available.</li>
+<li>Paste caption or transcript text into the AI tool if file upload is not available.</li>
+</ul>
+</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Retrieve the result and review it while playing the video to confirm timing cues, key terms, and speaker labels.</li>
+<li>Complete the manual remediation checklist and validation steps.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Video)</summary>
+<p class="badge info">Label: captions, transcript, summary</p>
+<h3>Prompt A. Caption cleanup and accuracy review</h3>
+<pre><code>You may be receiving captions, a transcript, or pasted text generated from a video.
+
+If readable caption or transcript text is present, edit it for accuracy, grammar, and clarity.
+Preserve speaker changes and instructional emphasis.
+Do not remove technical terms, names, or course specific vocabulary.
+
+If no readable caption or transcript text is present, briefly state what content is needed to proceed.
+
+Return revised caption or transcript text only.</code></pre>
+<h3>Prompt B. Transcript formatting for accessibility</h3>
+<pre><code>You may be receiving a transcript or unformatted text for a video.
+
+If readable transcript text is present, format it for accessibility and readability.
+Use clear paragraph breaks and consistent spacing.
+Include speaker labels when they are present or instructionally important.
+Do not summarize.
+
+If no readable transcript text is present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+<h3>Prompt C. Student friendly summary for Brightspace</h3>
+<pre><code>You may be receiving a transcript, captions, or pasted text.
+
+If readable transcript or caption text is present, create a concise, student friendly outline suitable for a Brightspace page.
+Preserve instructional sequence and key terms.
+If timestamps are provided, include them for major topic shifts.
+If timestamps are not provided, do not invent them.
+
+If no readable transcript or captions are present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Video</summary>
+<ul>
+<li>Ensure captions are present for required video.</li>
+<li>Confirm caption accuracy for technical terms, names, and key concepts.</li>
+<li>Confirm speaker identification when instructionally relevant.</li>
+<li>Ensure non-speech audio that affects meaning is represented in text when appropriate.</li>
+<li>Provide a transcript when captions are not available or not sufficient.</li>
+<li>Ensure critical instructions are also available in text outside the video.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Video outputs</summary>
+<ul>
+<li>Play the video while reviewing captions to confirm alignment and accuracy.</li>
+<li>If you post a transcript or summary in Brightspace, run the Ally Course Report for the page or document.</li>
+<li>Spot check the posted Brightspace content with a screen reader.</li>
+</ul>
+<p class="badge time">Typical time: 10 to 30 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Video</summary>
+<ul>
+<li>Auto captions that misrepresent technical terms and names.</li>
+<li>Missing speaker labels in multi-speaker instruction.</li>
+<li>Important information delivered only through visuals or audio with no text alternative.</li>
+<li>Outdated recordings that are faster to replace than to repair.</li>
+</ul>
+</details>
+</section>
+<!-- AUDIO -->
+<section class="card" aria-labelledby="media-audio-title">
+<h2 id="media-audio-title">Audio with transcripts</h2>
+<p>Typical uses include podcasts, audio lectures, interviews, and recorded feedback.</p>
+<details>
+<summary>How to upload and use the prompts (Audio)</summary>
+<ol>
+<li>Use an institutionally approved AI tool. Remove student identifiers and sensitive information.</li>
+<li>Start with text. If you only have audio, generate a transcript using your recording platform or transcription workflow first.</li>
+<li>Provide the transcript by uploading a file or pasting the transcript text.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Review the output for accuracy, speaker labels, and key terminology.</li>
+<li>Complete the manual remediation checklist and validation steps.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Audio)</summary>
+<p class="badge info">Label: transcript cleanup and summary</p>
+<h3>Prompt A. Transcript cleanup and clarity review</h3>
+<pre><code>You may be receiving a transcript or pasted text generated from audio.
+
+If readable transcript text is present, edit it for accuracy, grammar, and clarity.
+Preserve speaker changes and instructional emphasis.
+Do not remove technical terms, names, or course specific vocabulary.
+
+If no readable transcript text is present, briefly state what content is needed to proceed.
+
+Return revised transcript text only.</code></pre>
+<h3>Prompt B. Student friendly summary for Brightspace</h3>
+<pre><code>You may be receiving a transcript or pasted text.
+
+If readable transcript text is present, summarize it into a concise, student friendly outline suitable for a Brightspace page.
+Preserve instructional sequence and key terms.
+
+If no readable transcript text is present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Audio</summary>
+<ul>
+<li>Provide a transcript for required audio.</li>
+<li>Confirm accuracy of technical terms, names, and key concepts.</li>
+<li>Include speaker identification when instructionally relevant.</li>
+<li>Ensure the transcript is easy to locate in Brightspace and clearly labeled.</li>
+<li>Avoid delivering critical instructions only through audio without a text version.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Audio outputs</summary>
+<ul>
+<li>Review the transcript while listening to the audio for accuracy.</li>
+<li>If the transcript is posted as a Brightspace page or document, run the Ally Course Report.</li>
+<li>Spot check with a screen reader to confirm readability and navigation.</li>
+</ul>
+<p class="badge time">Typical time: 10 to 25 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Audio</summary>
+<ul>
+<li>Transcripts with missing sections due to poor audio quality.</li>
+<li>Unclear attribution in multi-speaker audio.</li>
+<li>Long transcripts posted without headings or spacing for readability.</li>
+<li>Audio that is outdated and better replaced with a short written announcement.</li>
+</ul>
+</details>
+</section>
+<!-- SUMMARIES -->
+<section class="card" aria-labelledby="media-summaries-title">
+<h2 id="media-summaries-title">Media summaries for Brightspace</h2>
+<p>Use summaries to help students preview, review, and locate key concepts. Summaries supplement captions and transcripts. They do not replace them.</p>
+<details>
+<summary>How to upload and use the prompts (Summaries)</summary>
+<ol>
+<li>Use an institutionally approved AI tool and remove student identifiers.</li>
+<li>Provide source text by uploading captions or a transcript, or pasting the text.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Review the output for accuracy, terminology, and alignment to course learning objectives.</li>
+<li>Post the summary as a Brightspace page near the media item. Include a clear label such as "Video summary" or "Audio summary."</li>
+<li>Complete validation steps before publishing.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Summaries)</summary>
+<p class="badge info">Label: Brightspace ready text</p>
+<h3>Prompt A. Brightspace outline summary</h3>
+<pre><code>You may be receiving a transcript, captions, or pasted text.
+
+If readable transcript or caption text is present, create a structured outline for students.
+Use short headings and bullet lists.
+Preserve key terms and definitions.
+If timestamps are provided, include them for major topic shifts.
+If timestamps are not provided, do not invent them.
+
+If no readable transcript or captions are present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+<h3>Prompt B. Study guide questions from a transcript</h3>
+<pre><code>You may be receiving a transcript, captions, or pasted text.
+
+If readable transcript or caption text is present, generate 6 to 10 study questions aligned to the content.
+Include a mix of recall, application, and reflection questions.
+Do not add information that is not present in the source text.
+
+If no readable transcript or captions are present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Summaries</summary>
+<ul>
+<li>Confirm summaries are accurate and aligned to the media content.</li>
+<li>Ensure summaries do not introduce new facts that are not present in the recording.</li>
+<li>Use headings and lists for readability.</li>
+<li>Post summaries near the media item and label them clearly.</li>
+<li>Maintain captions and transcripts as the primary accessibility support.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Summary outputs</summary>
+<ul>
+<li>Run the Ally Course Report for the Brightspace page.</li>
+<li>Spot check with a screen reader for headings and list structure.</li>
+<li>Confirm links, if included, have descriptive text.</li>
+</ul>
+<p class="badge time">Typical time: 5 to 15 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Summaries</summary>
+<ul>
+<li>Summaries posted without clear labels or placed far from the media item.</li>
+<li>Overly long paragraphs that should be structured with headings and lists.</li>
+<li>Summaries treated as a substitute for captions or transcripts.</li>
+</ul>
+</details>
+</section>
+<!-- THIRD-PARTY -->
+<section class="card" aria-labelledby="media-thirdparty-title">
+<h2 id="media-thirdparty-title">Third party media links</h2>
+<p>Typical uses include YouTube videos, news clips, and podcasts that you do not control. Provide clear labels, confirm caption or transcript status, and add a short student note that explains why the item is assigned.</p>
+<details>
+<summary>How to upload and use the prompts (Third party)</summary>
+<ol>
+<li>Use an institutionally approved AI tool. Do not upload copyrighted files you do not own.</li>
+<li>Start with text. If the platform provides captions or a transcript, copy that text. If not, consider replacing the item or providing an instructor-created summary that does not add new facts.</li>
+<li>Provide the URL and any available transcript by uploading a file or pasting the text.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Review the output for accuracy, creator names, dates, and terminology.</li>
+<li>Complete the manual remediation checklist and validation steps.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Third party)</summary>
+<p class="badge info">Label: link note, citation, summary</p>
+<h3>Prompt A. Accessible use note and citation helper</h3>
+<pre><code>You may be receiving a URL, captions, a transcript, or pasted text.
+
+If a URL and readable text are present, draft a short Brightspace note that includes:
+• Title, creator, publication date, and duration (if available)
+• Caption or transcript status and where to find it on the platform
+• One sentence on instructional purpose for this course
+Then generate a complete citation in APA style using the available metadata.
+
+If no readable text is present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+<h3>Prompt B. Student guide from a transcript</h3>
+<pre><code>You may be receiving a URL plus captions, a transcript, or pasted text.
+
+If readable transcript or caption text is present, create a concise outline for students with short headings and bullet lists.
+Preserve key terms and definitions.
+If timestamps are provided, include them for major topic shifts.
+Do not invent timestamps.
+
+If no readable transcript or captions are present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Third party</summary>
+<ul>
+<li>Verify that captions or a transcript exist on the source platform. If not, consider replacing the item or posting a brief instructor summary near the link.</li>
+<li>Label the link with the title, creator, and format, for example “Video” or “Podcast.”</li>
+<li>Avoid autoplay and embedded players that add ads or trackers. Provide a standard hyperlink when needed.</li>
+<li>Place the link near related course materials and include a one sentence purpose statement.</li>
+<li>Ensure any summary posted in Brightspace does not add facts that are not in the source.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Third party outputs</summary>
+<ul>
+<li>Test the link in Brightspace to confirm it opens and is not region blocked.</li>
+<li>Confirm captions or a transcript are available on the source page.</li>
+<li>If you post a note or summary in Brightspace, run the Ally Course Report and spot check with a screen reader.</li>
+</ul>
+<p class="badge time">Typical time: 5 to 15 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Third party</summary>
+<ul>
+<li>Dead or geo-restricted links with no alternative.</li>
+<li>Auto captions that are inaccurate for technical terms.</li>
+<li>Links that are not labeled with title, creator, and format.</li>
+<li>Summaries that introduce new information not present in the source.</li>
+</ul>
+</details>
+</section>
+<!-- AUDIO DESCRIPTION -->
+<section class="card" aria-labelledby="media-ad-title">
+<h2 id="media-ad-title">Audio descriptions for video</h2>
+<p>Use audio description when important information is conveyed visually and not available in dialogue or captions. Description can be built into the original narration, added as a separate track during pause points, or provided as a clearly labeled text description near the video.</p>
+<details>
+<summary>How to upload and use the prompts (Audio description)</summary>
+<ol>
+<li>Use an institutionally approved AI tool. Do not upload copyrighted files you do not own.</li>
+<li>Start with text. Obtain captions or a transcript first. Audio description is built from accurate source text.</li>
+<li>Provide the transcript by uploading a file or pasting the text, and include timestamps if available.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Review the output for accuracy, terminology, and that visual information not spoken in the video is covered.</li>
+<li>Complete the manual remediation checklist and validation steps.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Audio description)</summary>
+<p class="badge info">Label: description script, student note</p>
+<h3>Prompt A. Create an audio description script from a transcript</h3>
+<pre><code>You may be receiving a transcript, captions, or pasted text from a video.
+
+If readable transcript or caption text is present, write an audio description script that narrates key visual information not spoken in the audio. Use neutral, concise language in present tense. Include:
+• Actions, scene changes, on‑screen text, charts, and gestures that affect meaning
+• Speaker identification when not clear from audio
+• Placement notes like [insert during pause] only when necessary
+If timestamps are provided, align description to major time points. Do not invent timestamps.
+
+If there is no readable transcript or captions, briefly state what content is needed to proceed.
+
+Return the audio description script as plain text.</code></pre>
+<h3>Prompt B. Student note for Brightspace and choice of description method</h3>
+<pre><code>You may be receiving a URL plus transcript or captions.
+
+Draft a short student note for Brightspace that explains how audio description is provided for this video. Include:
+• Method used (built‑in narration, separate description track, or text description on the page)
+• Where to find the description (for example, the "AD" audio track in the player or the text below the video)
+• One sentence on instructional purpose
+Do not add new facts beyond the source.
+
+Return plain text only.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Audio description</summary>
+<ul>
+<li>Confirm that meaningful visual information is described when not available in audio.</li>
+<li>Prefer built‑in narration during production when possible. Use a separate track or text description when rebuilding is not practical.</li>
+<li>Ensure technical terms, labels on charts, and on‑screen text are included when they affect learning.</li>
+<li>Keep language concise and objective. Avoid interpreting or teaching new content in the description.</li>
+<li>Clearly label the presence and location of the description in Brightspace or the media player.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Audio description outputs</summary>
+<ul>
+<li>Play the video without looking at the screen and confirm that all critical visuals are understood from audio plus description.</li>
+<li>If using a separate description track, test track selection in the media player.</li>
+<li>If using a text description on the page, run the Ally Course Report and spot check with a screen reader.</li>
+</ul>
+<p class="badge time">Typical time: 10 to 30 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Audio description</summary>
+<ul>
+<li>Descriptions that repeat dialogue instead of covering visual information.</li>
+<li>Missing description for on‑screen text, charts, or title slides.</li>
+<li>Descriptions that are too long to fit in natural pauses.</li>
+<li>Unlabeled or hard‑to‑find description tracks in the player.</li>
+</ul>
+</details>
+</section>
+<section class="card" aria-labelledby="media-validate-log">
+<h2 id="media-validate-log">Shared validation and recordkeeping</h2>
+<p>Complete these steps before posting to Brightspace.</p>
+<table><caption>Validation tools</caption>
+<thead>
+<tr>
+<th scope="col">Context</th>
+<th scope="col">Tool</th>
+<th scope="col">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Caption or transcript text</td>
+<td>Manual review with playback</td>
+<td>Confirm accuracy, speaker cues, and completeness</td>
+</tr>
+<tr>
+<td>Brightspace pages for transcripts or summaries</td>
+<td>Ally Course Report</td>
+<td>Review flags and adjust headings, links, and structure</td>
+</tr>
+<tr>
+<td>Screen reader spot check</td>
+<td>NVDA or VoiceOver</td>
+<td>Confirm headings, lists, link text, and reading flow</td>
+</tr>
+</tbody>
+</table>
+<h3>Remediation log fields</h3>
+<ul>
+<li>Date and media item name</li>
+<li>Route chosen and tools used</li>
+<li>Issues found and fixes applied</li>
+<li>Where captions, transcripts, and summaries are posted in Brightspace</li>
+<li>Validation outcome and next action</li>
+</ul>
+<div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+</section>
+          </div>
         </details>
-        <details>
-          <summary>Prompt bank (Brightspace HTML table)</summary>
-          <p class="badge info">Label: semantic HTML tables</p>
-          <h3>Prompt A. Convert a table into accessible Brightspace HTML</h3>
-          <pre><code>You may receive an uploaded file or pasted table content.
+      </section>
+      <section class="topic" aria-labelledby="structure-summary">
+        <details class="topic-details">
+          <summary id="structure-summary">
+            <span class="summary-title">Brightspace Page Structure and Headings</span>
+          </summary>
+          <div class="topic-content">
+<section class="banner" aria-label="AI and human collaboration reminder">
+<p>AI can help draft headings, chunk content, and rewrite dense text. You are responsible for correct heading levels, accurate meaning, and validation in Brightspace.</p>
+<p>Why this matters: clear structure helps students quickly find instructions and understand content using screen readers, keyboard navigation, mobile devices, and different reading strategies.</p>
+</section>
+<section class="card" aria-labelledby="structure-decide">
+<h2 id="structure-decide">Fix or rebuild: choosing the most effective path</h2>
+<p>Brightspace content is most usable when it is authored as semantic HTML in the Brightspace editor. If a page is messy, rebuilding is often faster than patching repeated formatting problems.</p>
+<ul>
+<li>Fix the page when the content is accurate and you mainly need to add headings, lists, clearer link text, and short spacing improvements.</li>
+<li>Rebuild the page when it is long, unchunked, uses bold as headings, has pasted formatting from Word or PDFs, or relies on screenshots of text.</li>
+</ul>
+<p>Both actions demonstrate a good-faith effort toward compliance and improve learning for everyone.</p>
+<p class="badge warn">Reminder: structure is an accessibility feature</p>
+</section>
+
+<!-- PAGE STRUCTURE -->
+<section class="card" aria-labelledby="structure-structure-title">
+<h2 id="structure-structure-title">Brightspace pages: headings and structure</h2>
+<p>Typical uses include weekly modules, instructions, announcements, and learning activities. Good structure reduces cognitive load and improves navigation for screen reader and keyboard users.</p>
+<details>
+<summary>How to draft or revise with AI (Brightspace HTML)</summary>
+<ol>
+<li>Copy your current Brightspace page text into an approved AI tool. Do not include student identifiers.</li>
+<li>If the content includes tables, images, or links, include the relevant text around them so the AI can preserve meaning.</li>
+<li>Use one of the section prompts below to generate a revised version.</li>
+<li>Paste the revised content back into Brightspace and use the editor formatting tools (headings, lists, links).</li>
+<li>Run the Brightspace accessibility checker (if enabled) and then complete the manual checklist and validation steps.</li>
+</ol>
+<p class="badge info">Tip: after pasting, re-apply headings and lists using the editor controls</p>
+</details>
+<details>
+<summary>HTML beats pasted formatting</summary>
+<p>Pages that look fine after pasting from Word or PDFs can still be poorly structured under the surface. Rebuild or reformat in the Brightspace editor so headings and lists are real structure, not visual styling.</p>
+<p class="badge warn">Common risk: pasted content that is bolded and spaced like headings but is not a heading</p>
+</details>
+<details>
+<summary>Headings and chunking</summary>
+<p>Headings are not visual decoration. They are navigation landmarks. Students using screen readers often jump by headings, and all students benefit from predictable chunks.</p>
+<ul>
+<li>Use one clear page title (Heading 1) and then use Heading 2 for major sections.</li>
+<li>Do not skip heading levels. Use Heading 3 only within a Heading 2 section.</li>
+<li>Keep sections short. Break long pages into smaller pages when the topic shifts.</li>
+<li>Do not use bold text as a substitute for headings.</li>
+</ul>
+<p class="badge warn">Common error: multiple H1 headings on one page</p>
+</details>
+<details>
+<summary>What Ally will not catch</summary>
+<p>Ally can flag missing structure, missing alt text, and some formatting issues. It will not confirm whether your headings make sense instructionally, whether your page is appropriately chunked, or whether students can locate key instructions quickly.</p>
+<p>Use Ally as a signal, then apply the checklist and a quick navigation check.</p>
+</details>
+<details>
+<summary>Before and after: what better structure looks like</summary>
+<p>Before: a long page with a single heading, dense paragraphs, and directions embedded in text. Students must scroll and search to find due dates, steps, and submission details.</p>
+<p>After: a short page title followed by clear sections such as Overview, What to do, What to submit, and How you will be assessed. Steps appear as a numbered list, and key items are easy to scan on mobile.</p>
+</details>
+<details>
+<summary>Common misconception</summary>
+<p>If the text looks like a heading because it is bold and larger, it must be a heading. Visual styling alone does not create structure. Use the Brightspace heading format so assistive technology can navigate it.</p>
+</details>
+<details>
+<summary>Rewrite my page with correct headings and lists</summary>
+<pre><code>You are helping me revise a Brightspace page for accessibility and readability.
+
+Task:
+1) Rewrite the content as a well-structured Brightspace page.
+2) Use one clear page title, then section headings that follow a logical hierarchy.
+3) Convert any fake lists into real bullet or numbered lists.
+4) Break long paragraphs into shorter paragraphs.
+5) Preserve meaning and course specific terminology. Do not add new facts.
+
+Output requirements:
+- Provide the revised content in plain text with heading labels such as:
+  [H1] Title
+  [H2] Section
+  [H3] Subsection
+- Keep it ready to paste into Brightspace.
+</code></pre>
+</details>
+<details>
+<summary>Fix bold-as-heading and heading level issues</summary>
+<pre><code>You are helping me fix common heading problems in a Brightspace page.
+
+Identify:
+- Any lines that are visually styled like headings (for example bold text) but should be true headings
+- Any skipped heading levels (for example going from H1 to H3)
+- Any repeated H1 headings that should be H2 instead
+
+Then:
+- Propose a corrected heading outline (H1, H2, H3)
+- Provide a revised version of the page content using that corrected outline
+- Do not change meaning and do not add new facts
+
+Return plain text only with [H1], [H2], [H3] labels.
+</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Brightspace page structure</summary>
+<ul>
+<li>Use one page title (Heading 1). Use Heading 2 for sections. Use Heading 3 only within a section.</li>
+<li>Make lists real lists (bullets or numbers), not typed hyphens or manual numbering.</li>
+<li>Use descriptive link text that tells students where the link goes.</li>
+<li>Keep paragraphs short and add spacing so the page is scannable.</li>
+<li>Avoid images of text. Convert to real text or rebuild the content.</li>
+<li>If you reference color or position ("in red," "on the right"), add a second cue (label, icon with text, or explicit wording).</li>
+<li>Quick mobile check: confirm headings and key instructions are easy to find on a small screen.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Brightspace page structure outputs</summary>
+<ul>
+<li>Run the Brightspace accessibility checker for HTML-authored content, if it is available in your editor.</li>
+<li>Run Ally Course Report for the page and resolve remaining structure issues.</li>
+<li>Keyboard check: Tab through the page and confirm you can reach all links in a logical order.</li>
+</ul>
+<p class="badge time">Typical time: 5 to 20 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Brightspace page structure</summary>
+<ul>
+<li>Using bold as headings, which does not create real structure.</li>
+<li>Skipping heading levels, which breaks navigation.</li>
+<li>Long pages with no chunking, causing students to miss key instructions.</li>
+<li>Copy-paste formatting from Word or PDFs that looks fine visually but creates inconsistent structure.</li>
+</ul>
+</details>
+</section>
+<!-- LINKS, LISTS, AND READABILITY -->
+<section class="card" aria-labelledby="structure-readability-title">
+<h2 id="structure-readability-title">Readability conventions that reduce barriers</h2>
+<p>Readable pages are more accessible. These conventions reduce confusion for students with disabilities and improve clarity for everyone.</p>
+<details>
+<summary>Short paragraphs, clear lists, and consistent spacing</summary>
+<ul>
+<li>Prefer short paragraphs (2 to 5 lines).</li>
+<li>Use lists for steps, requirements, and criteria.</li>
+<li>Use consistent labels for repeated items (Due date, Time estimate, What to submit).</li>
+<li>Use meaningful headings that match what students are looking for.</li>
+<li>Write link text that is understandable out of context.</li>
+</ul>
+<p class="badge info">Tip: structure helps students scan on mobile and reduces missed instructions</p>
+</details>
+<details>
+<summary>Rewrite for clarity without changing meaning</summary>
+<pre><code>You are helping me revise course instructions for clarity and accessibility.
+
+Revise the text to:
+- Use short paragraphs and plain language
+- Convert steps and requirements into real lists
+- Add clear labels (for example: Due date, What to submit, How to submit)
+- Keep the original meaning and course policies
+- Do not add new requirements
+
+Return plain text only.
+</code></pre>
+</details>
+<details>
+<summary>Common pitfalls in readability</summary>
+<ul>
+<li>Walls of text with no headings or lists.</li>
+<li>Directions embedded in paragraphs instead of steps.</li>
+<li>Inconsistent terminology for the same task across weeks.</li>
+<li>Link text like "click here" or "read more" with no context.</li>
+</ul>
+</details>
+</section>
+<!-- KEYBOARD AND FOCUS -->
+<section class="card" aria-labelledby="structure-keyboard-title">
+<h2 id="structure-keyboard-title">Keyboard access and visible focus</h2>
+<p>Accessibility is not only screen readers. Keyboard-only navigation is a separate requirement and a common student need.</p>
+<details>
+<summary>Quick check: can you tab through it</summary>
+<ul>
+<li>Use Tab to move forward through interactive items (links, buttons, controls).</li>
+<li>Use Shift + Tab to move backward.</li>
+<li>Confirm you can always see where you are on the page.</li>
+<li>Confirm any embedded tools are also usable by keyboard.</li>
+</ul>
+<p class="badge warn">If an embedded item traps your keyboard, provide an alternative or rebuild.</p>
+</details>
+<details>
+<summary>Validation for keyboard and focus</summary>
+<ul>
+<li>Tab through the page and confirm all links are reachable in a logical order.</li>
+<li>Confirm links and focus states are perceivable without relying on color alone.</li>
+</ul>
+<p class="badge time">Typical time: 2 to 8 minutes</p>
+</details>
+</section>
+<!-- TEMPLATES AND OPTIONAL FEATURES -->
+<section class="card" aria-labelledby="structure-templates-title">
+<h2 id="structure-templates-title">Templates and built-in supports*</h2>
+<p class="badge warn">Verify with UB Learns: availability and configuration can vary by institution</p>
+<details>
+<summary>Accessible content guidance in Brightspace</summary>
+<p>This guidance describes how to create accessible content in Brightspace using the editor and built-in practices.</p>
+<p><a href="https://community.d2l.com/brightspace/kb/articles/3345-create-accessible-content-in-brightspace">D2L guidance: Create accessible content in Brightspace</a></p>
+</details>
+<details>
+<summary>Accessible template packages*</summary>
+<p>Some Brightspace environments support adding an accessible template package to course files. If your environment supports this, templates can speed up consistent page structure and reduce formatting errors.</p>
+<ul>
+<li>Use templates to standardize headings, spacing, and content blocks across modules.</li>
+<li>Do not use templates as a substitute for clear instructions and descriptive links.</li>
+</ul>
+<p><a href="https://community.d2l.com/brightspace/kb/articles/3605-adding-an-accessible-template-package-to-your-course-files">D2L guidance: Adding an accessible template package</a></p>
+</details>
+<details>
+<summary>ReadSpeaker docReader integration*</summary>
+<p>Some Brightspace environments include ReadSpeaker docReader, which can provide text-to-speech for certain content types. This can help students access content, but it does not replace well-structured pages and accessible source documents.</p>
+<p><a href="https://community.d2l.com/brightspace/kb/articles/3348-access-course-content-using-the-readspeaker-docreader-integration">D2L guidance: ReadSpeaker docReader integration</a></p>
+</details>
+<details>
+<summary>Inline grading and assistive technology*</summary>
+<p>Some grading workflows have known assistive technology considerations. If students report barriers, provide an alternative workflow and coordinate with UB Learns.</p>
+<p><a href="https://community.d2l.com/brightspace/kb/articles/3614-how-assistive-technology-interacts-with-the-inline-grading-experience">D2L guidance: Assistive technology and inline grading</a></p>
+</details>
+</section>
+<!-- REFERENCES -->
+<section class="card" aria-labelledby="structure-refs-title">
+<h2 id="structure-refs-title">References for this tile</h2>
+<ul>
+<li><a href="https://community.d2l.com/brightspace/kb/articles/3345-create-accessible-content-in-brightspace">D2L: Create accessible content in Brightspace</a></li>
+<li><a href="https://community.d2l.com/brightspace/kb/articles/3334-meeting-web-content-accessibility-standards">D2L: Meeting web content accessibility standards</a></li>
+<li><a href="https://community.d2l.com/brightspace/kb/articles/3659-compliance-to-accessibility-standards-in-html-authored-content">D2L: Compliance to accessibility standards in HTML-authored content</a></li>
+<li><a href="https://community.d2l.com/brightspace/kb/articles/3336-setting-clear-course-expectations">D2L: Setting clear course expectations</a></li>
+</ul>
+</section>
+<!-- SHARED VALIDATION -->
+<section class="card" aria-labelledby="structure-validate-log">
+<h2 id="structure-validate-log">Shared validation and recordkeeping</h2>
+<p>Complete these steps before publishing in Brightspace.</p>
+<table><caption>Validation tools</caption>
+<thead>
+<tr>
+<th scope="col">Context</th>
+<th scope="col">Tool</th>
+<th scope="col">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML-authored Brightspace pages</td>
+<td>Brightspace accessibility checker (if available)</td>
+<td>Run the checker and resolve issues it identifies</td>
+</tr>
+<tr>
+<td>Brightspace pages and linked files</td>
+<td>Ally Course Report</td>
+<td>Review flags and fix headings, links, images, and structure issues</td>
+</tr>
+<tr>
+<td>Keyboard and focus check</td>
+<td>Tab and Shift + Tab</td>
+<td>Confirm links and focus states are perceivable without relying on color alone</td>
+</tr>
+</tbody>
+</table>
+<h3>Remediation log fields</h3>
+<ul>
+<li>Date and page name</li>
+<li>Route chosen and tools used</li>
+<li>Issues found and fixes applied</li>
+<li>Validation outcome and next action</li>
+</ul>
+<div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+</section>
+          </div>
+        </details>
+      </section>
+      <section class="topic" aria-labelledby="contrast-summary">
+        <details class="topic-details">
+          <summary id="contrast-summary">
+            <span class="summary-title">Color and Contrast: Readability and Meaning</span>
+          </summary>
+          <div class="topic-content">
+<section class="banner" aria-label="AI and human collaboration reminder">
+<p>Color and contrast affect whether learners can perceive, read, and interpret content. Adequate contrast helps in low-vision and color-blind contexts and improves readability on mobile devices, projectors, and in bright environments. Maintain strong contrast to reduce eye strain and keep critical information visible to everyone.</p>
+<p class="badge info">WCAG references: 1.4.3 Contrast (Minimum), 1.4.11 Non-text Contrast, 1.4.1 Use of Color</p>
+</section>
+<section class="card" aria-labelledby="contrast-decide">
+<h2 id="contrast-decide">Choose the most effective change</h2>
+<p>Adjusting color values is not the only path. Often the smallest change reaches the target ratio while preserving brand feel. If color conveys meaning, add a second cue.</p>
+<ul>
+<li>Change color values to meet WCAG 2.1 AA.</li>
+<li>Increase size or weight so large text can pass at 3:1.</li>
+<li>Add an overlay when text sits on an image.</li>
+<li>Add a non-color cue when color signals meaning.</li>
+</ul>
+<p class="badge warn">Reminder: do not rely on color alone for meaning</p>
+</section>
+
+<!-- SUGGEST ACCESSIBLE COLOR FIXES -->
+<section class="card" aria-labelledby="contrast-fixes-title">
+<h2 id="contrast-fixes-title">Suggest accessible color fixes</h2>
+<p>Typical uses include Brightspace HTML pages, PowerPoint slides and banners, tables, and PDFs that use UB brand colors or custom color schemes.</p>
+<details>
+<summary>How to apply these checks (Color Fixes)</summary>
+<ol>
+<li>Gather exact hex values for foreground and background for text, links, buttons, banners, and form controls. Sample the actual rendered color including overlays and transparency.</li>
+<li>Determine whether to adjust text, background, or font size and weight. Large text qualifies for a lower ratio.</li>
+<li>Run a contrast check and record the measured ratio. Text must be at least 4.5:1 for normal text. Large text can pass at 3:1.</li>
+<li><strong>Large text definition:</strong> 18 pt (24 px) or larger regular, or 14 pt (18.66 px) and bold.</li>
+<li>Choose the smallest visual change that reaches WCAG 2.1 AA and preserves brand intent. Recheck after theme or background changes.</li>
+</ol>
+</details>
+<details>
+<summary>AI-assisted checks and adjustments (Color Fixes)</summary>
+<pre><code>You may be receiving hex values for text, links, buttons, and backgrounds.
+Suggest the smallest adjustments that reach WCAG AA while preserving brand intent.
+Return revised hex values, the measured ratios, and one sentence of rationale per element.</code></pre>
+<p>Use a reliable checker such as the <a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">WebAIM Contrast Checker</a> to confirm final ratios.</p>
+</details>
+<details>
+<summary>Manual remediation checklist for Color Fixes</summary>
+<ul>
+<li>Normal text meets 4.5:1. Large text meets 3:1.</li>
+<li>UI components and focus indicators meet 3:1.</li>
+<li>Text over images uses a solid or semi-opaque overlay.</li>
+<li>Final colors preserve legibility and brand feel.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Color Fixes outputs</summary>
+<ul>
+<li>Confirm ratios with a contrast checker and record values. If tools disagree, record the measured hex values and use a trusted checker for final decisions.</li>
+<li>Run the Ally Course Report in Brightspace for posted pages.</li>
+<li>Spot check with a screen reader and keyboard navigation to confirm visible focus.</li>
+</ul>
+<p class="badge time">Typical time: 5 to 20 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Color Fixes</summary>
+<ul>
+<li>Light gray text on light backgrounds.</li>
+<li>Headings on photo banners without an overlay.</li>
+<li>Changing default state colors but missing hover or focus states.</li>
+<li>Assuming tools always agree without context.</li>
+</ul>
+</details>
+</section>
+<!-- COLOR-ONLY MEANING -->
+<section class="card" aria-labelledby="contrast-cues-title">
+<h2 id="contrast-cues-title">Identify color-only meaning and add a second cue</h2>
+<p>Typical uses include charts, graphs, buttons, alerts, required-field indicators, quizzes, and feedback messages that use color to indicate meaning.</p>
+<details>
+<summary>How to apply these checks (Visual Cues)</summary>
+<ol>
+<li>Scan for places where color alone signals meaning or state.</li>
+<li>Note affected elements such as charts, legends, status messages, and required fields.</li>
+<li>Add one extra cue per case such as an icon, label, underline, pattern, or direct data labels.</li>
+<li>Recheck clarity on mobile and when printed in grayscale.</li>
+</ol>
+</details>
+<details>
+<summary>AI-assisted checks and adjustments (Visual Cues)</summary>
+<pre><code>You may be receiving a description of components where color signals meaning.
+Identify each instance of color-only meaning and propose a second cue:
+• Icons or short text for status
+• Patterns or direct labels for charts
+• Underlines or bold for links
+Return concise recommendations that fit the current layout.</code></pre>
+<p>For design ideas that work well for color vision differences, see guidance from Perkins School for the Blind: <a href="https://www.perkins.org/resource/how-design-color-blindness/" target="_blank" rel="noopener">How to design for color blindness</a>.</p>
+</details>
+<details>
+<summary>Manual remediation checklist for Visual Cues</summary>
+<ul>
+<li>Links are not differentiated by color alone. Prefer underlines or a strong non-color cue.</li>
+<li>Status messages include icons or short text.</li>
+<li>Charts use patterns or direct labels, not color alone.</li>
+<li>Required fields include the word “Required.”</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Visual Cues outputs</summary>
+<ul>
+<li>Preview with a color-blindness simulator or design guide and also test in grayscale or print to PDF.</li>
+<li>Confirm icons and labels remain visible at small sizes.</li>
+<li>Run the Ally Course Report for posted pages and spot check with a screen reader.</li>
+</ul>
+<p class="badge time">Typical time: 10 to 25 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Visual Cues</summary>
+<ul>
+<li>Red and green used without labels.</li>
+<li>“Important items in blue” with no supporting cue.</li>
+<li>Heatmaps or scales with indistinguishable steps for some viewers.</li>
+</ul>
+</details>
+</section>
+<!-- LINK COLOR VS SURROUNDING TEXT -->
+<section class="card" aria-labelledby="contrast-links-title">
+<h2 id="contrast-links-title">Link color vs surrounding text</h2>
+<p>Typical uses include Brightspace pages, Word and PDF documents, and email content with hyperlinks and visited states.</p>
+<details>
+<summary>How to apply these checks (Link Contrast)</summary>
+<ol>
+<li>Evaluate links in context such as body text, sidebars, banners, and dark themes.</li>
+<li>Check link contrast against page background and distinction from body text.</li>
+<li>Confirm hover, focus, and visited states remain accessible.</li>
+</ol>
+</details>
+<details>
+<summary>AI-assisted checks and adjustments (Link Contrast)</summary>
+<pre><code>You may be receiving hex values for body text, link text, and backgrounds.
+Recommend a link color that meets contrast requirements and is clearly distinct from body text.
+Include guidance for underline, hover, focus, and visited states. Return rationale and measured ratios.</code></pre>
+<p>Confirm final ratios using the <a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">WebAIM Contrast Checker</a>. Ensure visited link colors also pass.</p>
+</details>
+<details>
+<summary>Manual remediation checklist for Link Contrast</summary>
+<ul>
+<li>Link color has sufficient contrast with background.</li>
+<li>Links are visually distinct from body text, preferably underlined.</li>
+<li>Hover, focus, and visited states remain accessible and consistent.</li>
+<li>Icon-only links include visible text or an accessible name.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Link Contrast outputs</summary>
+<ul>
+<li>Confirm contrast ratios for default and visited link colors.</li>
+<li>Keyboard test for visible focus and predictable behavior.</li>
+<li>Screen reader spot check to confirm descriptive link text.</li>
+</ul>
+<p class="badge time">Typical time: 5 to 15 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Link Contrast</summary>
+<ul>
+<li>Link color too close to body text color.</li>
+<li>Removing underlines without adding a strong secondary cue.</li>
+<li>Visited link color that fails contrast or becomes indistinguishable.</li>
+</ul>
+</details>
+</section>
+<!-- VALIDATION SECTION FOR STANDALONE TILE -->
+<section class="card" aria-labelledby="contrast-overall-validation">
+<h2 id="contrast-overall-validation">Validation for color outputs</h2>
+<details>
+<summary>Validation steps</summary>
+<ul>
+<li>Use the <a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">WebAIM Contrast Checker</a> or a similar tool to confirm ratios meet WCAG 2.1 AA.</li>
+<li>Review pages in Brightspace or your LMS with Ally Course Report to identify color contrast flags.</li>
+<li>Confirm that focus indicators for links, buttons, and forms are clearly visible when tabbing.</li>
+<li>Spot-check charts, graphs, and alerts to ensure color-only meaning is avoided and secondary cues are present.</li>
+<li>Record changes and outcomes in your accessibility log.</li>
+</ul>
+<p class="badge time">Typical time: 5 to 20 minutes</p>
+</details>
+</section>
+<!-- ADDITIONAL RESOURCES -->
+<section class="card" aria-labelledby="contrast-resources-title">
+<h2 id="contrast-resources-title">Additional resources</h2>
+<details>
+<summary>Links and tools</summary>
+<ul>
+<li><a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">WebAIM Contrast Checker</a> — test contrast ratios for text and backgrounds.</li>
+<li><a href="https://colororacle.org/" target="_blank" rel="noopener">Color Oracle</a> — simulate color vision deficiencies on Windows, Mac, and Linux.</li>
+<li><a href="https://www.perkins.org/resource/how-design-color-blindness/" target="_blank" rel="noopener">Perkins: How to design for color blindness</a> — practical guidance for inclusive color use.</li>
+</ul>
+</details>
+</section>
+<!-- SHARED VALIDATION AND RECORDKEEPING -->
+<section class="card" aria-labelledby="contrast-validate-log">
+<h2 id="contrast-validate-log">Shared validation and recordkeeping</h2>
+<p>Complete these steps before posting to Brightspace.</p>
+<table><caption>Validation tools</caption>
+<thead>
+<tr>
+<th scope="col">Context</th>
+<th scope="col">Tool</th>
+<th scope="col">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Color and contrast values</td>
+<td>WebAIM Contrast Checker</td>
+<td>Measure ratios and confirm against WCAG 2.1 AA</td>
+</tr>
+<tr>
+<td>Brightspace pages</td>
+<td>Ally Course Report</td>
+<td>Review flags and adjust headings, links, and structure</td>
+</tr>
+<tr>
+<td>Screen reader spot check (if applicable)</td>
+<td>NVDA or VoiceOver</td>
+<td>Confirm links and focus states are perceivable without relying on color alone.&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<h3>Remediation log fields</h3>
+<ul>
+<li>Date and item name</li>
+<li>Route chosen and tools used</li>
+<li>Original and revised hex values with measured ratios</li>
+<li>Secondary cues added where color conveyed meaning</li>
+<li>Validation outcome and next action</li>
+</ul>
+<div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+</section>
+          </div>
+        </details>
+      </section>
+      <section class="topic" aria-labelledby="images-summary">
+        <details class="topic-details">
+          <summary id="images-summary">
+            <span class="summary-title">Images: Alt Text, Long Descriptions, and Decorative Images</span>
+          </summary>
+          <div class="topic-content">
+<section class="banner" aria-label="AI and human collaboration reminder">
+<p>AI can draft alt text and long descriptions, but it does not determine what is instructionally essential. Provide purpose and context, review carefully, and validate in Brightspace.</p>
+</section>
+<section class="card" aria-labelledby="images-decide">
+<h2 id="images-decide">Fix or rebuild: choosing the most effective path</h2>
+<p>For images, accessibility remediation often starts with a decision. In many cases, replacing an image with accessible text, a simple table, or a redesigned visual is more effective than attempting to describe a complex or low-quality image. The goal is not to preserve the original image at all costs but to ensure learners can access the instructional meaning.</p>
+<ul>
+<li>Fix the image use when it is instructionally meaningful, visually clear, and can be described accurately with alt text or a long description.</li>
+<li>Rebuild or replace when the image contains dense text, low-resolution content, complex charts without underlying data, or decorative styling that obscures meaning.</li>
+</ul>
+<p class="badge warn">Reminder: replacement is an accessibility strategy</p>
+</section>
+
+<!-- DECORATIVE VS INFORMATIVE -->
+<section class="card" aria-labelledby="images-decorative-title">
+<h2 id="images-decorative-title">Decorative images: choosing the right approach</h2>
+<p>Not every image needs alt text. Images that do not convey instructional meaning should be marked as decorative so they are skipped by screen readers.</p>
+<p><strong>Mark as decorative</strong> when the image does not convey instructional meaning. The image can be removed without affecting what students are expected to learn.</p>
+<p><strong>Write alt text</strong> when the image communicates essential information that can be conveyed accurately in one or two sentences.</p>
+<p><strong>Provide a long description</strong> when the image is complex and cannot be adequately described in one or two sentences, such as charts, diagrams, or multi-part visuals.</p>
+<table aria-label="Decorative, alt text, or long description decision guide"><caption>Decorative, alt text, or long description: quick decision guide</caption>
+<thead>
+<tr>
+<th scope="col">If the image</th>
+<th scope="col">Then choose</th>
+<th scope="col">What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Does not add instructional meaning and is not referenced in instructions</td>
+<td>Mark as decorative</td>
+<td>Check “decorative” so screen readers skip the image. <strong>In most learning platforms, this is preferable to leaving alt text blank</strong>.</td>
+</tr>
+<tr>
+<td>Conveys instructional meaning that can be explained briefly</td>
+<td>Alt text</td>
+<td>Write 1 to 2 concise sentences describing the essential information</td>
+</tr>
+<tr>
+<td>Is complex or multi-part and cannot be explained briefly</td>
+<td>Long description</td>
+<td>Provide alt text plus a longer text description placed near the image</td>
+</tr>
+</tbody>
+</table>
+<p>Choosing the simplest option that fully communicates the instructional meaning is the most accessible approach.</p>
+<details>
+<summary>Common examples</summary>
+<ul>
+<li><strong>Decorative:</strong> Stock photo banner used for visual interest only</li>
+<li><strong>Decorative:</strong> Icon that repeats adjacent text (for example, a calendar icon next to a due date)</li>
+<li><strong>Alt text:</strong> Screenshot that shows where to click to submit an assignment</li>
+<li><strong>Long description:</strong> Multi-part diagram or infographic where relationships and labels matter</li>
+</ul>
+</details>
+<details>
+<summary>Common pitfalls</summary>
+<ul>
+<li>Adding alt text to decorative images, which creates unnecessary repetition and distraction for screen reader users</li>
+<li>Marking an image as decorative when students are expected to interpret it</li>
+<li>Using long descriptions for simple images that can be described in one sentence</li>
+</ul>
+</details>
+</section>
+<!-- ALT TEXT -->
+<section class="card" aria-labelledby="images-alt-title">
+<h2 id="images-alt-title">Alt text for images</h2>
+<p>Typical uses include photos, diagrams, screenshots, icons that convey meaning, and instructional images embedded in Brightspace pages or documents.</p>
+<details>
+<summary>How to upload and use the prompts (Alt text)</summary>
+<ol>
+<li>Use an institutionally approved AI tool when working with university or student-related content.</li>
+<li>Prepare the image and remove student identifiers. If the image includes student names, grades, or personal information, do not upload it.</li>
+<li>Provide the image in one of these ways:
+<ul>
+<li>Upload the image file if file upload is available.</li>
+<li>If upload is not available, paste a description of the image and any visible text.</li>
+</ul>
+</li>
+<li>Provide one sentence of context that explains the purpose of including the image in the course and who the audience is.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Review the result and revise as needed to match instructional intent and course terminology.</li>
+<li>Enter the final alt text in the tool where the image is posted. Validate in Brightspace.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Alt text)</summary>
+<p class="badge info">Label: purpose based alt text</p>
+<h3>Prompt A. Purpose based alt text draft</h3>
+<pre><code>You may be receiving an uploaded image, or you may only receive a pasted description of the image.
+
+First, ask me to provide:
+1) The instructional purpose of including this image in the course
+2) What the image is meant to teach or demonstrate
+3) Who the intended audience is
+4) Any text that appears in the image that must be conveyed
+
+If you have enough information, draft concise, purpose based alt text in 1 to 2 sentences.
+Include only essential information needed to achieve the instructional purpose.
+Avoid phrases such as "image of" or "picture of" unless needed for clarity.
+If the image appears decorative, recommend marking it as decorative instead of writing alt text.
+
+Return the alt text only.</code></pre>
+<h3>Prompt B. Decorative or informative decision support</h3>
+<pre><code>You may be receiving an uploaded image, or you may only receive a pasted description of the image.
+
+Based on the image and the course context I provide, determine whether the image is:
+1) Informative and requires alt text
+2) Decorative and should be marked as decorative
+
+If informative, draft 1 to 2 sentences of alt text.
+If decorative, state "Mark as decorative" and provide one short rationale.
+
+Return the recommendation and the alt text if applicable.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Alt text</summary>
+<ul>
+<li>Confirm whether the image is decorative or informative using the decision guide above.</li>
+<li>For informative images, write alt text that communicates the instructional purpose, not just visual appearance.</li>
+<li>Keep alt text concise and focused on essential meaning.</li>
+<li>Include visible text only when it is instructionally necessary.</li>
+<li>Avoid duplicating surrounding page text in the alt text.</li>
+<li>For complex visuals, use a long description in addition to alt text.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Alt text</summary>
+<ul>
+<li>Confirm the image has alt text or is marked as decorative in the authoring tool.</li>
+<li>Run the Ally Course Report for Brightspace pages that include images.</li>
+<li>Spot check with a screen reader to confirm the alt text is read appropriately and in context.</li>
+</ul>
+<p class="badge time">Typical time: 2 to 10 minutes per image</p>
+</details>
+<details>
+<summary>Common pitfalls in Alt text</summary>
+<ul>
+<li>Alt text describes appearance but not instructional meaning.</li>
+<li>Alt text is too long and includes unnecessary detail.</li>
+<li>Decorative images have alt text, creating noise for screen reader users.</li>
+<li>Images contain text that should be replaced with real text on the page when possible.</li>
+</ul>
+</details>
+</section>
+<!-- LONG DESCRIPTIONS -->
+<section class="card" aria-labelledby="images-long-title">
+<h2 id="images-long-title">Long descriptions for complex images</h2>
+<p>Use long descriptions for charts, graphs, infographics, process diagrams, maps, and complex visuals where 1 to 2 sentences cannot convey the instructional meaning.</p>
+<details>
+<summary>How to upload and use the prompts (Long descriptions)</summary>
+<ol>
+<li>Use an institutionally approved AI tool and remove student identifiers.</li>
+<li>Provide the image by uploading it or by pasting a detailed description of what it contains, including any labels and visible text.</li>
+<li>Provide context that explains the instructional purpose of the image and what students should learn from it.</li>
+<li>If the image is a chart or graph, provide the underlying data if available. If data is not available, provide the best available description of axes, legend, and key values.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Review the output for accuracy and revise as needed.</li>
+<li>Post the long description near the image in Brightspace, using clear labeling such as "Long description" or "Text alternative."</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Long descriptions)</summary>
+<p class="badge info">Label: text alternatives for complex visuals</p>
+<h3>Prompt A. Long description draft</h3>
+<pre><code>You may be receiving an uploaded complex image, or you may only receive a pasted description of the image.
+
+First, ask me to provide:
+1) The instructional purpose of this image
+2) What it is meant to teach or demonstrate
+3) Who the intended audience is
+4) Any visible text, labels, axes, or legend items that must be conveyed
+5) If it is a chart, any data values available
+
+Then write:
+1) Alt text in 1 to 2 sentences that identifies the image type and main point
+2) A long description that stands alone and communicates the essential information
+
+Long description requirements:
+- Begin with a 1 to 2 sentence overview
+- Follow with an objective description of 4 to 8 sentences
+- Describe structure, relationships, sequence, and key values or trends
+- Include readable versions of any text in the image that is required for meaning
+- Avoid interpreting conclusions that are not directly supported by the image
+
+Return the alt text and long description only.</code></pre>
+<h3>Prompt B. Chart or graph text alternative with data table recommendation</h3>
+<pre><code>You may be receiving an uploaded chart or graph, or you may only receive a pasted description.
+
+If the underlying data is available, recommend whether a simple data table should be posted in Brightspace as a companion text alternative.
+If no data is available, recommend what data would be needed to create a table.
+
+Then draft:
+1) Alt text in 1 to 2 sentences
+2) A long description in 4 to 8 sentences focused on key trends and values
+
+Return the recommendation, alt text, and long description.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Long descriptions</summary>
+<ul>
+<li>Confirm whether a long description is needed. If the image is complex, 1 to 2 sentences are not sufficient.</li>
+<li>Ensure the long description communicates structure and relationships, not decorative styling.</li>
+<li>For charts and graphs, consider providing a data table or a short summary of key values.</li>
+<li>Place the long description near the image and label it clearly.</li>
+<li>Ensure the long description does not repeat surrounding text verbatim unless needed for meaning.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Long descriptions</summary>
+<ul>
+<li>Confirm the image has alt text and that the long description is discoverable near the image.</li>
+<li>Run the Ally Course Report for the page where the image is posted.</li>
+<li>Spot check with a screen reader to confirm that users can reach the long description easily.</li>
+</ul>
+<p class="badge time">Typical time: 10 to 30 minutes per complex image</p>
+</details>
+<details>
+<summary>Common pitfalls in Long descriptions</summary>
+<ul>
+<li>Long descriptions are missing labels, axes, or legend information.</li>
+<li>Descriptions include interpretation not supported by the image.</li>
+<li>Descriptions are posted far from the image or without a clear label.</li>
+<li>Charts are presented without underlying data or a usable text alternative.</li>
+</ul>
+</details>
+</section>
+<!-- BRIGHTSPACE PLACEMENT -->
+<section class="card" aria-labelledby="images-place-title">
+<h2 id="images-place-title">Posting images in Brightspace</h2>
+<p>Where you place text alternatives matters. Use consistent labeling and ensure students can find the information without searching across pages.</p>
+<details>
+<summary>Recommended placement patterns</summary>
+<ul>
+<li>Alt text belongs in the image properties field in Brightspace or in the source file where the image is embedded.</li>
+<li>Long descriptions should be placed immediately below the image or linked directly with clear link text such as "Long description of chart."</li>
+<li>If the image is central to an assignment or assessment, include the text alternative in the same content item as the image.</li>
+<li>If the image contains essential text, replace the image with real text on the page when possible.</li>
+</ul>
+</details>
+<details>
+<summary>Quick prompt to rewrite image text as real text</summary>
+<pre><code>You may be receiving an uploaded image that contains text, or you may receive pasted text from the image.
+
+If text content is present, rewrite it as clean, accessible plain text suitable for posting directly on a Brightspace page.
+Preserve headings and list structure.
+Do not add content that is not present.
+
+If no readable text is present, briefly state what content is needed to proceed.
+
+Return plain text only.</code></pre>
+</details>
+</section>
+<section class="card" aria-labelledby="images-validate-log">
+<h2 id="images-validate-log">Shared validation and recordkeeping</h2>
+<p>Complete these steps before posting to Brightspace.</p>
+<table><caption>Validation tools</caption>
+<thead>
+<tr>
+<th scope="col">Context</th>
+<th scope="col">Tool</th>
+<th scope="col">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Images on Brightspace pages</td>
+<td>Ally Course Report</td>
+<td>Review flags, verify alt text, adjust placement of long descriptions</td>
+</tr>
+<tr>
+<td>Complex charts and diagrams</td>
+<td>Manual review</td>
+<td>Confirm accuracy of labels, relationships, and key values</td>
+</tr>
+<tr>
+<td>Screen reader spot check</td>
+<td>NVDA or VoiceOver</td>
+<td>Confirm alt text is concise and long descriptions are discoverable</td>
+</tr>
+</tbody>
+</table>
+<h3>Remediation log fields</h3>
+<ul>
+<li>Date and page location</li>
+<li>Image purpose and whether it is decorative or informative</li>
+<li>Alt text completed or decorative marked</li>
+<li>Long description posted, if applicable, and where it is located</li>
+<li>Validation outcome and next action</li>
+</ul>
+<div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+</section>
+          </div>
+        </details>
+      </section>
+      <section class="topic" aria-labelledby="office-summary">
+        <details class="topic-details">
+          <summary id="office-summary">
+            <span class="summary-title">Office 365 Tools: Word, PowerPoint, Excel</span>
+          </summary>
+          <div class="topic-content">
+<section class="banner" aria-label="AI and human collaboration reminder">
+<p>AI speeds up remediation but does not finish it. Upload your file, apply the prompt, then complete the manual checklist and validation steps.</p>
+</section>
+<section class="card" aria-labelledby="office-decide">
+<h2 id="office-decide">Fix or rebuild: choosing the most effective path</h2>
+<p>Accessibility remediation is not always about repair. In many cases, rebuilding a document from an accessible template is the most efficient and sustainable option. The goal is not to preserve the original layout at all costs but to create content that is structurally sound, perceivable, and maintainable.</p>
+<ul>
+<li>Fix the file when it contains a few correctable issues, such as missing alt text, minor color contrast problems, or incomplete heading styles.</li>
+<li>Rebuild when the document lacks semantic structure, includes images of text, or uses complex tables and layouts that cannot be corrected reliably.</li>
+</ul>
+<p>Both actions demonstrate a good-faith effort toward compliance and support an inclusive learning environment.</p>
+</section>
+
+<!-- WORD -->
+<section class="card" aria-labelledby="office-word-title">
+<h2 id="office-word-title">Microsoft Word</h2>
+<p>Typical uses include syllabi, assignment sheets, lab instructions, and policy documents.</p>
+<details>
+<summary>How to upload and use the prompts (Word)</summary>
+<ol>
+<li>Open Copilot or a licensed ChatGPT account. Do not use the free ChatGPT version.</li>
+<li>Prepare your file. Remove student or personal data. Save a working copy.</li>
+<li>Attach the .docx using the paperclip or upload icon. Wait until the upload finishes.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Retrieve the result. Download the returned .docx or copy any HTML the AI provides.</li>
+<li>Review the PowerPoint and add alt text to all informative images; mark decorative images as decorative.</li>
+<li>Complete the manual remediation checklist and validation steps.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Word)</summary>
+<p class="badge info">Label: conversion and HTML</p>
+<h3>Prompt A. Convert to accessible Word</h3>
+<pre><code>You have my uploaded file. Convert it to an accessible .docx.
+Use true heading styles in logical order, list semantics, descriptive link text,
+table headers with scope where needed, image alt text, and language metadata.
+Return the .docx only. If something cannot be remediated, list it on a final page.</code></pre>
+<h3>Prompt B. Convert to Brightspace HTML</h3>
+<pre><code>You have my uploaded document. Convert it to semantic HTML for Brightspace.
+Use one h1, ordered headings, landmark regions, and descriptive links.
+For tables, include &lt;caption&gt;, &lt;thead&gt;, and th scope attributes.
+Return HTML code only, then a short validation checklist.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Word</summary>
+<ul>
+<li>Apply heading styles for all headings.</li>
+<li>Use real lists, not typed hyphens or manual numbering.</li>
+<li>Ensure table header rows and appropriate scope. Provide a caption and brief summary for data tables.</li>
+<li>Replace images of text with real text or add precise alt text.</li>
+<li>Check color contrast and avoid color-only meaning.</li>
+<li>Set the document language.</li>
+<li>Run Review → Check Accessibility and resolve remaining issues.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for Word outputs</summary>
+<ul>
+<li>Microsoft Accessibility Checker for Word files.</li>
+<li>If you posted HTML, run the Ally Course Report in Brightspace.</li>
+<li>Spot check with a screen reader.</li>
+</ul>
+<p class="badge time">Typical time: 5 to 20 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in Word</summary>
+<ul>
+<li>Text appears visually like a heading but is not a heading style.</li>
+<li>Decorative images have unnecessary alt text.</li>
+<li>Complex tables that should be simplified or moved to HTML.</li>
+<li>Do not rely on AI-generated alt text. Manually add alt text to informative images and mark decorative images appropriately.</li>
+</ul>
+</details>
+</section>
+<!-- POWERPOINT -->
+<section class="card" aria-labelledby="office-ppt-title">
+<h2 id="office-ppt-title">Microsoft PowerPoint</h2>
+<p>Typical uses include lecture slides and narrated presentations.</p>
+<details>
+<summary>How to upload and use the prompts (PowerPoint)</summary>
+<ol>
+<li>Open Copilot or a licensed ChatGPT account with file upload enabled.</li>
+<li>Remove private data or embedded student examples from your slides.</li>
+<li>Upload the .pptx file and wait until the upload finishes.</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Download the returned .pptx and review reading order, alt text, and contrast.</li>
+<li>Complete the manual remediation checklist and validation steps.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (PowerPoint)</summary>
+<p class="badge info">Label: conversion and outline</p>
+<h3>Prompt A. Convert to accessible PowerPoint</h3>
+<pre><code>You have my uploaded deck. Convert it to an accessible .pptx.
+Use one clear title per slide, logical reading order, sufficient contrast,
+and alt text for images. Do not add speaker notes unless they exist.
+Return the .pptx only. If something cannot be remediated, list it on a final slide.</code></pre>
+<h3>Prompt B. PowerPoint to Brightspace HTML outline</h3>
+<pre><code>You have my uploaded deck. Convert it into a concise HTML outline for Brightspace.
+Use one h1 for the deck title, then h2 for slide titles, and bullet lists for key points.
+Flag any images that need alt text. Return HTML code only, then a short validation checklist.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for PowerPoint</summary>
+<ul>
+<li>Apply accessible slide layouts through the slide master.</li>
+<li>Ensure each slide has a title placeholder.</li>
+<li>Fix reading order for all content.</li>
+<li>Provide alt text or mark decorative.</li>
+<li>Check color contrast and avoid color-only meaning.</li>
+<li>Avoid text embedded in images unless duplicated in real text.</li>
+</ul>
+</details>
+<details>
+<summary>Validation for PowerPoint outputs</summary>
+<ul>
+<li>Microsoft Accessibility Checker for PowerPoint.</li>
+<li>If exported to HTML, run Ally in Brightspace and spot check with a screen reader.</li>
+</ul>
+<p class="badge time">Typical time: 10 to 30 minutes</p>
+</details>
+<details>
+<summary>Common pitfalls in PowerPoint</summary>
+<ul>
+<li>Stacked text boxes causing incorrect reading order.</li>
+<li>Missing slide titles.</li>
+<li>Small low-contrast text.</li>
+<li>Do not rely on AI-generated alt text. Manually add alt text to informative images and mark decorative images appropriately.</li>
+</ul>
+</details>
+</section>
+<!-- EXCEL -->
+<section class="card" aria-labelledby="office-excel-title">
+<h2 id="office-excel-title">Microsoft Excel</h2>
+<p>Decide early whether you are displaying data or delivering an interactive spreadsheet. If the goal is readability, convert key tables or charts to accessible HTML or Word.</p>
+<details>
+<summary>How to upload and use the prompts (Excel)</summary>
+<ol>
+<li>Open Copilot or a licensed ChatGPT account.</li>
+<li>Remove student data and unnecessary formulas or hidden sheets.</li>
+<li>Upload the .xlsx file and wait until the upload finishes.</li>
+<li>Paste the Excel prompt below for accessible HTML or Word conversion.</li>
+<li>Review the generated table or document for accuracy and logical structure.</li>
+<li>Run the Accessibility Checker or validate HTML output in Brightspace.</li>
+<li>Document your remediation actions.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Excel)</summary>
+<p class="badge info">Label: table conversions</p>
+<h3>Prompt A. Excel to accessible HTML table for Brightspace</h3>
+<pre><code>You have my uploaded Excel file. Convert the key sheet into an accessible HTML table.
+Include a &lt;caption&gt;, &lt;thead&gt;, and th scope="col". Use concise column headers.
+Return HTML code and a short validation checklist for screen reader use.</code></pre>
+<h3>Prompt B. Excel to accessible Word table</h3>
+<pre><code>You have my uploaded Excel file. Convert the key sheet into an accessible Word table.
+Use a single header row with clear column names, no merged cells, and a brief caption.
+Return the .docx only and list any cells that need manual review.</code></pre>
+</details>
+<details>
+<summary>Manual remediation checklist for Excel</summary>
+<ul>
+<li>Avoid merged cells and blank spacer rows.</li>
+<li>Use a defined header row in each table.</li>
+<li>Provide text labels for charts and data points.</li>
+<li>Ensure adequate color contrast.</li>
+<li>If interactivity is required, protect cells that are not intended for input and confirm tab order.</li>
+</ul>
+</details>
+<details>
+<summary>When to rebuild in Excel</summary>
+<ul>
+<li>Multiple tables on one sheet with merged cells.</li>
+<li>Complex charts without labels.</li>
+<li>Spreadsheets copied forward for years with inconsistent formatting.</li>
+</ul>
+<p class="badge warn">Guidance: rebuild or convert to HTML for reading</p>
+</details>
+<details>
+<summary>Validation for Excel outputs</summary>
+<ul>
+<li>If staying in Excel, run the Accessibility Checker.</li>
+<li>If you converted to Word or HTML, validate in that environment and spot check with a screen reader.</li>
+</ul>
+</details>
+</section>
+<!-- NEW: Accessible file names + document properties -->
+<section class="card" aria-labelledby="office-files-meta">
+<h2 id="office-files-meta">Accessible file names and document properties <span class="badge info">High payoff</span></h2>
+<p>File names and document properties are often the first information a screen reader announces. Clear names and correct metadata help students identify, organize, and return to course materials efficiently. This connects to Title II expectations without legal wording.</p>
+<h3>1. File names</h3>
+<p>Fastest improvement for access and organization.</p>
+<ul>
+<li>Use descriptive, meaningful names students will recognize later.</li>
+<li>Avoid defaults like <code>Document1</code> or vague labels like <code>Week3</code> or <code>Scan</code>.</li>
+<li>Include the context students need such as course, term, topic, or version.</li>
+</ul>
+<div class="card" style="margin: .6rem 0; border-style: dashed;">
+<h3>Examples</h3>
+<ul>
+<li>Bad: <code>syllabus.pdf</code> → Better: <code>BIO101_Fall2025_Syllabus.pdf</code></li>
+<li>Bad: <code>Week4.pdf</code> → Better: <code>Week4_CellRespiration_Readings.pdf</code></li>
+</ul>
+<p class="badge time">Typical time: under 1 minute per file</p>
+</div>
+<h3>2. Document title metadata (Word, PowerPoint, Excel)</h3>
+<p>The document title is not always the file name, and assistive technologies announce the title first.</p>
+<ul>
+<li>Set a meaningful document title that matches the content students will see.</li>
+<li>Do not leave defaults like <code>Document1</code> or <code>Microsoft Word – Untitled</code>.</li>
+</ul>
+<div class="banner" style="border-radius: 10px;">
+<p>You do not need step-by-step clicks here. Just set a good title in the file properties before you upload.</p>
+</div>
+<h3>3. Language setting</h3>
+<p>Set the document language so screen readers use correct pronunciation. This is especially important for bilingual or multilingual content.</p>
+<ul>
+<li>Choose the primary language for the document.</li>
+<li>If a section uses another language, mark that section’s language where your tool allows.</li>
+</ul>
+<h3>4. Versioning and updates</h3>
+<p>Reduce confusion for you and your students.</p>
+<ul>
+<li>When you revise a document, update the file name or include a version tag such as <code>v2</code> or a date.</li>
+<li>Avoid uploading multiple different files with the exact same name in Brightspace.</li>
+</ul>
+<h3>Validation for file names and properties</h3>
+<ul>
+<li>Open the file and confirm the document title is correct.</li>
+<li>Check the file name before uploading to Brightspace.</li>
+<li>Run the built-in Accessibility Checker where available.</li>
+</ul>
+<p class="badge time">Typical time: 2 to 5 minutes per file</p>
+<h3>Common pitfalls</h3>
+<ul>
+<li>Files named <code>Week1</code>, <code>Final</code>, or <code>Handout</code>.</li>
+<li>Document title left as a default value.</li>
+<li>Mismatch between file name and document title.</li>
+<li>Multiple uploads with identical names in Brightspace.</li>
+</ul>
+</section>
+<!-- SHARED VALIDATION -->
+<section class="card" aria-labelledby="office-validate-log">
+<h2 id="office-validate-log">Shared validation and recordkeeping</h2>
+<p>Complete these steps before posting to Brightspace.</p>
+<table><caption>Validation tools</caption>
+<thead>
+<tr>
+<th scope="col">Context</th>
+<th scope="col">Tool</th>
+<th scope="col">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Word or PowerPoint files</td>
+<td>Microsoft Accessibility Checker</td>
+<td>Run the checker and resolve issues</td>
+</tr>
+<tr>
+<td>Brightspace HTML pages</td>
+<td>Ally Course Report</td>
+<td>Review flags, adjust headings, links, images</td>
+</tr>
+<tr>
+<td>Screen reader spot check</td>
+<td>NVDA or VoiceOver</td>
+<td>Confirm reading order, headings, tables, links</td>
+</tr>
+</tbody>
+</table>
+<h3>Remediation log fields</h3>
+<ul>
+<li>Date and file name</li>
+<li>Route chosen and tools used</li>
+<li>Issues found and fixes applied</li>
+<li>Validation outcome and next action</li>
+</ul>
+<div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+</section>
+          </div>
+        </details>
+      </section>
+      <section class="topic" aria-labelledby="pdf-summary">
+        <details class="topic-details">
+          <summary id="pdf-summary">
+            <span class="summary-title">PDF Accessibility: Remediation and Conversion Paths</span>
+          </summary>
+          <div class="topic-content">
+<section class="banner">
+<p>AI can assist with drafting structure, text alternatives, and conversions, but authors remain responsible for accuracy, instructional intent, and validation before publishing.</p>
+</section>
+<section class="card">
+<h2>Copyright and accessibility</h2>
+<p>Remediating course materials for accessibility does not change their copyright status. Instructors may adapt, convert, or provide alternative formats of copyrighted materials for instructional use within a course when the purpose is to ensure equal access for enrolled students, consistent with accessibility obligations under Title II and related laws.</p>
+<p>For questions about specific resources or edge cases, consult your library or institutional accessibility support team.</p>
+</section>
+<section class="card">
+<h2>Decision guide: choose the most effective path</h2>
+<table><caption>PDF remediation decision guide</caption>
+<thead>
+<tr>
+<th scope="col">PDF type</th>
+<th scope="col">Primary action</th>
+<th scope="col">Recommended delivery in Brightspace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text-based</td>
+<td>Convert and validate structure</td>
+<td>HTML primary; tagged PDF optional</td>
+</tr>
+<tr>
+<td>Image-based scan</td>
+<td>OCR and rebuild</td>
+<td>HTML primary</td>
+</tr>
+<tr>
+<td>Hybrid text and figures</td>
+<td>Convert and supplement with descriptions</td>
+<td>HTML primary</td>
+</tr>
+<tr>
+<td>Interactive or form-fillable</td>
+<td>Rebuild as semantic form</td>
+<td>HTML form</td>
+</tr>
+<tr>
+<td>Already accessible</td>
+<td>Verify and optionally convert</td>
+<td>HTML recommended</td>
+</tr>
+<tr>
+<td>Student or instructor created</td>
+<td>Re-author from source</td>
+<td>HTML primary</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- TYPE SECTIONS -->
+<section class="card">
+<h2>1. Text-based PDFs</h2>
+<details>
+<summary>AI-assisted conversion prompt</summary>
+<pre><code>You are assisting with accessibility remediation for a university course.
+Convert this text-based PDF into semantic HTML for Brightspace.
+Use one h1, ordered headings, descriptive link text, and accessible tables with captions and headers.
+Provide alt text for images.
+Return HTML only, followed by a short validation checklist.</code></pre>
+</details>
+<ul>
+<li>Validate heading order and reading sequence</li>
+<li>Confirm links describe destination and purpose</li>
+<li>Run Ally after publishing in Brightspace</li>
+</ul>
+</section>
+<section class="card">
+<h2>2. Image-based PDFs (scans)</h2>
+<details>
+<summary>AI-assisted OCR and rebuild prompt</summary>
+<pre><code>This PDF is a scanned document.
+After OCR, rebuild it as accessible HTML for Brightspace.
+Correct recognition errors.
+Recreate tables with proper headers and captions.
+Add alt text based on context.
+Return HTML only with a validation checklist.</code></pre>
+</details>
+<ul>
+<li>Manually verify OCR accuracy</li>
+<li>Check math, symbols, and technical notation</li>
+<li>Prefer rebuilding to tagging where quality is poor</li>
+</ul>
+</section>
+<section class="card">
+<h2>3. Hybrid PDFs (text and figures)</h2>
+<details>
+<summary>AI-assisted hybrid conversion prompt</summary>
+<pre><code>Convert this hybrid PDF into accessible HTML for Brightspace.
+Preserve text structure.
+For each figure, include concise alt text and a short explanatory summary.
+Add data tables where figures present quantitative information.
+Return HTML only with a validation checklist.</code></pre>
+</details>
+<ul>
+<li>Ensure figures are instructionally explained</li>
+<li>Confirm tables include captions and headers</li>
+<li>Spot-check with a screen reader</li>
+</ul>
+</section>
+<section class="card">
+<h2>4. Interactive or form-fillable PDFs</h2>
+<details>
+<summary>AI-assisted form rebuild prompt</summary>
+<pre><code>Rebuild this PDF form as an accessible HTML form for Brightspace.
+Use native form elements with labels.
+Ensure logical tab order, visible focus, and clear error messages.
+Avoid unnecessary ARIA.
+Return HTML only with a validation checklist.</code></pre>
+</details>
+<ul>
+<li>Keyboard navigation must be complete</li>
+<li>Error messages must be programmatically associated</li>
+<li>HTML forms are preferred over PDF forms</li>
+</ul>
+</section>
+<section class="card">
+<h2>5. Already accessible PDFs</h2>
+<details>
+<summary>AI-assisted verification prompt</summary>
+<pre><code>Review this tagged PDF for accessibility.
+Verify heading order, alt text accuracy, table headers, and link text.
+If appropriate, convert to HTML for Brightspace.
+Return HTML only with a validation checklist.</code></pre>
+</details>
+<ul>
+<li>Do not assume automated checks are sufficient</li>
+<li>Confirm tags align with visible structure</li>
+<li>HTML improves usability for most learners</li>
+</ul>
+</section>
+<section class="card">
+<h2>6. Student or instructor created PDFs</h2>
+<details>
+<summary>AI-assisted re-authoring prompt</summary>
+<pre><code>Rebuild this informal PDF as accessible HTML for Brightspace.
+Add clear headings, summaries, and alt text.
+Avoid layout tables.
+Ensure logical reading order.
+Return HTML only with a validation checklist.</code></pre>
+</details>
+<ul>
+<li>Start from source files whenever possible</li>
+<li>Avoid scanned submissions when alternatives exist</li>
+<li>HTML is the preferred instructional format</li>
+</ul>
+</section>
+<section class="card">
+<h2>Shared validation steps</h2>
+<ul>
+<li>Run Ally Course Report in Brightspace</li>
+<li>Confirm keyboard navigation</li>
+<li>Spot-check with a screen reader</li>
+<li>Document remediation decisions and outcomes</li>
+</ul>
+</section>
+          </div>
+        </details>
+      </section>
+      <section class="topic" aria-labelledby="tables-summary">
+        <details class="topic-details">
+          <summary id="tables-summary">
+            <span class="summary-title">Tables and Data: Accessible Structure and Use</span>
+          </summary>
+          <div class="topic-content">
+<section class="banner" aria-label="AI and human collaboration reminder">
+<p>AI can assist with drafting table structures and summaries, but authors remain responsible for clarity, accuracy, and instructional intent. Always validate headings, table headers, captions, and reading order in the final delivery format.</p>
+</section>
+<!-- DECISION GUIDANCE (VISIBLE, NO CLICK REQUIRED) -->
+<section class="card" aria-labelledby="tables-decision-title">
+<h2 id="tables-decision-title">Decision guide: "Should this be a table?"</h2>
+<p>Tables support accessibility when they help learners compare values, identify relationships, or scan structured data. If you do not need comparisons or relationships, write the content as text instead. Rebuilding a table as clear text is often the most accessible option.</p>
+<table aria-label="Table decision guide"><caption>Choose the simplest format that supports learning and accessibility</caption>
+<thead>
+<tr>
+<th scope="col">If the content</th>
+<th scope="col">Use</th>
+<th scope="col">What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Requires comparing values across rows or columns</td>
+<td>Data table</td>
+<td>Use a real table with a clear header row (and header column if needed), plus a caption.</td>
+</tr>
+<tr>
+<td>Lists items without comparison (for example, steps, supplies, policies)</td>
+<td>Text with headings and lists</td>
+<td>Write it as text using headings and bulleted or numbered lists.</td>
+</tr>
+<tr>
+<td>Is only arranged in columns for layout or visual alignment</td>
+<td>Text layout (not a table)</td>
+<td>Rebuild as headings, paragraphs, and lists. Do not use tables for layout.</td>
+</tr>
+<tr>
+<td>Is highly complex with merged cells or nested structures</td>
+<td>Rebuild</td>
+<td>Simplify into multiple smaller tables or convert key information into text and lists.</td>
+</tr>
+</tbody>
+</table>
+<p class="badge info">Quick check</p>
+<p>Read each row out loud as if a screen reader is reading it: header, then each cell. If it does not make sense in that order, rebuild the table or switch to text.</p>
+</section>
+
+<!-- BRIGHTSPACE HTML TABLES -->
+<section class="card" aria-labelledby="tables-html-title">
+<h2 id="tables-html-title">Tables in Brightspace HTML</h2>
+<p>When you publish a table on a Brightspace page, use semantic HTML so assistive technologies can interpret relationships between headers and cells.</p>
+<details>
+<summary>How to upload and use the prompts (Brightspace HTML table)</summary>
+<ol>
+<li>Use an institutionally approved AI tool when working with university or student-related content.</li>
+<li>Remove student identifiers and sensitive information before uploading or pasting content.</li>
+<li>Provide your table content in one of these ways:
+<ul>
+<li>Upload a Word, Excel, or PDF file that contains the table, or</li>
+<li>Paste the table content (including headers) into the prompt.</li>
+</ul>
+</li>
+<li>Paste one prompt from the prompt bank below.</li>
+<li>Review the output for accuracy, especially header labels, units, and totals.</li>
+<li>Copy and paste the HTML into Brightspace and validate using Ally.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Brightspace HTML table)</summary>
+<p class="badge info">Label: semantic HTML tables</p>
+<h3>Prompt A. Convert a table into accessible Brightspace HTML</h3>
+<pre><code>You may receive an uploaded file or pasted table content.
 
 First, ask me:
 1) What learners must do with this table (compare values, find patterns, answer a question)
@@ -362,8 +2109,8 @@ Then create an accessible HTML table for Brightspace:
 - Keep header labels concise and meaningful
 
 Return HTML code only, then a short validation checklist for headings, caption, and header associations.</code></pre>
-          <h3>Prompt B. Rebuild a table as accessible text when a table is not needed</h3>
-          <pre><code>You may receive an uploaded file or pasted content.
+<h3>Prompt B. Rebuild a table as accessible text when a table is not needed</h3>
+<pre><code>You may receive an uploaded file or pasted content.
 
 First, ask me what learners need from this content.
 If learners do not need to compare values across rows or columns, rewrite the content as accessible text:
@@ -372,8 +2119,8 @@ If learners do not need to compare values across rows or columns, rewrite the co
 - Do not add new content
 
 Return plain text suitable for a Brightspace HTML page, then a short validation checklist.</code></pre>
-          <h3>Prompt C. Add a short data summary for a table</h3>
-          <pre><code>You may receive an uploaded file or pasted table content.
+<h3>Prompt C. Add a short data summary for a table</h3>
+<pre><code>You may receive an uploaded file or pasted table content.
 
 Write a brief, student-facing summary that helps learners interpret the table:
 - 2 to 4 sentences
@@ -381,50 +2128,47 @@ Write a brief, student-facing summary that helps learners interpret the table:
 - Avoid conclusions not supported by the data
 
 Return the summary only.</code></pre>
-        </details>
-        <details>
-          <summary>Manual checklist (Brightspace HTML table)</summary>
-          <ul>
-            <li>Include a caption that names the table and what it is for.</li>
-            <li>Confirm headers are real table headers, not bolded text.</li>
-            <li>Avoid merged cells. If merged cells are necessary, simplify the structure or split the table.</li>
-            <li>Keep header text short and specific (include units in header labels when helpful).</li>
-            <li>Use text near the table to define abbreviations or codes.</li>
-            <li>Run Ally Course Report after posting in Brightspace.</li>
-          </ul>
-        </details>
-        <details>
-          <summary>Validation (Brightspace HTML table)</summary>
-          <ul>
-            <li>Run Ally Course Report for the Brightspace page containing the table.</li>
-            <li>Spot check with a screen reader: confirm headers are announced with associated cells.</li>
-            <li>Keyboard check: confirm focus moves through the page logically.</li>
-          </ul>
-          <p class="badge time">Typical time: 10 to 30 minutes</p>
-        </details>
-      </section>
-      <section class="card" aria-labelledby="word-title">
-        <h2 id="word-title">Tables in Microsoft Word</h2>
-        <p>
-          Word tables are often used for schedules, rubrics, grading criteria,
-          and policy summaries. Many accessibility issues come from missing
-          header rows, merged cells, and layout tables.
-        </p>
-        <details>
-          <summary>How to upload and use the prompts (Word tables)</summary>
-          <ol>
-            <li>Use an institutionally approved AI tool when working with university or student-related content.</li>
-            <li>Remove student identifiers. Save a working copy of your document.</li>
-            <li>Upload the .docx file (or paste the table content if upload is not available).</li>
-            <li>Paste one prompt below. Each prompt assumes a file is attached or content is pasted.</li>
-            <li>Review the output and apply the manual checklist before publishing.</li>
-          </ol>
-        </details>
-        <details>
-          <summary>Prompt bank (Word tables)</summary>
-          <p class="badge info">Label: Word table cleanup</p>
-          <h3>Prompt A. Fix a Word table for accessibility</h3>
-          <pre><code>You may receive an uploaded Word document or pasted table content.
+</details>
+<details>
+<summary>Manual checklist (Brightspace HTML table)</summary>
+<ul>
+<li>Include a caption that names the table and what it is for.</li>
+<li>Confirm headers are real table headers, not bolded text.</li>
+<li>Avoid merged cells. If merged cells are necessary, simplify the structure or split the table.</li>
+<li>Keep header text short and specific (include units in header labels when helpful).</li>
+<li>Use text near the table to define abbreviations or codes.</li>
+<li>Run Ally Course Report after posting in Brightspace.</li>
+</ul>
+</details>
+<details>
+<summary>Validation (Brightspace HTML table)</summary>
+<ul>
+<li>Run Ally Course Report for the Brightspace page containing the table.</li>
+<li>Spot check with a screen reader: confirm headers are announced with associated cells.</li>
+<li>Keyboard check: confirm focus moves through the page logically.</li>
+</ul>
+<p class="badge time">Typical time: 10 to 30 minutes</p>
+</details>
+</section>
+<!-- WORD TABLES -->
+<section class="card" aria-labelledby="tables-word-title">
+<h2 id="tables-word-title">Tables in Microsoft Word</h2>
+<p>Word tables are often used for schedules, rubrics, grading criteria, and policy summaries. Many accessibility issues come from missing header rows, merged cells, and layout tables.</p>
+<details>
+<summary>How to upload and use the prompts (Word tables)</summary>
+<ol>
+<li>Use an institutionally approved AI tool when working with university or student-related content.</li>
+<li>Remove student identifiers. Save a working copy of your document.</li>
+<li>Upload the .docx file (or paste the table content if upload is not available).</li>
+<li>Paste one prompt below. Each prompt assumes a file is attached or content is pasted.</li>
+<li>Review the output and apply the manual checklist before publishing.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Word tables)</summary>
+<p class="badge info">Label: Word table cleanup</p>
+<h3>Prompt A. Fix a Word table for accessibility</h3>
+<pre><code>You may receive an uploaded Word document or pasted table content.
 
 First, ask me what learners must do with the table.
 Then improve the table for accessibility:
@@ -434,8 +2178,8 @@ Then improve the table for accessibility:
 - Add a short table caption placed immediately above the table (plain text)
 
 Return the revised table content and the caption text. If something cannot be fixed reliably, list what needs manual attention.</code></pre>
-          <h3>Prompt B. Convert a table to accessible Brightspace HTML (preferred for complex tables)</h3>
-          <pre><code>You may receive an uploaded Word document or pasted table content.
+<h3>Prompt B. Convert a table to accessible Brightspace HTML (preferred for complex tables)</h3>
+<pre><code>You may receive an uploaded Word document or pasted table content.
 
 Convert the table into semantic HTML for Brightspace:
 - Include a &lt;caption&gt;
@@ -444,69 +2188,51 @@ Convert the table into semantic HTML for Brightspace:
 - Avoid merged cells unless essential
 
 Return HTML code only, then a short validation checklist.</code></pre>
-        </details>
-        <details>
-          <summary>Manual checklist (Word tables)</summary>
-          <ul>
-            <li>Use a real table only when learners must compare values or interpret relationships.</li>
-            <li>Keep tables simple: one header row, no merged cells when possible.</li>
-            <li>Write a short caption above the table (Word does not provide an HTML-style caption element).</li>
-            <li>Confirm any abbreviations are defined near the table.</li>
-            <li>Run Review, then Check Accessibility.</li>
-            <li>If the table is long, set the header row to repeat so screen readers and learners retain context.</li>
-          </ul>
-          <p>
-            Microsoft support:
-            <a
-              href="https://support.microsoft.com/en-us/office/repeat-table-header-on-subsequent-pages-2ff677e0-3150-464a-a283-fa52794b4b41"
-              target="_blank"
-              rel="noopener"
-            >
-              Repeat table header on subsequent pages
-            </a>
-          </p>
-          <p class="badge info">Simplified guidance</p>
-          <p>
-            Check the option to repeat the header row so the header remains
-            associated with the table content. This supports accessibility and
-            reduces confusion when tables continue.
-          </p>
-        </details>
-        <details>
-          <summary>Validation (Word tables)</summary>
-          <ul>
-            <li>Run Microsoft Accessibility Checker in Word.</li>
-            <li>Confirm the table reads logically from headers to each row.</li>
-            <li>Consider converting complex tables to Brightspace HTML for better usability.</li>
-          </ul>
-          <p class="badge time">Typical time: 10 to 30 minutes</p>
-        </details>
-      </section>
-      <section class="card" aria-labelledby="excel-title">
-        <h2 id="excel-title">Data from Excel: publish for reading, not spreadsheets</h2>
-        <p>
-          Excel is powerful for analysis, but many spreadsheets are difficult to
-          deliver accessibly as course content. For most courses, the highest
-          payoff is to publish the data learners need in an accessible table
-          (HTML or Word) plus a short summary, instead of posting a complex
-          spreadsheet.
-        </p>
-        <details>
-          <summary>How to upload and use the prompts (Excel data)</summary>
-          <ol>
-            <li>Use an institutionally approved AI tool when working with university or student-related content.</li>
-            <li>Remove student identifiers. If the workbook includes grades or student work, do not upload it.</li>
-            <li>Upload the .xlsx file or paste the relevant table range with headers.</li>
-            <li>Paste one prompt below.</li>
-            <li>Review for accuracy, especially labels, units, and totals.</li>
-            <li>Publish the result in Brightspace and validate with Ally.</li>
-          </ol>
-        </details>
-        <details>
-          <summary>Prompt bank (Excel data)</summary>
-          <p class="badge info">Label: publish data accessibly</p>
-          <h3>Prompt A. Convert Excel data to a Brightspace HTML table</h3>
-          <pre><code>You may receive an uploaded Excel file or pasted data.
+</details>
+<details>
+<summary>Manual checklist (Word tables)</summary>
+<ul>
+<li>Use a real table only when learners must compare values or interpret relationships.</li>
+<li>Keep tables simple: one header row, no merged cells when possible.</li>
+<li>Write a short caption above the table (Word does not provide an HTML-style caption element).</li>
+<li>Confirm any abbreviations are defined near the table.</li>
+<li>Run Review, then Check Accessibility.</li>
+<li>If the table is long, set the header row to repeat so screen readers and learners retain context.</li>
+</ul>
+<p>Microsoft support: <a href="https://support.microsoft.com/en-us/office/repeat-table-header-on-subsequent-pages-2ff677e0-3150-464a-a283-fa52794b4b41" target="_blank" rel="noopener"> Repeat table header on subsequent pages </a></p>
+<p class="badge info">Simplified guidance</p>
+<p>Check the option to repeat the header row so the header remains associated with the table content. This supports accessibility and reduces confusion when tables continue.</p>
+</details>
+<details>
+<summary>Validation (Word tables)</summary>
+<ul>
+<li>Run Microsoft Accessibility Checker in Word.</li>
+<li>Confirm the table reads logically from headers to each row.</li>
+<li>Consider converting complex tables to Brightspace HTML for better usability.</li>
+</ul>
+<p class="badge time">Typical time: 10 to 30 minutes</p>
+</details>
+</section>
+<!-- EXCEL DATA TABLES -->
+<section class="card" aria-labelledby="tables-excel-title">
+<h2 id="tables-excel-title">Data from Excel: publish for reading, not spreadsheets</h2>
+<p>Excel is powerful for analysis, but many spreadsheets are difficult to deliver accessibly as course content. For most courses, the highest payoff is to publish the data learners need in an accessible table (HTML or Word) plus a short summary, instead of posting a complex spreadsheet.</p>
+<details>
+<summary>How to upload and use the prompts (Excel data)</summary>
+<ol>
+<li>Use an institutionally approved AI tool when working with university or student-related content.</li>
+<li>Remove student identifiers. If the workbook includes grades or student work, do not upload it.</li>
+<li>Upload the .xlsx file or paste the relevant table range with headers.</li>
+<li>Paste one prompt below.</li>
+<li>Review for accuracy, especially labels, units, and totals.</li>
+<li>Publish the result in Brightspace and validate with Ally.</li>
+</ol>
+</details>
+<details>
+<summary>Prompt bank (Excel data)</summary>
+<p class="badge info">Label: publish data accessibly</p>
+<h3>Prompt A. Convert Excel data to a Brightspace HTML table</h3>
+<pre><code>You may receive an uploaded Excel file or pasted data.
 
 First, ask me which sheet and which table range is the one to publish.
 Then convert that data into a semantic HTML table for Brightspace:
@@ -516,8 +2242,8 @@ Then convert that data into a semantic HTML table for Brightspace:
 - Keep header labels concise and meaningful
 
 Return HTML code only, then a short validation checklist.</code></pre>
-          <h3>Prompt B. Draft a student-facing summary of the dataset</h3>
-          <pre><code>You may receive an uploaded dataset or pasted data.
+<h3>Prompt B. Draft a student-facing summary of the dataset</h3>
+<pre><code>You may receive an uploaded dataset or pasted data.
 
 Write a short summary for learners:
 - 2 to 4 sentences
@@ -526,58 +2252,189 @@ Write a short summary for learners:
 - Avoid claims that are not supported by the data
 
 Return the summary only.</code></pre>
-        </details>
-        <details>
-          <summary>Manual checklist (Excel data publishing)</summary>
-          <ul>
-            <li>Decide whether learners need a spreadsheet for interaction or whether they only need to read the data.</li>
-            <li>If the goal is reading, publish as HTML table plus a short summary.</li>
-            <li>Use clear headers and define units (percent, dollars, minutes) in headers or nearby text.</li>
-            <li>Avoid merged cells, hidden columns, and multiple unrelated tables on a single published table.</li>
-            <li>Validate the Brightspace page with Ally.</li>
-          </ul>
+</details>
+<details>
+<summary>Manual checklist (Excel data publishing)</summary>
+<ul>
+<li>Decide whether learners need a spreadsheet for interaction or whether they only need to read the data.</li>
+<li>If the goal is reading, publish as HTML table plus a short summary.</li>
+<li>Use clear headers and define units (percent, dollars, minutes) in headers or nearby text.</li>
+<li>Avoid merged cells, hidden columns, and multiple unrelated tables on a single published table.</li>
+<li>Validate the Brightspace page with Ally.</li>
+</ul>
+</details>
+</section>
+<!-- SHARED VALIDATION -->
+<section class="card" aria-labelledby="tables-validate-log">
+<h2 id="tables-validate-log">Shared validation and recordkeeping</h2>
+<p>Complete these steps before publishing in Brightspace.</p>
+<table><caption>Validation tools</caption>
+<thead>
+<tr>
+<th scope="col">Context</th>
+<th scope="col">Tool</th>
+<th scope="col">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Brightspace HTML tables</td>
+<td>Ally Course Report</td>
+<td>Review flags and confirm headers, captions, and structure</td>
+</tr>
+<tr>
+<td>Word tables</td>
+<td>Microsoft Accessibility Checker</td>
+<td>Resolve table structure issues and missing information</td>
+</tr>
+<tr>
+<td>Screen reader spot check</td>
+<td>NVDA or VoiceOver</td>
+<td>Confirm headers are announced with cell content</td>
+</tr>
+</tbody>
+</table>
+<h3>Remediation log fields</h3>
+<ul>
+<li>Date and location (course, module, page)</li>
+<li>Format chosen (HTML table, Word table, or text alternative)</li>
+<li>Key fixes applied (headers, caption, merged cells removed, summary added)</li>
+<li>Validation outcome and next action</li>
+</ul>
+<div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+</section>
+          </div>
         </details>
       </section>
-      <section class="card" aria-labelledby="validate-log">
-        <h2 id="validate-log">Shared validation and recordkeeping</h2>
-        <p>Complete these steps before publishing in Brightspace.</p>
-        <table>
-          <caption>
-            Validation tools
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">Context</th>
-              <th scope="col">Tool</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Brightspace HTML tables</td>
-              <td>Ally Course Report</td>
-              <td>Review flags and confirm headers, captions, and structure</td>
-            </tr>
-            <tr>
-              <td>Word tables</td>
-              <td>Microsoft Accessibility Checker</td>
-              <td>Resolve table structure issues and missing information</td>
-            </tr>
-            <tr>
-              <td>Screen reader spot check</td>
-              <td>NVDA or VoiceOver</td>
-              <td>Confirm headers are announced with cell content</td>
-            </tr>
-          </tbody>
-        </table>
-        <h3>Remediation log fields</h3>
-        <ul>
-          <li>Date and location (course, module, page)</li>
-          <li>Format chosen (HTML table, Word table, or text alternative)</li>
-          <li>Key fixes applied (headers, caption, merged cells removed, summary added)</li>
-          <li>Validation outcome and next action</li>
-        </ul>
-        <div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+      <section class="topic" aria-labelledby="links-summary">
+        <details class="topic-details">
+          <summary id="links-summary">
+            <span class="summary-title">Writing Clear Descriptive Links to Webpages and Resources</span>
+          </summary>
+          <div class="topic-content">
+<section class="banner" aria-label="Why descriptive links matter">
+<p>Descriptive link text tells learners where a link goes and what to expect before they activate it. Screen reader users often navigate long pages by reviewing links out of context, so vague or generic link text limits comprehension and slows learning.</p>
+</section>
+<section class="card" aria-labelledby="links-ai-note">
+<h2 id="links-ai-note">AI and author responsibility</h2>
+<p>AI can assist with drafting link text, but authors remain responsible for clarity, accuracy, and instructional intent.</p>
+</section>
+
+<section class="card" aria-labelledby="links-decision-title">
+<h2 id="links-decision-title">Choosing descriptive link text decision guide</h2>
+<p>This applies when linking phrases like “click here,” “this page,” or entire sentences instead of naming the destination clearly.</p>
+<!-- Always visible decision table -->
+<table aria-label="Decision guide for writing descriptive link text"><caption>Descriptive link text: quick decision guide</caption>
+<thead>
+<tr>
+<th scope="col">If the link is</th>
+<th scope="col">Then choose</th>
+<th scope="col">What to do</th>
+<th scope="col">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A URL pasted into the page</td>
+<td>Descriptive title</td>
+<td>Use the destination title or a meaningful label instead of the raw URL.</td>
+<td><span style="font-style: italic;">Accessibility at UB: Creating Accessible Word Documents</span></td>
+</tr>
+<tr>
+<td>Generic text such as “click here” or “this page”</td>
+<td>Purpose plus destination</td>
+<td>Name the destination and what the learner will do or find there.</td>
+<td><span style="font-style: italic;">Submit your reflection in Brightspace Assignments</span></td>
+</tr>
+<tr>
+<td>The title of a webpage or document</td>
+<td>Exact or shortened title</td>
+<td>Match the destination title or a shortened version that preserves meaning. Avoid truncating key words.</td>
+<td><span style="font-style: italic;">Section 508: Descriptive Links and Hypertext</span></td>
+</tr>
+<tr>
+<td>The same resource appears multiple times</td>
+<td>Consistent link text</td>
+<td>When the same resource appears in multiple places, use the same link text each time.</td>
+<td><span style="font-style: italic;">Course Accessibility Checklist</span></td>
+</tr>
+<tr>
+<td>A task with a clear action</td>
+<td>Action plus object</td>
+<td>Make the action explicit so learners know what happens when they activate the link.</td>
+<td><span style="font-style: italic;">Download the lab data template (Excel)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Most learners benefit from clear link text, but this practice is especially critical for students using screen readers or keyboard navigation.</p>
+<details>
+<summary>Quality checks you can do in under one minute</summary>
+<ul>
+<li>Out-of-context check: Read each link by itself and confirm it still makes sense.</li>
+<li>Scan check: Skim only the linked phrases on the page and confirm you can understand the workflow without reading surrounding text.</li>
+<li>Consistency check: Confirm repeated resources use the same link text across modules and weeks.</li>
+</ul>
+</details>
+<details>
+<summary>Manual checklist for descriptive links</summary>
+<ul>
+<li>Use meaningful link text that describes destination and purpose.</li>
+<li>Keep link text concise while preserving key words.</li>
+<li>Avoid using only “click here,” “more,” “this,” or the raw URL as the link text.</li>
+<li>If the link initiates a task, include the action in the link text.</li>
+<li>If the link points to a file, include the file type when helpful (PDF, Word, PowerPoint, Excel).</li>
+</ul>
+</details>
+<details>
+<summary>Prompt bank for drafting link text</summary>
+<p class="badge info">Label: link text drafting support</p>
+<h3>Prompt A. Draft descriptive links from a list</h3>
+<pre><code>You will receive a list of links I plan to include in a course page.
+For each item, ask me for:
+1) The intended learner task (what should the learner do)
+2) The destination type (webpage, PDF, Word, Brightspace tool, video)
+3) Any required wording (course terminology, assignment names)
+
+Then draft descriptive link text for each item.
+Requirements:
+- Use the destination title or a meaningful summary
+- Avoid generic phrases such as "click here" or "this page"
+- Keep link text concise while preserving key words
+- If it is a file, include the file type when helpful
+Return the revised link text as a numbered list only.</code></pre>
+<h3>Prompt B. Improve existing link text without changing meaning</h3>
+<pre><code>You will receive existing link text and the destination description.
+Rewrite each link to be more descriptive and task aligned without changing meaning.
+Also do an out-of-context check: confirm each link makes sense by itself.
+Return a two column list:
+1) Current link text
+2) Revised link text
+Do not add new resources.</code></pre>
+<p class="badge warn">Reminder</p>
+<p>Review all suggested changes before applying them, especially when link wording implies a specific action or task.</p>
+</details>
+<details>
+<summary>Validation in Brightspace</summary>
+<ul>
+<li>Run the Ally Course Report for the page and review any link related feedback.</li>
+<li>Keyboard check: Use Tab to move through links and confirm focus is visible and the link order matches the page structure.</li>
+<li>Screen reader spot check: Navigate by links and confirm the link list is understandable without surrounding context.</li>
+</ul>
+<p class="badge time">Typical time: 2 to 10 minutes per page</p>
+</details>
+<details>
+<summary>Common places faculty get stuck</summary>
+<ul>
+<li>Copying and pasting a full URL because it feels faster than naming the destination.</li>
+<li>Linking an entire sentence instead of a concise destination phrase.</li>
+<li>Using different names for the same resource across weeks, which confuses learners who skim.</li>
+<li>Using link text that implies the wrong action (for example, “Download” when the link opens a webpage).</li>
+</ul>
+</details>
+<div class="btn-row"><a class="btn" href="#main">Back to top</a></div>
+</section>
+          </div>
+        </details>
       </section>
     </main>
     <footer role="contentinfo" class="container">
